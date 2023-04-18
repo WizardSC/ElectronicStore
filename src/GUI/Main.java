@@ -11,6 +11,7 @@ package GUI;
  */
 public class Main {
     public static void main(String[] args) {
-        new ChiNhanhGUI("CN002").setVisible(true);
+//        new ChiNhanhGUI("CN002").setVisible(true);
+    new GiaoDienGUI().setVisible(true);
     }
 }
