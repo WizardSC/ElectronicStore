@@ -23,8 +23,7 @@ public class MSSQLConnect {
     String database = "ElectronicStore";
     String user = "sa";
     String password = "toan123";
-    String url = "jdbc:sqlserver://LAPTOP-AEI9M0MI\\WIZARDSC;databasename=ElectronicStore";
-    
+    String url = "jdbc:sqlserver://LAPTOP-AEI9M0MI\\WIZARDSC;databasename=ElectronicStore";    
     String url1 = "jdbc:sqlserver://LAPTOP-AEI9M0MI\\WIZARDSC1;databasename=ElectronicStore";
     String url2 = "jdbc:sqlserver://LAPTOP-AEI9M0MI\\WIZARDSC2;databasename=ElectronicStore";
     String url3 = "jdbc:sqlserver://LAPTOP-AEI9M0MI\\WIZARDSC3;databasename=ElectronicStore";
@@ -54,7 +53,7 @@ public class MSSQLConnect {
                 connection = DriverManager.getConnection(url, user, password);
             }
             if(MaCN.equals("CN001")){
-                connection = DriverManager.getConnection(url, user, password);
+                connection = DriverManager.getConnection(url1, user, password);
             }
             if(MaCN.equals("CN002")){
                 connection = DriverManager.getConnection(url2, user, password);

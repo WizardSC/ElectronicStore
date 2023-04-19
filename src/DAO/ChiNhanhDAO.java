@@ -31,7 +31,7 @@ public class ChiNhanhDAO {
 
 //            System.out.println("HamDAO" + MaCN);
             ArrayList<ChiNhanhDTO> dscn = new ArrayList<>();
-            String sql = "select * from LINK_TO_CN3.ElectronicStore.dbo.Chinhanh";
+            String sql = "select * from chinhanh";
             System.out.println(sql);
             ResultSet rs = msSQL.executeQuery(sql, MaCN);
             while (rs.next()) {
