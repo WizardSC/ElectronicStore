@@ -25,6 +25,14 @@ import javax.swing.JComponent;
  */
 public class ImageAvatar extends JComponent {
 
+    public ImageAvatar() {
+    }
+
+    public ImageAvatar(Icon icon, int borderSize) {
+        this.icon = icon;
+        this.borderSize = borderSize;
+    }
+
     public Icon getIcon() {
         return icon;
     }
