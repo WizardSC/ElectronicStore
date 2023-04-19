@@ -21,19 +21,23 @@ public class ChiNhanhDAO {
 
     private MSSQLConnect msSQL = new MSSQLConnect();
     private ArrayList<ChiNhanhDTO> dscn = new ArrayList<>();
-    private Connection connection = msSQL.getConnection();
+//    private Connection connection = msSQL.getConnection();
     private String MaCN;
 
-    public ArrayList<ChiNhanhDTO> getListChiNhanh(String temp) {
+    public void docMaCN(String temp) {
+        this.MaCN = temp;
+       
+        getListChiNhanh();
+
+    }
+
+    public ArrayList<ChiNhanhDTO> getListChiNhanh() {
         try {
-
-            this.MaCN = temp;
-
-//            System.out.println("HamDAO" + MaCN);
+            
             ArrayList<ChiNhanhDTO> dscn = new ArrayList<>();
             String sql = "select * from chinhanh";
-            System.out.println(sql);
-            ResultSet rs = msSQL.executeQuery(sql, MaCN);
+          
+            ResultSet rs = msSQL.executeQuery(sql);
             while (rs.next()) {
                 ChiNhanhDTO cn = new ChiNhanhDTO(
                         rs.getString("MaCN"),

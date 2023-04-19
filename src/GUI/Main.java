@@ -5,13 +5,21 @@
  */
 package GUI;
 
+import javax.swing.UIManager;
+
 /**
  *
  * @author Phuc Toan
  */
 public class Main {
+
     public static void main(String[] args) {
 //        new ChiNhanhGUI("CN002").setVisible(true);
-    new GiaoDienGUI().setVisible(true);
+        new GiaoDienGUI("CN002").setVisible(true);
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+
+        }
     }
 }

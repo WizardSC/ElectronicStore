@@ -14,17 +14,23 @@ import java.util.ArrayList;
  * @author Phuc Toan
  */
 public class ChiNhanhBUS {
+
     private ArrayList<ChiNhanhDTO> listChiNhanh = null;
     private ChiNhanhDAO cnDAO = new ChiNhanhDAO();
     private String MaCN = "";
-    public void docDanhSach(String temp) {
-        this.MaCN = temp;
-        this.listChiNhanh = cnDAO.getListChiNhanh(MaCN);
-        
-//        System.out.println("Ham BUS" +MaCN);
+
+    public void docDanhSach() {
+
+        this.listChiNhanh = cnDAO.getListChiNhanh();
+
+
     }
 
-   
+    public void docMaCN(String temp) {
+        this.MaCN = temp;
+        cnDAO.docMaCN(MaCN);
+
+    }
 
     public ArrayList<ChiNhanhDTO> getListChiNhanh() {
         return listChiNhanh;

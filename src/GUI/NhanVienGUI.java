@@ -5,43 +5,39 @@
  */
 package GUI;
 
-import BUS.ChiNhanhBUS;
-import DAO.MSSQLConnect;
-import DTO.ChiNhanhDTO;
-import java.util.ArrayList;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import javax.swing.BorderFactory;
 
 /**
  *
  * @author Phuc Toan
  */
-public class ChiNhanhGUI extends javax.swing.JPanel {
-    MSSQLConnect mssql = new MSSQLConnect();
-    private ChiNhanhBUS cnBUS = new ChiNhanhBUS();
-    private String MaCN;
-    public ChiNhanhGUI(String temp) {
-        initComponents();
-        this.MaCN = temp;
+public class NhanVienGUI extends javax.swing.JPanel {
 
-        loadData();
+    /**
+     * Creates new form NhanVienGUI
+     */
+    public NhanVienGUI() {
+        initComponents();
+        init(); 
+    }
+    public void init(){
+        tblDSNV.setFocusable(false);
+        tblDSNV.setIntercellSpacing(new Dimension(0, 0));
+        tblDSNV.setRowHeight(25);
+        tblDSNV.setFillsViewportHeight(true);
+        tblDSNV.getTableHeader().setOpaque(false);
+        tblDSNV.getTableHeader().setBackground(new Color(185,225,196));
+        tblDSNV.getTableHeader().setForeground(Color.BLACK);
+        tblDSNV.setSelectionBackground(new Color(185,225,196));
         
+        tblDSNV.setSelectionForeground(Color.BLACK);
+        tblDSNV.setFont(new Font("Arial", Font.PLAIN, 13));
+        tblDSNV.getTableHeader().setReorderingAllowed(false);
+        tblDSNV.setBorder(BorderFactory.createLineBorder(new Color(185,225,196), 2));
     }
-    
-    public void loadData() {
-        cnBUS.docDanhSach();
-//        System.out.println("HamGUI" +MaCN);
-        ArrayList<ChiNhanhDTO> dscn = cnBUS.getListChiNhanh();
-        System.out.println(dscn.size());
-        for (ChiNhanhDTO cn : dscn) {
-            System.out.println(cn.getMaCN());
-            System.out.println(cn.getTenCN());
-            System.out.println(cn.getDiaChi());
-        }
-    }
-    
-//    public void docMaCN(){
-//        
-//        
-//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -119,9 +115,7 @@ public class ChiNhanhGUI extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
