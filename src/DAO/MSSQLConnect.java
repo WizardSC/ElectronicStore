@@ -56,26 +56,25 @@ public class MSSQLConnect {
         try {
 
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-//            connection = DriverManager.getConnection(url, user, password);
+
             if (temp.equals("null")) {
                 connection = DriverManager.getConnection(url, user, password);
-                System.out.println("Test" +connection);
-                System.out.println(connection);
+               
+               
             }
             if (temp.equals("CN001")) {
                 connection = DriverManager.getConnection(url1, user, password);
-                System.out.println("Test1" +connection);
-                System.out.println(connection);
+                
+
             }
             if (temp.equals("CN002")) {
                 connection = DriverManager.getConnection(url2, user, password);
-                System.out.println("Test2" +connection);
-                System.out.println(connection);
+          
             }
             if (temp.equals("CN003")) {
                 connection = DriverManager.getConnection(url3, user, password);
-                System.out.println("Test3" +connection);
-                System.out.println(connection);
+
+
             }
 
         } catch (ClassNotFoundException ex) {
@@ -107,7 +106,7 @@ public class MSSQLConnect {
         ResultSet rs = null;
         try {
             Connect(MaCN);
-
+            System.out.println("query" +MaCN);
             statement = connection.createStatement();
             rs = statement.executeQuery(sql);
         } catch (SQLException ex) {
@@ -118,6 +117,7 @@ public class MSSQLConnect {
 
     public Connection getConnection() {
         Connect(MaCN);
+        System.out.println("query" +MaCN);
         return connection;
     }
 

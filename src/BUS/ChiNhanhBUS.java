@@ -20,17 +20,14 @@ public class ChiNhanhBUS {
     private String MaCN = "";
 
     public void docDanhSach() {
-
         this.listChiNhanh = cnDAO.getListChiNhanh();
-
-
     }
 
-//    public void docMaCN(String temp) {
-//        this.MaCN = temp;
-//        cnDAO.docMaCN(MaCN);
-//
-//    }
+    public void docMaCN(String temp) {
+        this.MaCN = temp;
+        cnDAO.docMaCN(MaCN);
+
+    }
 
     public ArrayList<ChiNhanhDTO> getListChiNhanh() {
         return listChiNhanh;

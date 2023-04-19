@@ -50,7 +50,7 @@ public class GiaoDienGUI extends javax.swing.JFrame {
 //        controller.setView(pnNhanVien,lblNhanVien);
 //        
         ArrayList<DanhMuc> list = new ArrayList<>();
-        list.add(new DanhMuc("ChiNhanh", pnNhanVien, lblNhanVien));
+        list.add(new DanhMuc("NhanVien", pnNhanVien, lblNhanVien));
 
         
         controller.setEvent(list);

@@ -26,16 +26,16 @@ public class ChiNhanhDAO {
 //    private Connection connection = msSQL.getConnection();
     private String MaCN;
 
-//    public void docMaCN(String temp) {
-//        this.MaCN = temp;
-////        msSQL.docMaCN(MaCN);
-////        System.out.println("ChiNhanhDAO: " +MaCN);
-//
-//    }
+    public void docMaCN(String temp) {
+        this.MaCN = temp;
+        msSQL.docMaCN(MaCN);
+        System.out.println("ChiNhanhDAO: " +MaCN);
+
+    }
 
     public ArrayList<ChiNhanhDTO> getListChiNhanh() {
         try {
-//            msSQL.docMaCN(MaCN);
+
             ArrayList<ChiNhanhDTO> dscn = new ArrayList<>();
             String sql = "select * from chinhanh";
             

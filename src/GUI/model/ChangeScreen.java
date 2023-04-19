@@ -76,7 +76,7 @@ public class ChangeScreen {
         public void mouseClicked(MouseEvent e) {
             switch (kind) {
                 case "NhanVien":
-                    node = new NhanVienGUI();
+                    node = new NhanVienGUI(MaCN);
                     break;
                 case "ChiNhanh":
                     node = new ChiNhanhGUI(MaCN);

@@ -15,16 +15,20 @@ import java.util.ArrayList;
  * @author Phuc Toan
  */
 public class ChiNhanhGUI extends javax.swing.JPanel {
-    MSSQLConnect mssql = new MSSQLConnect();
+
+
     private ChiNhanhBUS cnBUS = new ChiNhanhBUS();
     private String MaCN;
+
     public ChiNhanhGUI(String temp) {
         initComponents();
-        System.out.println(temp);
+        this.MaCN = temp;
+        cnBUS.docMaCN(temp);
+ 
         loadData();
-        
+
     }
-    
+
     public void loadData() {
         cnBUS.docDanhSach();
 //        System.out.println("HamGUI" +MaCN);
@@ -36,7 +40,7 @@ public class ChiNhanhGUI extends javax.swing.JPanel {
             System.out.println(cn.getDiaChi());
         }
     }
-    
+
 //    public void docMaCN(){
 //        
 //        
