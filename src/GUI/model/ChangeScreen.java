@@ -36,7 +36,7 @@ public class ChangeScreen {
 
     public void getMaCN(String temp) {
         this.MaCN = temp;
-   
+
         System.out.println("ChangeScreen: " + MaCN);
 
     }
@@ -79,6 +79,12 @@ public class ChangeScreen {
                     node = new NhanVienGUI(MaCN);
                     break;
                 case "ChiNhanh":
+                    node = new ChiNhanhGUI(MaCN);
+                    break;
+                case "PhieuNhap":
+                    node = new ChiNhanhGUI(MaCN);
+                    break;
+                case "HoaDon":
                     node = new ChiNhanhGUI(MaCN);
                     break;
                 default:
