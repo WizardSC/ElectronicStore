@@ -36,6 +36,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
         nvBUS.docMaCN(temp);
 
         loadData();
+        loadDataMaNV();
     }
 
     
@@ -58,11 +59,18 @@ public class NhanVienGUI extends javax.swing.JPanel {
     }
 
     public void loadData() {
-        nvBUS.docDanhSachNVMaTuTang();
-        ArrayList<NhanVienDTO> dsnv = nvBUS.getListNVMaTuTang();
+        nvBUS.docDanhSach();
+        ArrayList<NhanVienDTO> dsnv = nvBUS.getListNhanVien();
         showAllDSNV(dsnv);
     }
-
+    public void loadDataMaNV(){
+        nvBUS.docDanhSachNVMaTuTang();
+        ArrayList<NhanVienDTO> dsnv = nvBUS.getListNVMaTuTang();
+        
+        for(NhanVienDTO nv : dsnv){
+            System.out.println(nv.getMaNV());
+        }
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -99,7 +107,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
         jPanel1.setRequestFocusEnabled(false);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 240));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "THÔNG TIN NHÂN VIÊN", 2, 2, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "THÔNG TIN NHÂN VIÊN", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Mã NV");
@@ -159,7 +167,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/add.png"))); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/system-update.png"))); // NOI18N
         jLabel10.setText("SỬA");
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -169,7 +177,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/add.png"))); // NOI18N
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/trash.png"))); // NOI18N
         jLabel12.setText("XÓA");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);

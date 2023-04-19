@@ -616,7 +616,7 @@
                     </Property>
                     <Property name="borderSize" type="int" value="2"/>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/GUI/img/product.png"/>
+                      <Image iconType="3" name="/GUI/img/customer.png"/>
                     </Property>
                   </Properties>
 
@@ -676,7 +676,7 @@
                     </Property>
                     <Property name="borderSize" type="int" value="2"/>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/GUI/img/product.png"/>
+                      <Image iconType="3" name="/GUI/img/supplier.png"/>
                     </Property>
                   </Properties>
 
@@ -736,7 +736,7 @@
                     </Property>
                     <Property name="borderSize" type="int" value="2"/>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/GUI/img/product.png"/>
+                      <Image iconType="3" name="/GUI/img/user.png"/>
                     </Property>
                   </Properties>
 

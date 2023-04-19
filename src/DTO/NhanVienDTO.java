@@ -20,6 +20,10 @@ public class NhanVienDTO {
     private String MaCN;
     private String IMG;
 
+    public NhanVienDTO(String MaNV) {
+        this.MaNV = MaNV;
+    }
+    
     public NhanVienDTO(String MaNV, String Ho, String Ten, String NamSinh, String SoDT, String DiaChi, String MaCV, String MaCN, String IMG) {
         this.MaNV = MaNV;
         this.Ho = Ho;

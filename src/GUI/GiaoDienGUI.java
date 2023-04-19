@@ -341,7 +341,7 @@ public class GiaoDienGUI extends javax.swing.JFrame {
 
         imageAvatar7.setForeground(new java.awt.Color(255, 255, 240));
         imageAvatar7.setBorderSize(2);
-        imageAvatar7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/product.png"))); // NOI18N
+        imageAvatar7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/customer.png"))); // NOI18N
 
         javax.swing.GroupLayout pnHoaDon2Layout = new javax.swing.GroupLayout(pnHoaDon2);
         pnHoaDon2.setLayout(pnHoaDon2Layout);
@@ -369,7 +369,7 @@ public class GiaoDienGUI extends javax.swing.JFrame {
 
         imageAvatar9.setForeground(new java.awt.Color(255, 255, 240));
         imageAvatar9.setBorderSize(2);
-        imageAvatar9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/product.png"))); // NOI18N
+        imageAvatar9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/supplier.png"))); // NOI18N
 
         javax.swing.GroupLayout pnHoaDon4Layout = new javax.swing.GroupLayout(pnHoaDon4);
         pnHoaDon4.setLayout(pnHoaDon4Layout);
@@ -397,7 +397,7 @@ public class GiaoDienGUI extends javax.swing.JFrame {
 
         imageAvatar10.setForeground(new java.awt.Color(255, 255, 240));
         imageAvatar10.setBorderSize(2);
-        imageAvatar10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/product.png"))); // NOI18N
+        imageAvatar10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/user.png"))); // NOI18N
 
         javax.swing.GroupLayout pnHoaDon5Layout = new javax.swing.GroupLayout(pnHoaDon5);
         pnHoaDon5.setLayout(pnHoaDon5Layout);
@@ -524,24 +524,19 @@ public class GiaoDienGUI extends javax.swing.JFrame {
     private MyCustom.ImageAvatar imageAvatar10;
     private MyCustom.ImageAvatar imageAvatar2;
     private MyCustom.ImageAvatar imageAvatar3;
-    private MyCustom.ImageAvatar imageAvatar4;
     private MyCustom.ImageAvatar imageAvatar5;
     private MyCustom.ImageAvatar imageAvatar6;
     private MyCustom.ImageAvatar imageAvatar7;
-    private MyCustom.ImageAvatar imageAvatar8;
     private MyCustom.ImageAvatar imageAvatar9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblAccount;
     private javax.swing.JLabel lblClose;
     private javax.swing.JLabel lblHoaDon;
     private javax.swing.JLabel lblHoaDon1;
     private javax.swing.JLabel lblHoaDon2;
-    private javax.swing.JLabel lblHoaDon3;
     private javax.swing.JLabel lblHoaDon4;
     private javax.swing.JLabel lblHoaDon5;
     private javax.swing.JLabel lblMinimize;
@@ -552,7 +547,6 @@ public class GiaoDienGUI extends javax.swing.JFrame {
     private javax.swing.JPanel pnHoaDon;
     private javax.swing.JPanel pnHoaDon1;
     private javax.swing.JPanel pnHoaDon2;
-    private javax.swing.JPanel pnHoaDon3;
     private javax.swing.JPanel pnHoaDon4;
     private javax.swing.JPanel pnHoaDon5;
     private javax.swing.JPanel pnMenu;

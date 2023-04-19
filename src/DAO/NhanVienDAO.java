@@ -36,23 +36,11 @@ public class NhanVienDAO {
     public ArrayList<NhanVienDTO> getListNVMaTuTang() {
         try {
             ArrayList<NhanVienDTO> dsnv = new ArrayList<>();
-            String sql = "select * from LINK_TO_CN1.ElectronicStore.dbo.NhanVien\n"
-                    + "union\n"
-                    + "select * from LINK_TO_CN2.ElectronicStore.dbo.NhanVien\n"
-                    + "union\n"
-                    + "select * from LINK_TO_CN3.ElectronicStore.dbo.NhanVien";
+            String sql = "exec sp_SelectAllNV";
             ResultSet rs = mssql.executeQuery(sql);
             while (rs.next()) {
                 NhanVienDTO nv = new NhanVienDTO(
-                        rs.getString("MaNV"),
-                        rs.getString("Ho"),
-                        rs.getString("Ten"),
-                        rs.getString("NamSinh"),
-                        rs.getString("SoDT"),
-                        rs.getString("DiaChi"),
-                        rs.getString("MaCV"),
-                        rs.getString("MaCN"),
-                        rs.getString("IMG")
+                        rs.getString("MaNV")
                 );
                 dsnv.add(nv);
             }
