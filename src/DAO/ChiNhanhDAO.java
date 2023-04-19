@@ -6,6 +6,7 @@
 package DAO;
 
 import DTO.ChiNhanhDTO;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,22 +22,23 @@ public class ChiNhanhDAO {
 
     private MSSQLConnect msSQL = new MSSQLConnect();
     private ArrayList<ChiNhanhDTO> dscn = new ArrayList<>();
+    
 //    private Connection connection = msSQL.getConnection();
     private String MaCN;
 
-    public void docMaCN(String temp) {
-        this.MaCN = temp;
-       
-        getListChiNhanh();
-
-    }
+//    public void docMaCN(String temp) {
+//        this.MaCN = temp;
+////        msSQL.docMaCN(MaCN);
+////        System.out.println("ChiNhanhDAO: " +MaCN);
+//
+//    }
 
     public ArrayList<ChiNhanhDTO> getListChiNhanh() {
         try {
-            
+//            msSQL.docMaCN(MaCN);
             ArrayList<ChiNhanhDTO> dscn = new ArrayList<>();
             String sql = "select * from chinhanh";
-          
+            
             ResultSet rs = msSQL.executeQuery(sql);
             while (rs.next()) {
                 ChiNhanhDTO cn = new ChiNhanhDTO(

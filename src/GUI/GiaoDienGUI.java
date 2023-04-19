@@ -28,7 +28,7 @@ public class GiaoDienGUI extends javax.swing.JFrame {
     public GiaoDienGUI(String temp) {
         setUndecorated(true);
         this.MaCN = temp;
-        System.out.println("GiaoDienGUI: " + MaCN);
+        
         initComponents();
         setLocationRelativeTo(null);
         Icon icon = lblAccount.getIcon();
@@ -54,10 +54,10 @@ public class GiaoDienGUI extends javax.swing.JFrame {
 
         
         controller.setEvent(list);
-        cnBUS.docMaCN(MaCN);
-        
+
+        controller.getMaCN(MaCN);
     }
-   
+    
     
 
     /**

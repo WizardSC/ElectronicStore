@@ -20,8 +20,7 @@ public class ChiNhanhGUI extends javax.swing.JPanel {
     private String MaCN;
     public ChiNhanhGUI(String temp) {
         initComponents();
-        this.MaCN = temp;
-
+        System.out.println(temp);
         loadData();
         
     }

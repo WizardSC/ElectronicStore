@@ -26,11 +26,11 @@ public class ChiNhanhBUS {
 
     }
 
-    public void docMaCN(String temp) {
-        this.MaCN = temp;
-        cnDAO.docMaCN(MaCN);
-
-    }
+//    public void docMaCN(String temp) {
+//        this.MaCN = temp;
+//        cnDAO.docMaCN(MaCN);
+//
+//    }
 
     public ArrayList<ChiNhanhDTO> getListChiNhanh() {
         return listChiNhanh;

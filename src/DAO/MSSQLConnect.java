@@ -44,28 +44,38 @@ public class MSSQLConnect {
 
     }
 
-    public void Connect(String MaCN) {
+    public void docMaCN(String temp) {
+        this.MaCN = temp;
+        Connect(MaCN);
+        System.out.println("MSSQLCOnnect: " + MaCN);
 
-        MaCN = "CN002";
+    }
+
+    public void Connect(String temp) {
+
         try {
 
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 //            connection = DriverManager.getConnection(url, user, password);
-            if (MaCN.equals("null")) {
+            if (temp.equals("null")) {
                 connection = DriverManager.getConnection(url, user, password);
-
+                System.out.println("Test" +connection);
+                System.out.println(connection);
             }
-            if (MaCN.equals("CN001")) {
+            if (temp.equals("CN001")) {
                 connection = DriverManager.getConnection(url1, user, password);
-
+                System.out.println("Test1" +connection);
+                System.out.println(connection);
             }
-            if (MaCN.equals("CN002")) {
+            if (temp.equals("CN002")) {
                 connection = DriverManager.getConnection(url2, user, password);
-
+                System.out.println("Test2" +connection);
+                System.out.println(connection);
             }
-            if (MaCN.equals("CN003")) {
+            if (temp.equals("CN003")) {
                 connection = DriverManager.getConnection(url3, user, password);
-
+                System.out.println("Test3" +connection);
+                System.out.println(connection);
             }
 
         } catch (ClassNotFoundException ex) {

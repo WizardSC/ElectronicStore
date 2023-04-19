@@ -25,9 +25,20 @@ public class ChangeScreen {
     private JPanel pnRoot;
     private String kindSelected = "";
     private ArrayList<DanhMuc> list = null;
+    String MaCN;
+
+    public ChangeScreen() {
+    }
 
     public ChangeScreen(JPanel pnRoot) {
         this.pnRoot = pnRoot;
+    }
+
+    public void getMaCN(String temp) {
+        this.MaCN = temp;
+   
+        System.out.println("ChangeScreen: " + MaCN);
+
     }
 
     public void setView(JPanel pnItem, JLabel lblItem) {
@@ -68,7 +79,7 @@ public class ChangeScreen {
                     node = new NhanVienGUI();
                     break;
                 case "ChiNhanh":
-                    node = new ChiNhanhGUI("");
+                    node = new ChiNhanhGUI(MaCN);
                     break;
                 default:
                     break;
