@@ -22,7 +22,7 @@ public class NhanVienDAO {
 
     private ArrayList<NhanVienDTO> dsnv = new ArrayList<>();
     private MSSQLConnect mssql = new MSSQLConnect();
- 
+
     String MaCN;
 
     public void docMaCN(String temp) {
@@ -30,6 +30,37 @@ public class NhanVienDAO {
         mssql.docMaCN(MaCN);
         System.out.println("ChiNhanhDAO: " + MaCN);
 
+    }
+
+    //Hàm đọc đữ liệu ở cả 3 cơ sở để lấy mã tự tăng
+    public ArrayList<NhanVienDTO> getListNVMaTuTang() {
+        try {
+            ArrayList<NhanVienDTO> dsnv = new ArrayList<>();
+            String sql = "select * from LINK_TO_CN1.ElectronicStore.dbo.NhanVien\n"
+                    + "union\n"
+                    + "select * from LINK_TO_CN2.ElectronicStore.dbo.NhanVien\n"
+                    + "union\n"
+                    + "select * from LINK_TO_CN3.ElectronicStore.dbo.NhanVien";
+            ResultSet rs = mssql.executeQuery(sql);
+            while (rs.next()) {
+                NhanVienDTO nv = new NhanVienDTO(
+                        rs.getString("MaNV"),
+                        rs.getString("Ho"),
+                        rs.getString("Ten"),
+                        rs.getString("NamSinh"),
+                        rs.getString("SoDT"),
+                        rs.getString("DiaChi"),
+                        rs.getString("MaCV"),
+                        rs.getString("MaCN"),
+                        rs.getString("IMG")
+                );
+                dsnv.add(nv);
+            }
+            return dsnv;
+        } catch (SQLException ex) {
+            Logger.getLogger(NhanVienDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     public ArrayList<NhanVienDTO> getListNhanVien() {

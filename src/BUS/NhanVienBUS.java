@@ -27,8 +27,13 @@ public class NhanVienBUS {
     public void docDanhSach(){
         this.listNhanVien = nvDAO.getListNhanVien();
     }
-    
+    public void docDanhSachNVMaTuTang(){
+        this.listNhanVien = nvDAO.getListNVMaTuTang();
+    }
     public ArrayList<NhanVienDTO> getListNhanVien(){
+        return listNhanVien;
+    }
+    public ArrayList<NhanVienDTO> getListNVMaTuTang(){
         return listNhanVien;
     }
 }

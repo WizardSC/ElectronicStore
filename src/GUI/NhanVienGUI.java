@@ -58,8 +58,8 @@ public class NhanVienGUI extends javax.swing.JPanel {
     }
 
     public void loadData() {
-        nvBUS.docDanhSach();
-        ArrayList<NhanVienDTO> dsnv = nvBUS.getListNhanVien();
+        nvBUS.docDanhSachNVMaTuTang();
+        ArrayList<NhanVienDTO> dsnv = nvBUS.getListNVMaTuTang();
         showAllDSNV(dsnv);
     }
 
