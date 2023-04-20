@@ -123,4 +123,8 @@ public class NhanVienDAO {
         }
         
     }
+    
+    public void deleteNhanVien(String MaNV){
+        Connection connection = mssql.getConnection();
+    }
 }
