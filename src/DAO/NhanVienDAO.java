@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -83,16 +84,17 @@ public class NhanVienDAO {
     public void insertNhanVien(NhanVienDTO nv) {
         try {
             Connection connection = mssql.getConnection();
-            String sql = "INSERT INTO nhanvien VALUES (?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO nhanvien VALUES (?,?,?,?,?,?,?,?,NEWID(),?)";
             PreparedStatement pstatement = connection.prepareStatement(sql);
             pstatement.setString(1, nv.getMaNV());
             pstatement.setString(2, nv.getHo());
             pstatement.setString(3, nv.getTen());
-            pstatement.setString(4, nv.getNamSinh());
+            pstatement.setInt(4, Integer.parseInt(nv.getNamSinh()));
             pstatement.setString(5, nv.getSoDT());
             pstatement.setString(6, nv.getDiaChi());
             pstatement.setString(7, nv.getMaCV());
             pstatement.setString(8, nv.getMaCN());
+//           Tham số thứ 9 là cột rowguid
             pstatement.setString(9, nv.getIMG());
             pstatement.executeUpdate();
         } catch (SQLException ex) {
@@ -100,5 +102,25 @@ public class NhanVienDAO {
         } finally {
             mssql.Disconnect();
         }
+    }
+    public void updateNhanVien(NhanVienDTO nv){
+        try {
+            Connection connection = mssql.getConnection();
+            String sql = "UPDATE nhanvien SET Ho = ?, Ten = ?, NamSinh = ?,  SoDT = ?, DiaChi = ?, MaCV = ?, IMG = ? where MaNV = ?";
+          
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1,nv.getHo());
+            ps.setString(2,nv.getTen());
+            ps.setInt(3,Integer.parseInt(nv.getNamSinh()));
+            ps.setString(4,nv.getSoDT());
+            ps.setString(5,nv.getDiaChi());
+            ps.setString(6,nv.getMaCV());
+            ps.setString(7,nv.getIMG());
+            ps.setString(8,nv.getMaNV());
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(NhanVienDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 }

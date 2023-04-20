@@ -28,6 +28,8 @@ public class GiaoDienGUI extends javax.swing.JFrame {
     public GiaoDienGUI(String temp) {
         setUndecorated(true);
         this.MaCN = temp;
+        String substring = MaCN.substring(2);
+        
         
         initComponents();
         setLocationRelativeTo(null);
@@ -57,6 +59,7 @@ public class GiaoDienGUI extends javax.swing.JFrame {
         controller.setEvent(list);
 
         controller.getMaCN(MaCN);
+        lblChiNhanh.setText(substring);
     }
     
     
@@ -76,7 +79,7 @@ public class GiaoDienGUI extends javax.swing.JFrame {
         lblMinimize = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         lblAccount = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblChiNhanh = new javax.swing.JLabel();
         pnMenu = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         pnHoaDon = new javax.swing.JPanel();
@@ -138,8 +141,8 @@ public class GiaoDienGUI extends javax.swing.JFrame {
         lblAccount.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/user.png"))); // NOI18N
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 23)); // NOI18N
-        jLabel2.setText("000");
+        lblChiNhanh.setFont(new java.awt.Font("Segoe UI", 1, 23)); // NOI18N
+        lblChiNhanh.setText("000");
 
         javax.swing.GroupLayout pnHeaderLayout = new javax.swing.GroupLayout(pnHeader);
         pnHeader.setLayout(pnHeaderLayout);
@@ -149,7 +152,7 @@ public class GiaoDienGUI extends javax.swing.JFrame {
                 .addGap(52, 52, 52)
                 .addComponent(jLabel1)
                 .addGap(0, 0, 0)
-                .addComponent(jLabel2)
+                .addComponent(lblChiNhanh)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1003, Short.MAX_VALUE)
@@ -164,7 +167,7 @@ public class GiaoDienGUI extends javax.swing.JFrame {
                 .addGroup(pnHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblChiNhanh, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lblAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(lblClose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -529,10 +532,10 @@ public class GiaoDienGUI extends javax.swing.JFrame {
     private MyCustom.ImageAvatar imageAvatar7;
     private MyCustom.ImageAvatar imageAvatar9;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblAccount;
+    private javax.swing.JLabel lblChiNhanh;
     private javax.swing.JLabel lblClose;
     private javax.swing.JLabel lblHoaDon;
     private javax.swing.JLabel lblHoaDon1;

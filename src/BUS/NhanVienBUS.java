@@ -36,4 +36,23 @@ public class NhanVienBUS {
     public ArrayList<NhanVienDTO> getListNVMaTuTang(){
         return listNhanVien;
     }
+    
+    public void add(NhanVienDTO nv){
+        listNhanVien.add(nv);
+        nvDAO.insertNhanVien(nv);
+    }
+    
+    public void update(NhanVienDTO nv){
+       
+        for(int i=0;i<listNhanVien.size();i++){
+            
+            if(listNhanVien.get(i).getMaNV().equals(nv.getMaNV())){
+                listNhanVien.set(i,nv);
+               
+                
+                nvDAO.updateNhanVien(nv);
+                return;
+            }
+        }
+    }
 }

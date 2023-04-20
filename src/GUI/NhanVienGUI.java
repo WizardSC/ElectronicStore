@@ -37,6 +37,10 @@ public class NhanVienGUI extends javax.swing.JPanel {
 
         loadData();
         loadDataMaNV();
+        
+        txtMaNV.setEnabled(false);
+        txtMaCN.setText(MaCN);
+        txtMaCN.setEnabled(false);
     }
 
     
@@ -63,14 +67,28 @@ public class NhanVienGUI extends javax.swing.JPanel {
         ArrayList<NhanVienDTO> dsnv = nvBUS.getListNhanVien();
         showAllDSNV(dsnv);
     }
+    //Hiển thị mã NV mới nhất trong 3 chi nhánh CN001, CN002, CN003
     public void loadDataMaNV(){
         nvBUS.docDanhSachNVMaTuTang();
         ArrayList<NhanVienDTO> dsnv = nvBUS.getListNVMaTuTang();
-        
-        for(NhanVienDTO nv : dsnv){
-            System.out.println(nv.getMaNV());
+        int sum =0;
+       
+        if(dsnv.isEmpty()){
+            txtMaNV.setText(String.valueOf("NV001"));
         }
+        for(int i=0;i<dsnv.size();i++){
+            sum = Integer.parseInt(dsnv.get(i).getMaNV().substring(3)) + 1;
+            if(sum < 10){
+                txtMaNV.setText(String.valueOf("NV00" + sum));
+            } else {
+                txtMaNV.setText(String.valueOf("NV0" + sum));
+            }
+        }
+        sum =0;
     }
+
+
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -96,9 +114,9 @@ public class NhanVienGUI extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        btnSua = new javax.swing.JLabel();
+        btnThem = new javax.swing.JLabel();
+        btnXoa = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblDSNV = new MyCustom.MyTable();
 
@@ -125,16 +143,12 @@ public class NhanVienGUI extends javax.swing.JPanel {
         jLabel5.setText("Số ĐT");
 
         txtMaNV.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txtMaNV.setText("jTextField1");
 
         txtHo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txtHo.setText("jTextField1");
 
         txtTen.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txtTen.setText("jTextField1");
 
         txtNamSinh.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txtNamSinh.setText("jTextField1");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setText("Địa chỉ");
@@ -146,13 +160,10 @@ public class NhanVienGUI extends javax.swing.JPanel {
         jLabel8.setText("Mã CN");
 
         txtSoDT.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txtSoDT.setText("jTextField1");
 
         txtDiaChi.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txtDiaChi.setText("jTextField1");
 
         txtMaCV.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txtMaCV.setText("jTextField1");
 
         txtMaCN.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtMaCN.setText("jTextField1");
@@ -165,20 +176,30 @@ public class NhanVienGUI extends javax.swing.JPanel {
 
         jButton2.setText("jButton1");
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/system-update.png"))); // NOI18N
-        jLabel10.setText("SỬA");
+        btnSua.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnSua.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/system-update.png"))); // NOI18N
+        btnSua.setText("SỬA");
+        btnSua.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSuaMouseClicked(evt);
+            }
+        });
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/add.png"))); // NOI18N
-        jLabel11.setText("THÊM");
+        btnThem.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnThem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/add.png"))); // NOI18N
+        btnThem.setText("THÊM");
+        btnThem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnThemMouseClicked(evt);
+            }
+        });
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/trash.png"))); // NOI18N
-        jLabel12.setText("XÓA");
+        btnXoa.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnXoa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/trash.png"))); // NOI18N
+        btnXoa.setText("XÓA");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -207,9 +228,9 @@ public class NhanVienGUI extends javax.swing.JPanel {
                             .addComponent(jLabel8)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(153, 153, 153)
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -222,7 +243,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -264,9 +285,9 @@ public class NhanVienGUI extends javax.swing.JPanel {
                             .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(35, 35, 35)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel11))))
+                            .addComponent(btnSua)
+                            .addComponent(btnXoa)
+                            .addComponent(btnThem))))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
 
@@ -356,14 +377,45 @@ public class NhanVienGUI extends javax.swing.JPanel {
 
     }//GEN-LAST:event_tblDSNVMouseClicked
 
+    private void btnThemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemMouseClicked
+        String MaNV = txtMaNV.getText();
+        String Ho = txtHo.getText();
+        String Ten = txtTen.getText();
+        String NamSinh = txtNamSinh.getText();
+        String SoDT = txtSoDT.getText();
+        String DiaChi = txtDiaChi.getText();
+        String MaCV = txtMaCV.getText();
+        
+        String IMG = null;
+        NhanVienDTO nv = new NhanVienDTO(MaNV, Ho, Ten, NamSinh, SoDT, DiaChi, MaCV, MaCN, IMG);
+        nvBUS.add(nv);
+        loadData();
+        
+    }//GEN-LAST:event_btnThemMouseClicked
+
+    private void btnSuaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSuaMouseClicked
+        String MaNV = txtMaNV.getText();
+        String Ho = txtHo.getText();
+        String Ten = txtTen.getText();
+        String NamSinh = txtNamSinh.getText();
+        String SoDT = txtSoDT.getText();
+        String DiaChi = txtDiaChi.getText();
+        String MaCV = txtMaCV.getText();
+        
+        String IMG = null;
+        NhanVienDTO nv = new NhanVienDTO(MaNV, Ho, Ten, NamSinh, SoDT, DiaChi, MaCV, MaCN, IMG);
+        nvBUS.update(nv);
+        loadData();
+    }//GEN-LAST:event_btnSuaMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btnSua;
+    private javax.swing.JLabel btnThem;
+    private javax.swing.JLabel btnXoa;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
