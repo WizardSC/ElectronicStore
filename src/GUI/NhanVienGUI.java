@@ -8,12 +8,14 @@ package GUI;
 import BUS.NhanVienBUS;
 import DTO.NhanVienDTO;
 import MyCustom.MyTable;
+import MyCustom.XuLyException;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,29 +23,26 @@ import javax.swing.table.DefaultTableModel;
  * @author Phuc Toan
  */
 public class NhanVienGUI extends javax.swing.JPanel {
-   
+
     DefaultTableModel dtmNhanVien;
     private NhanVienBUS nvBUS = new NhanVienBUS();
     String MaCN;
 
     public NhanVienGUI(String temp) {
         initComponents();
-        
-        
+
         dtmNhanVien = (DefaultTableModel) tblDSNV.getModel();
-        
+
         this.MaCN = temp;
         nvBUS.docMaCN(temp);
 
         loadData();
         loadDataMaNV();
-        
+
         txtMaNV.setEnabled(false);
         txtMaCN.setText(MaCN);
         txtMaCN.setEnabled(false);
     }
-
-    
 
     public void showAllDSNV(ArrayList<NhanVienDTO> dsnv) {
         dtmNhanVien.setRowCount(0);
@@ -67,28 +66,27 @@ public class NhanVienGUI extends javax.swing.JPanel {
         ArrayList<NhanVienDTO> dsnv = nvBUS.getListNhanVien();
         showAllDSNV(dsnv);
     }
+
     //Hiển thị mã NV mới nhất trong 3 chi nhánh CN001, CN002, CN003
-    public void loadDataMaNV(){
+    public void loadDataMaNV() {
         nvBUS.docDanhSachNVMaTuTang();
         ArrayList<NhanVienDTO> dsnv = nvBUS.getListNVMaTuTang();
-        int sum =0;
-       
-        if(dsnv.isEmpty()){
+        int sum = 0;
+
+        if (dsnv.isEmpty()) {
             txtMaNV.setText(String.valueOf("NV001"));
         }
-        for(int i=0;i<dsnv.size();i++){
+        for (int i = 0; i < dsnv.size(); i++) {
             sum = Integer.parseInt(dsnv.get(i).getMaNV().substring(3)) + 1;
-            if(sum < 10){
+            if (sum < 10) {
                 txtMaNV.setText(String.valueOf("NV00" + sum));
             } else {
                 txtMaNV.setText(String.valueOf("NV0" + sum));
             }
         }
-        sum =0;
+        sum = 0;
     }
 
-
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -180,6 +178,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
         btnSua.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/system-update.png"))); // NOI18N
         btnSua.setText("SỬA");
+        btnSua.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSua.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnSuaMouseClicked(evt);
@@ -190,6 +189,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
         btnThem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/add.png"))); // NOI18N
         btnThem.setText("THÊM");
+        btnThem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnThem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnThemMouseClicked(evt);
@@ -200,6 +200,12 @@ public class NhanVienGUI extends javax.swing.JPanel {
         btnXoa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/trash.png"))); // NOI18N
         btnXoa.setText("XÓA");
+        btnXoa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnXoa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnXoaMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -338,7 +344,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 307, Short.MAX_VALUE))
+                        .addGap(0, 298, Short.MAX_VALUE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
@@ -385,12 +391,12 @@ public class NhanVienGUI extends javax.swing.JPanel {
         String SoDT = txtSoDT.getText();
         String DiaChi = txtDiaChi.getText();
         String MaCV = txtMaCV.getText();
-        
+
         String IMG = null;
         NhanVienDTO nv = new NhanVienDTO(MaNV, Ho, Ten, NamSinh, SoDT, DiaChi, MaCV, MaCN, IMG);
         nvBUS.add(nv);
         loadData();
-        
+
     }//GEN-LAST:event_btnThemMouseClicked
 
     private void btnSuaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSuaMouseClicked
@@ -401,12 +407,29 @@ public class NhanVienGUI extends javax.swing.JPanel {
         String SoDT = txtSoDT.getText();
         String DiaChi = txtDiaChi.getText();
         String MaCV = txtMaCV.getText();
-        
+
         String IMG = null;
         NhanVienDTO nv = new NhanVienDTO(MaNV, Ho, Ten, NamSinh, SoDT, DiaChi, MaCV, MaCN, IMG);
         nvBUS.update(nv);
         loadData();
     }//GEN-LAST:event_btnSuaMouseClicked
+
+    private void btnXoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXoaMouseClicked
+        String MaNV = txtMaNV.getText();
+        int result = JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa nhân viên không?");
+        if (result == JOptionPane.YES_OPTION) {
+            try {
+                nvBUS.delete(MaNV);
+                loadData();
+            } catch (XuLyException e) {
+                JOptionPane.showMessageDialog(this, e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Đã xảy ra lỗi khi xóa nhân viên.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    
+    }//GEN-LAST:event_btnXoaMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

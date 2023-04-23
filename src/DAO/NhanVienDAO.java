@@ -6,14 +6,17 @@
 package DAO;
 
 import DTO.NhanVienDTO;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -34,18 +37,31 @@ public class NhanVienDAO {
     }
 
     //Hàm đọc đữ liệu ở cả 3 cơ sở để lấy mã tự tăng
-    public ArrayList<NhanVienDTO> getListNVMaTuTang() {
+    public ArrayList<NhanVienDTO> getListNVMaTuTang(String MaCN) {
         try {
             ArrayList<NhanVienDTO> dsnv = new ArrayList<>();
-            String sql = "exec sp_SelectAllNV";
-            ResultSet rs = mssql.executeQuery(sql);
-            while (rs.next()) {
-                NhanVienDTO nv = new NhanVienDTO(
-                        rs.getString("MaNV")
-                );
-                dsnv.add(nv);
+            String sqlGoc = "select * from nhanvien"; //đăng nhập toàn cục
+            String sql = "exec sp_SelectAllNV"; //đăng nhập chi nhánh
+            if (MaCN.equals("null")) {
+                ResultSet rs = mssql.executeQuery(sqlGoc);
+                while (rs.next()) {
+                    NhanVienDTO nv = new NhanVienDTO(
+                            rs.getString("MaNV")
+                    );
+                    dsnv.add(nv);
+                }
+                return dsnv;
+            } else {
+                ResultSet rs = mssql.executeQuery(sql);
+                while (rs.next()) {
+                    NhanVienDTO nv = new NhanVienDTO(
+                            rs.getString("MaNV")
+                    );
+                    dsnv.add(nv);
+                }
+                return dsnv;
             }
-            return dsnv;
+
         } catch (SQLException ex) {
             Logger.getLogger(NhanVienDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -56,7 +72,7 @@ public class NhanVienDAO {
         try {
             ArrayList<NhanVienDTO> dsnv = new ArrayList<>();
             String sql = "SELECT * FROM nhanvien";
-            System.out.println("Xin chao");
+
             ResultSet rs = mssql.executeQuery(sql);
             while (rs.next()) {
                 NhanVienDTO nv = new NhanVienDTO(
@@ -103,28 +119,52 @@ public class NhanVienDAO {
             mssql.Disconnect();
         }
     }
-    public void updateNhanVien(NhanVienDTO nv){
+
+    public void updateNhanVien(NhanVienDTO nv) {
         try {
             Connection connection = mssql.getConnection();
             String sql = "UPDATE nhanvien SET Ho = ?, Ten = ?, NamSinh = ?,  SoDT = ?, DiaChi = ?, MaCV = ?, IMG = ? where MaNV = ?";
-          
+
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1,nv.getHo());
-            ps.setString(2,nv.getTen());
-            ps.setInt(3,Integer.parseInt(nv.getNamSinh()));
-            ps.setString(4,nv.getSoDT());
-            ps.setString(5,nv.getDiaChi());
-            ps.setString(6,nv.getMaCV());
-            ps.setString(7,nv.getIMG());
-            ps.setString(8,nv.getMaNV());
+            ps.setString(1, nv.getHo());
+            ps.setString(2, nv.getTen());
+            ps.setInt(3, Integer.parseInt(nv.getNamSinh()));
+            ps.setString(4, nv.getSoDT());
+            ps.setString(5, nv.getDiaChi());
+            ps.setString(6, nv.getMaCV());
+            ps.setString(7, nv.getIMG());
+            ps.setString(8, nv.getMaNV());
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(NhanVienDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
-    public void deleteNhanVien(String MaNV){
-        Connection connection = mssql.getConnection();
+
+    public void deleteNhanVien(String MaNV) throws SQLException, SQLServerException{
+        try {
+            Connection connection = mssql.getConnection();
+            String sql = "DELETE from nhanvien where MaNV = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, MaNV);
+            ps.executeUpdate();
+        } catch (SQLServerException ex) {
+            if(ex.getErrorCode()==547){
+                throw ex;
+            }
+        }
     }
+//    public void deleteNhanVien(String MaNV) throws SQLException, SQLIntegrityConstraintViolationException{
+//        try {
+//            Connection connection = mssql.getConnection();
+//            String sql = "DELETE from nhanvien where MaNV = ?";
+//            PreparedStatement ps = connection.prepareStatement(sql);
+//            ps.setString(1,MaNV);
+//            ps.executeUpdate();
+//            
+//        } catch (SQLException ex) {
+//            Logger.getLogger(NhanVienDAO.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        
+//    }
 }

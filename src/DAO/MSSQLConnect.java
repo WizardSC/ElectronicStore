@@ -47,7 +47,7 @@ public class MSSQLConnect {
     public void docMaCN(String temp) {
         this.MaCN = temp;
         Connect(MaCN);
-        System.out.println("MSSQLCOnnect: " + MaCN);
+//        System.out.println("MSSQLCOnnect: " + MaCN);
 
     }
 
@@ -106,7 +106,7 @@ public class MSSQLConnect {
         ResultSet rs = null;
         try {
             Connect(MaCN);
-            System.out.println("query" +MaCN);
+//            System.out.println("query" +MaCN);
             statement = connection.createStatement();
             rs = statement.executeQuery(sql);
         } catch (SQLException ex) {
@@ -117,7 +117,7 @@ public class MSSQLConnect {
 
     public Connection getConnection() {
         Connect(MaCN);
-        System.out.println("query" +MaCN);
+//        System.out.println("query" +MaCN);
         return connection;
     }
 
