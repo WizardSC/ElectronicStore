@@ -13,7 +13,8 @@ public class NhanVienDTO {
     private String MaNV;
     private String Ho;
     private String Ten;
-    private String NamSinh;
+    private int NamSinh;
+    private String GioiTinh;
     private String SoDT;
     private String DiaChi;
     private String MaCV;
@@ -23,18 +24,31 @@ public class NhanVienDTO {
     public NhanVienDTO(String MaNV) {
         this.MaNV = MaNV;
     }
-    
-    public NhanVienDTO(String MaNV, String Ho, String Ten, String NamSinh, String SoDT, String DiaChi, String MaCV, String MaCN, String IMG) {
+
+    public NhanVienDTO(String MaNV, String Ho, String Ten, int NamSinh, String GioiTinh, String SoDT, String DiaChi, String MaCV, String MaCN, String IMG) {
         this.MaNV = MaNV;
         this.Ho = Ho;
         this.Ten = Ten;
         this.NamSinh = NamSinh;
+        this.GioiTinh = GioiTinh;
         this.SoDT = SoDT;
         this.DiaChi = DiaChi;
         this.MaCV = MaCV;
         this.MaCN = MaCN;
         this.IMG = IMG;
     }
+
+    
+
+    public String getGioiTinh() {
+        return GioiTinh;
+    }
+
+    public void setGioiTinh(String GioiTinh) {
+        this.GioiTinh = GioiTinh;
+    }
+    
+    
 
     public String getDiaChi() {
         return DiaChi;
@@ -73,13 +87,15 @@ public class NhanVienDTO {
         this.Ten = Ten;
     }
 
-    public String getNamSinh() {
+    public int getNamSinh() {
         return NamSinh;
     }
 
-    public void setNamSinh(String NamSinh) {
+    public void setNamSinh(int NamSinh) {
         this.NamSinh = NamSinh;
     }
+
+    
 
     public String getSoDT() {
         return SoDT;
