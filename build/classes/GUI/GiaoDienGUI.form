@@ -237,7 +237,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="pnHoaDon1" alignment="1" pref="230" max="32767" attributes="0"/>
+                      <Component id="pnSanPham" alignment="1" pref="230" max="32767" attributes="0"/>
                       <Component id="pnHoaDon2" alignment="1" pref="230" max="32767" attributes="0"/>
                       <Component id="pnNhanVien" alignment="0" pref="230" max="32767" attributes="0"/>
                       <Component id="pnHoaDon" alignment="0" pref="230" max="32767" attributes="0"/>
@@ -261,7 +261,7 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="pnPhieuNhap1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                          <Component id="pnHoaDon1" min="-2" max="-2" attributes="0"/>
+                          <Component id="pnSanPham" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="pnHoaDon2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -520,7 +520,7 @@
                     </Container>
                   </SubComponents>
                 </Container>
-                <Container class="javax.swing.JPanel" name="pnHoaDon1">
+                <Container class="javax.swing.JPanel" name="pnSanPham">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="80" green="80" red="80" type="rgb"/>
@@ -537,19 +537,19 @@
                               <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                               <Component id="imageAvatar3" min="-2" pref="40" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="lblHoaDon1" min="-2" pref="165" max="-2" attributes="0"/>
+                              <Component id="lblSanPham" min="-2" pref="165" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblHoaDon1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblSanPham" alignment="0" max="32767" attributes="0"/>
                           <Component id="imageAvatar3" alignment="1" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JLabel" name="lblHoaDon1">
+                    <Component class="javax.swing.JLabel" name="lblSanPham">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>

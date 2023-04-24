@@ -8,6 +8,7 @@ package GUI.model;
 import GUI.ChiNhanhGUI;
 import GUI.GiaoDienGUI;
 import GUI.NhanVienGUI;
+import GUI.SanPhamGUI;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
@@ -86,6 +87,9 @@ public class ChangeScreen {
                     break;
                 case "HoaDon":
                     node = new ChiNhanhGUI(MaCN);
+                    break;
+                case "SanPham":
+                    node = new SanPhamGUI(MaCN);
                     break;
                 default:
                     break;
