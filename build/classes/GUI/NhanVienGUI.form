@@ -130,7 +130,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="txtMaCV" min="-2" pref="151" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jButton1" min="-2" pref="44" max="-2" attributes="0"/>
+                                      <Component id="btnChonChucVu" min="-2" pref="44" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                       <Component id="cbxGioiTinh" alignment="0" pref="200" max="32767" attributes="0"/>
@@ -205,7 +205,7 @@
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="txtMaCV" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                                          <Component id="jButton1" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                                          <Component id="btnChonChucVu" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -346,10 +346,13 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="btnChonChucVu">
               <Properties>
                 <Property name="text" type="java.lang.String" value="jButton1"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnChonChucVuActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="btnSua">
               <Properties>

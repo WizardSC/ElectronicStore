@@ -107,7 +107,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
         txtDiaChi = new javax.swing.JTextField();
         txtMaCV = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnChonChucVu = new javax.swing.JButton();
         btnSua = new javax.swing.JLabel();
         btnThem = new javax.swing.JLabel();
         btnXoa = new javax.swing.JLabel();
@@ -164,7 +164,12 @@ public class NhanVienGUI extends javax.swing.JPanel {
         jLabel9.setText("jLabel9");
         jLabel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
 
-        jButton1.setText("jButton1");
+        btnChonChucVu.setText("jButton1");
+        btnChonChucVu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChonChucVuActionPerformed(evt);
+            }
+        });
 
         btnSua.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnSua.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -255,7 +260,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(txtMaCV, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnChonChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(cbxGioiTinh, javax.swing.GroupLayout.Alignment.LEADING, 0, 200, Short.MAX_VALUE)
                                 .addComponent(txtSoDT, javax.swing.GroupLayout.Alignment.LEADING)))
@@ -313,7 +318,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel7)
                                     .addComponent(txtMaCV, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(btnChonChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -464,15 +469,23 @@ public class NhanVienGUI extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnXoaMouseClicked
 
+    private void btnChonChucVuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonChucVuActionPerformed
+        SChucVuGUI scv = new SChucVuGUI(MaCN);
+        scv.setVisible(true);
+        String MaCV = scv.getMaCV();
+        System.out.println(MaCV);
+        txtMaCV.setText(MaCV);
+    }//GEN-LAST:event_btnChonChucVuActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnChonChucVu;
     private javax.swing.JLabel btnNhapExcel;
     private javax.swing.JLabel btnSua;
     private javax.swing.JLabel btnThem;
     private javax.swing.JLabel btnXoa;
     private javax.swing.JLabel btnXuatExcel;
     private javax.swing.JComboBox<String> cbxGioiTinh;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
