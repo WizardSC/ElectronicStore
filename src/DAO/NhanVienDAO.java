@@ -101,7 +101,7 @@ public class NhanVienDAO {
     public void insertNhanVien(NhanVienDTO nv) {
         try {
             Connection connection = mssql.getConnection();
-            String sql = "INSERT INTO nhanvien VALUES (?,?,?,?,?,?,?,?,?,NEWID(),?)";
+            String sql = "INSERT INTO nhanvien VALUES (?,?,?,?,?,?,?,?,?,?,NEWID())";
             PreparedStatement pstatement = connection.prepareStatement(sql);
             pstatement.setString(1, nv.getMaNV());
             pstatement.setString(2, nv.getHo());

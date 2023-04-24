@@ -15,7 +15,10 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import MyCustom.ImageAvatar;
+import java.awt.Dimension;
 import java.util.ArrayList;
+import javax.swing.ScrollPaneConstants;
+
 /**
  *
  * @author Phuc Toan
@@ -25,12 +28,12 @@ public class GiaoDienGUI extends javax.swing.JFrame {
     private String MaCN;
     ChiNhanhBUS cnBUS = new ChiNhanhBUS();
     MSSQLConnect mssql = new MSSQLConnect();
+
     public GiaoDienGUI(String temp) {
         setUndecorated(true);
         this.MaCN = temp;
         String substring = MaCN.substring(2);
-        
-        
+
         initComponents();
         setLocationRelativeTo(null);
         Icon icon = lblAccount.getIcon();
@@ -39,7 +42,7 @@ public class GiaoDienGUI extends javax.swing.JFrame {
             Image image = imageIcon.getImage();
 
             // Phóng to kích thước của Image lên gấp đôi
-            Image scaledImage = image.getScaledInstance(40,40, Image.SCALE_SMOOTH);
+            Image scaledImage = image.getScaledInstance(40, 40, Image.SCALE_SMOOTH);
 
             // Tạo một ImageIcon mới với kích thước đã được phóng to
             ImageIcon scaledIcon = new ImageIcon(scaledImage);
@@ -47,7 +50,7 @@ public class GiaoDienGUI extends javax.swing.JFrame {
             // Đặt lại Icon của JLabel với ImageIcon mới đã phóng to
             lblAccount.setIcon(scaledIcon);
         }
-        
+
         ChangeScreen controller = new ChangeScreen(pnView);
 //        controller.setView(pnNhanVien,lblNhanVien);
 //        
@@ -55,14 +58,19 @@ public class GiaoDienGUI extends javax.swing.JFrame {
         list.add(new DanhMuc("NhanVien", pnNhanVien, lblNhanVien));
         list.add(new DanhMuc("PhieuNhap", pnPhieuNhap, lblPhieuNhap));
         list.add(new DanhMuc("HoaDon", pnHoaDon, lblHoaDon));
-        
+
         controller.setEvent(list);
 
         controller.getMaCN(MaCN);
         lblChiNhanh.setText(substring);
+        //xóa bỏ thanh cuộn pnMenu
+        jScrollPane1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+        jScrollPane1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0));
+        jScrollPane1.getVerticalScrollBar().setUnitIncrement(50);
+
+
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -80,18 +88,19 @@ public class GiaoDienGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         lblAccount = new javax.swing.JLabel();
         lblChiNhanh = new javax.swing.JLabel();
-        pnMenu = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        pnView = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
         pnHoaDon = new javax.swing.JPanel();
         lblHoaDon = new javax.swing.JLabel();
         imageAvatar1 = new MyCustom.ImageAvatar();
-        pnNhanVien = new javax.swing.JPanel();
-        lblNhanVien = new javax.swing.JLabel();
-        imageAvatar2 = new MyCustom.ImageAvatar();
-        jPanel3 = new javax.swing.JPanel();
         pnPhieuNhap = new javax.swing.JPanel();
         lblPhieuNhap = new javax.swing.JLabel();
         imageAvatar5 = new MyCustom.ImageAvatar();
+        pnNhanVien = new javax.swing.JPanel();
+        lblNhanVien = new javax.swing.JLabel();
+        imageAvatar2 = new MyCustom.ImageAvatar();
         pnPhieuNhap1 = new javax.swing.JPanel();
         lblPhieuNhap1 = new javax.swing.JLabel();
         imageAvatar6 = new MyCustom.ImageAvatar();
@@ -107,7 +116,9 @@ public class GiaoDienGUI extends javax.swing.JFrame {
         pnHoaDon5 = new javax.swing.JPanel();
         lblHoaDon5 = new javax.swing.JLabel();
         imageAvatar10 = new MyCustom.ImageAvatar();
-        pnView = new javax.swing.JPanel();
+        pnHoaDon6 = new javax.swing.JPanel();
+        lblHoaDon6 = new javax.swing.JLabel();
+        imageAvatar11 = new MyCustom.ImageAvatar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -120,7 +131,7 @@ public class GiaoDienGUI extends javax.swing.JFrame {
         pnHeader.setPreferredSize(new java.awt.Dimension(1392, 45));
 
         lblClose.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/cancel.png"))); // NOI18N
+        lblClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancel.png"))); // NOI18N
         lblClose.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblCloseMouseClicked(evt);
@@ -128,7 +139,7 @@ public class GiaoDienGUI extends javax.swing.JFrame {
         });
 
         lblMinimize.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblMinimize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/editing.png"))); // NOI18N
+        lblMinimize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editing.png"))); // NOI18N
         lblMinimize.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblMinimizeMouseClicked(evt);
@@ -139,7 +150,7 @@ public class GiaoDienGUI extends javax.swing.JFrame {
         jLabel1.setText("CHI NHÁNH ");
 
         lblAccount.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/user.png"))); // NOI18N
+        lblAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user.png"))); // NOI18N
 
         lblChiNhanh.setFont(new java.awt.Font("Segoe UI", 1, 23)); // NOI18N
         lblChiNhanh.setText("000");
@@ -155,7 +166,7 @@ public class GiaoDienGUI extends javax.swing.JFrame {
                 .addComponent(lblChiNhanh)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1003, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1000, Short.MAX_VALUE)
                 .addComponent(lblMinimize, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblClose, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -173,11 +184,31 @@ public class GiaoDienGUI extends javax.swing.JFrame {
             .addComponent(lblClose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        pnMenu.setBackground(new java.awt.Color(128, 128, 128));
-        pnMenu.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 4, new java.awt.Color(0, 0, 0)));
+        pnView.setBackground(new java.awt.Color(255, 255, 240));
 
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/gadgets.png"))); // NOI18N
+        javax.swing.GroupLayout pnViewLayout = new javax.swing.GroupLayout(pnView);
+        pnView.setLayout(pnViewLayout);
+        pnViewLayout.setHorizontalGroup(
+            pnViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        pnViewLayout.setVerticalGroup(
+            pnViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jScrollPane1.setBackground(new java.awt.Color(128, 128, 128));
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setToolTipText("");
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        jScrollPane1.setViewportBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 4, new java.awt.Color(0, 0, 0)));
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(0, 0));
+
+        jPanel1.setBackground(new java.awt.Color(128, 128, 128));
+        jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 0, new java.awt.Color(0, 0, 0)));
+
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gadgets.png"))); // NOI18N
 
         pnHoaDon.setBackground(new java.awt.Color(128, 128, 128));
         pnHoaDon.setPreferredSize(new java.awt.Dimension(226, 40));
@@ -185,11 +216,11 @@ public class GiaoDienGUI extends javax.swing.JFrame {
         lblHoaDon.setBackground(new java.awt.Color(255, 255, 255));
         lblHoaDon.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
         lblHoaDon.setForeground(new java.awt.Color(255, 255, 255));
-        lblHoaDon.setText("  HÓA ĐƠN");
+        lblHoaDon.setText(" HÓA ĐƠN");
 
         imageAvatar1.setForeground(new java.awt.Color(255, 255, 240));
         imageAvatar1.setBorderSize(2);
-        imageAvatar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/bill.png"))); // NOI18N
+        imageAvatar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bill.png"))); // NOI18N
 
         javax.swing.GroupLayout pnHoaDonLayout = new javax.swing.GroupLayout(pnHoaDon);
         pnHoaDon.setLayout(pnHoaDonLayout);
@@ -207,58 +238,17 @@ public class GiaoDienGUI extends javax.swing.JFrame {
             .addComponent(imageAvatar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        pnNhanVien.setBackground(new java.awt.Color(128, 128, 128));
-        pnNhanVien.setPreferredSize(new java.awt.Dimension(226, 40));
-
-        lblNhanVien.setBackground(new java.awt.Color(255, 255, 255));
-        lblNhanVien.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
-        lblNhanVien.setForeground(new java.awt.Color(255, 255, 255));
-        lblNhanVien.setText(" NHÂN VIÊN");
-
-        imageAvatar2.setForeground(new java.awt.Color(255, 255, 240));
-        imageAvatar2.setBorderSize(2);
-        imageAvatar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/division.png"))); // NOI18N
-
-        javax.swing.GroupLayout pnNhanVienLayout = new javax.swing.GroupLayout(pnNhanVien);
-        pnNhanVien.setLayout(pnNhanVienLayout);
-        pnNhanVienLayout.setHorizontalGroup(
-            pnNhanVienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnNhanVienLayout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(imageAvatar2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        pnNhanVienLayout.setVerticalGroup(
-            pnNhanVienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblNhanVien, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-            .addComponent(imageAvatar2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        jPanel3.setBackground(new java.awt.Color(153, 204, 255));
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 107, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 11, Short.MAX_VALUE)
-        );
-
         pnPhieuNhap.setBackground(new java.awt.Color(128, 128, 128));
         pnPhieuNhap.setPreferredSize(new java.awt.Dimension(226, 40));
 
         lblPhieuNhap.setBackground(new java.awt.Color(255, 255, 255));
         lblPhieuNhap.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
         lblPhieuNhap.setForeground(new java.awt.Color(255, 255, 255));
-        lblPhieuNhap.setText("  PHIẾU NHẬP");
+        lblPhieuNhap.setText(" PHIẾU NHẬP");
 
         imageAvatar5.setForeground(new java.awt.Color(255, 255, 240));
         imageAvatar5.setBorderSize(2);
-        imageAvatar5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/invoice.png"))); // NOI18N
+        imageAvatar5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/invoice.png"))); // NOI18N
         imageAvatar5.setInheritsPopupMenu(true);
 
         javax.swing.GroupLayout pnPhieuNhapLayout = new javax.swing.GroupLayout(pnPhieuNhap);
@@ -277,6 +267,34 @@ public class GiaoDienGUI extends javax.swing.JFrame {
             .addComponent(imageAvatar5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        pnNhanVien.setBackground(new java.awt.Color(128, 128, 128));
+        pnNhanVien.setPreferredSize(new java.awt.Dimension(226, 40));
+
+        lblNhanVien.setBackground(new java.awt.Color(255, 255, 255));
+        lblNhanVien.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
+        lblNhanVien.setForeground(new java.awt.Color(255, 255, 255));
+        lblNhanVien.setText("  NHÂN VIÊN");
+
+        imageAvatar2.setForeground(new java.awt.Color(255, 255, 240));
+        imageAvatar2.setBorderSize(2);
+        imageAvatar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/division.png"))); // NOI18N
+
+        javax.swing.GroupLayout pnNhanVienLayout = new javax.swing.GroupLayout(pnNhanVien);
+        pnNhanVien.setLayout(pnNhanVienLayout);
+        pnNhanVienLayout.setHorizontalGroup(
+            pnNhanVienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnNhanVienLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(imageAvatar2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        pnNhanVienLayout.setVerticalGroup(
+            pnNhanVienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblNhanVien, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+            .addComponent(imageAvatar2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         pnPhieuNhap1.setBackground(new java.awt.Color(128, 128, 128));
         pnPhieuNhap1.setPreferredSize(new java.awt.Dimension(226, 40));
 
@@ -287,7 +305,7 @@ public class GiaoDienGUI extends javax.swing.JFrame {
 
         imageAvatar6.setForeground(new java.awt.Color(255, 255, 240));
         imageAvatar6.setBorderSize(2);
-        imageAvatar6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/hot-sale.png"))); // NOI18N
+        imageAvatar6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/hot-sale.png"))); // NOI18N
 
         javax.swing.GroupLayout pnPhieuNhap1Layout = new javax.swing.GroupLayout(pnPhieuNhap1);
         pnPhieuNhap1.setLayout(pnPhieuNhap1Layout);
@@ -312,11 +330,11 @@ public class GiaoDienGUI extends javax.swing.JFrame {
         lblHoaDon1.setBackground(new java.awt.Color(255, 255, 255));
         lblHoaDon1.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
         lblHoaDon1.setForeground(new java.awt.Color(255, 255, 255));
-        lblHoaDon1.setText("  SẢN PHẨM");
+        lblHoaDon1.setText("   SẢN PHẨM");
 
         imageAvatar3.setForeground(new java.awt.Color(255, 255, 240));
         imageAvatar3.setBorderSize(2);
-        imageAvatar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/product.png"))); // NOI18N
+        imageAvatar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/product.png"))); // NOI18N
 
         javax.swing.GroupLayout pnHoaDon1Layout = new javax.swing.GroupLayout(pnHoaDon1);
         pnHoaDon1.setLayout(pnHoaDon1Layout);
@@ -325,7 +343,7 @@ public class GiaoDienGUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnHoaDon1Layout.createSequentialGroup()
                 .addGap(8, 8, 8)
                 .addComponent(imageAvatar3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblHoaDon1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pnHoaDon1Layout.setVerticalGroup(
@@ -344,7 +362,7 @@ public class GiaoDienGUI extends javax.swing.JFrame {
 
         imageAvatar7.setForeground(new java.awt.Color(255, 255, 240));
         imageAvatar7.setBorderSize(2);
-        imageAvatar7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/customer.png"))); // NOI18N
+        imageAvatar7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/customer.png"))); // NOI18N
 
         javax.swing.GroupLayout pnHoaDon2Layout = new javax.swing.GroupLayout(pnHoaDon2);
         pnHoaDon2.setLayout(pnHoaDon2Layout);
@@ -353,7 +371,7 @@ public class GiaoDienGUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnHoaDon2Layout.createSequentialGroup()
                 .addGap(8, 8, 8)
                 .addComponent(imageAvatar7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblHoaDon2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pnHoaDon2Layout.setVerticalGroup(
@@ -368,11 +386,11 @@ public class GiaoDienGUI extends javax.swing.JFrame {
         lblHoaDon4.setBackground(new java.awt.Color(255, 255, 255));
         lblHoaDon4.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         lblHoaDon4.setForeground(new java.awt.Color(255, 255, 255));
-        lblHoaDon4.setText("  NHÀ CUNG CẤP");
+        lblHoaDon4.setText(" NHÀ CUNG CẤP");
 
         imageAvatar9.setForeground(new java.awt.Color(255, 255, 240));
         imageAvatar9.setBorderSize(2);
-        imageAvatar9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/supplier.png"))); // NOI18N
+        imageAvatar9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/supplier.png"))); // NOI18N
 
         javax.swing.GroupLayout pnHoaDon4Layout = new javax.swing.GroupLayout(pnHoaDon4);
         pnHoaDon4.setLayout(pnHoaDon4Layout);
@@ -382,7 +400,8 @@ public class GiaoDienGUI extends javax.swing.JFrame {
                 .addGap(8, 8, 8)
                 .addComponent(imageAvatar9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblHoaDon4, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lblHoaDon4)
+                .addGap(5, 5, 5))
         );
         pnHoaDon4Layout.setVerticalGroup(
             pnHoaDon4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -400,7 +419,7 @@ public class GiaoDienGUI extends javax.swing.JFrame {
 
         imageAvatar10.setForeground(new java.awt.Color(255, 255, 240));
         imageAvatar10.setBorderSize(2);
-        imageAvatar10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/img/user.png"))); // NOI18N
+        imageAvatar10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user.png"))); // NOI18N
 
         javax.swing.GroupLayout pnHoaDon5Layout = new javax.swing.GroupLayout(pnHoaDon5);
         pnHoaDon5.setLayout(pnHoaDon5Layout);
@@ -418,29 +437,54 @@ public class GiaoDienGUI extends javax.swing.JFrame {
             .addComponent(imageAvatar10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        javax.swing.GroupLayout pnMenuLayout = new javax.swing.GroupLayout(pnMenu);
-        pnMenu.setLayout(pnMenuLayout);
-        pnMenuLayout.setHorizontalGroup(
-            pnMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(pnHoaDon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(pnNhanVien, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnMenuLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
-            .addComponent(pnPhieuNhap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(pnPhieuNhap1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(pnHoaDon1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(pnHoaDon2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(pnHoaDon4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(pnHoaDon5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        pnMenuLayout.setVerticalGroup(
-            pnMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnMenuLayout.createSequentialGroup()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+        pnHoaDon6.setBackground(new java.awt.Color(128, 128, 128));
+        pnHoaDon6.setPreferredSize(new java.awt.Dimension(226, 40));
+
+        lblHoaDon6.setBackground(new java.awt.Color(255, 255, 255));
+        lblHoaDon6.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
+        lblHoaDon6.setForeground(new java.awt.Color(255, 255, 255));
+        lblHoaDon6.setText("  PHÂN QUYỀN");
+
+        imageAvatar11.setForeground(new java.awt.Color(255, 255, 240));
+        imageAvatar11.setBorderSize(2);
+        imageAvatar11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user.png"))); // NOI18N
+
+        javax.swing.GroupLayout pnHoaDon6Layout = new javax.swing.GroupLayout(pnHoaDon6);
+        pnHoaDon6.setLayout(pnHoaDon6Layout);
+        pnHoaDon6Layout.setHorizontalGroup(
+            pnHoaDon6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnHoaDon6Layout.createSequentialGroup()
+                .addGap(8, 8, 8)
+                .addComponent(imageAvatar11, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblHoaDon6, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        pnHoaDon6Layout.setVerticalGroup(
+            pnHoaDon6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblHoaDon6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(imageAvatar11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnHoaDon1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+            .addComponent(pnHoaDon2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+            .addComponent(pnNhanVien, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+            .addComponent(pnHoaDon, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+            .addComponent(pnPhieuNhap, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+            .addComponent(pnPhieuNhap1, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+            .addComponent(pnHoaDon5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+            .addComponent(pnHoaDon6, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+            .addComponent(pnHoaDon4, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(pnPhieuNhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -452,49 +496,37 @@ public class GiaoDienGUI extends javax.swing.JFrame {
                 .addComponent(pnHoaDon1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(pnHoaDon2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pnHoaDon4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(pnHoaDon5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
+                .addComponent(pnHoaDon6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        pnView.setBackground(new java.awt.Color(255, 255, 240));
-
-        javax.swing.GroupLayout pnViewLayout = new javax.swing.GroupLayout(pnView);
-        pnView.setLayout(pnViewLayout);
-        pnViewLayout.setHorizontalGroup(
-            pnViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        pnViewLayout.setVerticalGroup(
-            pnViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 737, Short.MAX_VALUE)
-        );
+        jScrollPane1.setViewportView(jPanel1);
 
         javax.swing.GroupLayout pnRootLayout = new javax.swing.GroupLayout(pnRoot);
         pnRoot.setLayout(pnRootLayout);
         pnRootLayout.setHorizontalGroup(
             pnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(pnRootLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnRootLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addGroup(pnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnRootLayout.createSequentialGroup()
-                        .addComponent(pnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(pnView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(0, 0, 0))
+                        .addComponent(pnView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         pnRootLayout.setVerticalGroup(
             pnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnRootLayout.createSequentialGroup()
                 .addComponent(pnHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
+                .addGap(0, 0, 0)
                 .addGroup(pnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 718, Short.MAX_VALUE)
                     .addComponent(pnView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
@@ -506,7 +538,7 @@ public class GiaoDienGUI extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnRoot, javax.swing.GroupLayout.DEFAULT_SIZE, 790, Short.MAX_VALUE)
+            .addComponent(pnRoot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -520,11 +552,11 @@ public class GiaoDienGUI extends javax.swing.JFrame {
         setState(JFrame.ICONIFIED);
     }//GEN-LAST:event_lblMinimizeMouseClicked
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private MyCustom.ImageAvatar imageAvatar1;
     private MyCustom.ImageAvatar imageAvatar10;
+    private MyCustom.ImageAvatar imageAvatar11;
     private MyCustom.ImageAvatar imageAvatar2;
     private MyCustom.ImageAvatar imageAvatar3;
     private MyCustom.ImageAvatar imageAvatar5;
@@ -532,8 +564,9 @@ public class GiaoDienGUI extends javax.swing.JFrame {
     private MyCustom.ImageAvatar imageAvatar7;
     private MyCustom.ImageAvatar imageAvatar9;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAccount;
     private javax.swing.JLabel lblChiNhanh;
     private javax.swing.JLabel lblClose;
@@ -542,6 +575,7 @@ public class GiaoDienGUI extends javax.swing.JFrame {
     private javax.swing.JLabel lblHoaDon2;
     private javax.swing.JLabel lblHoaDon4;
     private javax.swing.JLabel lblHoaDon5;
+    private javax.swing.JLabel lblHoaDon6;
     private javax.swing.JLabel lblMinimize;
     private javax.swing.JLabel lblNhanVien;
     private javax.swing.JLabel lblPhieuNhap;
@@ -552,7 +586,7 @@ public class GiaoDienGUI extends javax.swing.JFrame {
     private javax.swing.JPanel pnHoaDon2;
     private javax.swing.JPanel pnHoaDon4;
     private javax.swing.JPanel pnHoaDon5;
-    private javax.swing.JPanel pnMenu;
+    private javax.swing.JPanel pnHoaDon6;
     private javax.swing.JPanel pnNhanVien;
     private javax.swing.JPanel pnPhieuNhap;
     private javax.swing.JPanel pnPhieuNhap1;
