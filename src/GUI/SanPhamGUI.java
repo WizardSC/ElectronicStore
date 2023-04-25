@@ -5,6 +5,7 @@
 package GUI;
 
 import BUS.SanPhamBUS;
+import DAO.MSSQLConnect;
 import DTO.SanPham_ChiNhanhDTO;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -15,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class SanPhamGUI extends javax.swing.JPanel {
     private SanPhamBUS spBUS = new SanPhamBUS();
+    private MSSQLConnect mssql = new MSSQLConnect();
     String MaCN;
     DefaultTableModel dtmSanPham;
     
@@ -566,7 +568,9 @@ public class SanPhamGUI extends javax.swing.JPanel {
     }//GEN-LAST:event_cbxDonViTinh2ActionPerformed
 
     private void btnChonMaLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonMaLoaiActionPerformed
-        SMaLoaiGUI sml = new SMaLoaiGUI();
+        SMaLoaiGUI sml = new SMaLoaiGUI(MaCN);
+        mssql.docMaCN(MaCN);
+        System.out.println("Thu tu 1");
         sml.setVisible(true);
     }//GEN-LAST:event_btnChonMaLoaiActionPerformed
 

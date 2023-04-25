@@ -47,7 +47,7 @@ public class MSSQLConnect {
     public void docMaCN(String temp) {
         this.MaCN = temp;
         Connect(MaCN);
-//        System.out.println("MSSQLCOnnect: " + MaCN);
+        System.out.println("Thu tu 4");
 
     }
 

@@ -8,11 +8,11 @@ package DTO;
  *
  * @author Phuc Toan
  */
-public class MaLoaiDTO {
+public class LoaiDTO {
     private String MaLoai;
     private String TenLoai;
 
-    public MaLoaiDTO(String MaLoai, String TenLoai) {
+    public LoaiDTO(String MaLoai, String TenLoai) {
         this.MaLoai = MaLoai;
         this.TenLoai = TenLoai;
     }

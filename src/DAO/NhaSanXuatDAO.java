@@ -9,5 +9,11 @@ package DAO;
  * @author Phuc Toan
  */
 public class NhaSanXuatDAO {
+    private MSSQLConnect mssql = new MSSQLConnect();
+    String MaCN;
+    public void docMaCN(String temp){
+        this.MaCN = temp;
+        mssql.docMaCN(temp);
+    }
     
 }
