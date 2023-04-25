@@ -144,7 +144,7 @@
                                               <Group type="102" attributes="0">
                                                   <Component id="txtMaLoai" min="-2" pref="164" max="-2" attributes="0"/>
                                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="btnChonChucVu1" min="-2" pref="44" max="-2" attributes="0"/>
+                                                  <Component id="btnChonMaLoai" min="-2" pref="44" max="-2" attributes="0"/>
                                               </Group>
                                               <Component id="txtDonGia" min="-2" pref="221" max="-2" attributes="0"/>
                                           </Group>
@@ -164,7 +164,7 @@
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="btnChonChucVu" min="-2" pref="44" max="-2" attributes="0"/>
+                                  <Component id="btnChonMaNSX" min="-2" pref="44" max="-2" attributes="0"/>
                                   <Component id="btnChonChucVu2" min="-2" pref="44" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
@@ -265,13 +265,13 @@
                                   </Group>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="txtMaLoai" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                                      <Component id="btnChonChucVu1" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                                      <Component id="btnChonMaLoai" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                               <Component id="jLabel9" alignment="3" min="-2" pref="236" max="-2" attributes="0"/>
-                              <Component id="btnChonChucVu" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="btnChonMaNSX" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="21" max="32767" attributes="0"/>
@@ -381,12 +381,12 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="btnChonChucVu">
+            <Component class="javax.swing.JButton" name="btnChonMaNSX">
               <Properties>
                 <Property name="text" type="java.lang.String" value="jButton1"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnChonChucVuActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnChonMaNSXActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="btnSua">
@@ -503,12 +503,12 @@
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JButton" name="btnChonChucVu1">
+            <Component class="javax.swing.JButton" name="btnChonMaLoai">
               <Properties>
                 <Property name="text" type="java.lang.String" value="jButton1"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnChonChucVu1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnChonMaLoaiActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnChonChucVu2">

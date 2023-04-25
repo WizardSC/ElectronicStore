@@ -74,7 +74,7 @@ public class SanPhamGUI extends javax.swing.JPanel {
         txtMaNSX = new javax.swing.JTextField();
         txtMaNCC = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        btnChonChucVu = new javax.swing.JButton();
+        btnChonMaNSX = new javax.swing.JButton();
         btnSua = new javax.swing.JLabel();
         btnThem = new javax.swing.JLabel();
         btnXoa = new javax.swing.JLabel();
@@ -84,7 +84,7 @@ public class SanPhamGUI extends javax.swing.JPanel {
         txtTenSP = new javax.swing.JTextField();
         lblGioiTinh = new javax.swing.JLabel();
         cbxDonViTinh = new javax.swing.JComboBox<>();
-        btnChonChucVu1 = new javax.swing.JButton();
+        btnChonMaLoai = new javax.swing.JButton();
         btnChonChucVu2 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblDSSP = new MyCustom.MyTable();
@@ -139,10 +139,10 @@ public class SanPhamGUI extends javax.swing.JPanel {
         jLabel9.setText("jLabel9");
         jLabel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
 
-        btnChonChucVu.setText("jButton1");
-        btnChonChucVu.addActionListener(new java.awt.event.ActionListener() {
+        btnChonMaNSX.setText("jButton1");
+        btnChonMaNSX.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnChonChucVuActionPerformed(evt);
+                btnChonMaNSXActionPerformed(evt);
             }
         });
 
@@ -202,10 +202,10 @@ public class SanPhamGUI extends javax.swing.JPanel {
             }
         });
 
-        btnChonChucVu1.setText("jButton1");
-        btnChonChucVu1.addActionListener(new java.awt.event.ActionListener() {
+        btnChonMaLoai.setText("jButton1");
+        btnChonMaLoai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnChonChucVu1ActionPerformed(evt);
+                btnChonMaLoaiActionPerformed(evt);
             }
         });
 
@@ -247,7 +247,7 @@ public class SanPhamGUI extends javax.swing.JPanel {
                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                             .addComponent(txtMaLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(btnChonChucVu1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(btnChonMaLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addComponent(txtDonGia, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(64, 64, 64)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -260,7 +260,7 @@ public class SanPhamGUI extends javax.swing.JPanel {
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnChonChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnChonMaNSX, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnChonChucVu2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(1, 1, 1))
                     .addComponent(jLabel4))
@@ -336,10 +336,10 @@ public class SanPhamGUI extends javax.swing.JPanel {
                                 .addComponent(jLabel4))
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(txtMaLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnChonChucVu1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(btnChonMaLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnChonChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnChonMaNSX, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -483,13 +483,12 @@ public class SanPhamGUI extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnChonChucVuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonChucVuActionPerformed
-        SChucVuGUI scv = new SChucVuGUI(MaCN);
-        scv.setVisible(true);
-        String MaCV = scv.getMaCV();
-        System.out.println(MaCV);
+    private void btnChonMaNSXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonMaNSXActionPerformed
+        SNhaSanXuatGUI snsx = new SNhaSanXuatGUI();
+        snsx.setVisible(true);
         
-    }//GEN-LAST:event_btnChonChucVuActionPerformed
+        
+    }//GEN-LAST:event_btnChonMaNSXActionPerformed
 
     private void btnSuaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSuaMouseClicked
         String MaSP = txtMaSP.getText();
@@ -566,9 +565,10 @@ public class SanPhamGUI extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxDonViTinh2ActionPerformed
 
-    private void btnChonChucVu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonChucVu1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnChonChucVu1ActionPerformed
+    private void btnChonMaLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonMaLoaiActionPerformed
+        SMaLoaiGUI sml = new SMaLoaiGUI();
+        sml.setVisible(true);
+    }//GEN-LAST:event_btnChonMaLoaiActionPerformed
 
     private void btnChonChucVu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonChucVu2ActionPerformed
         // TODO add your handling code here:
@@ -576,9 +576,9 @@ public class SanPhamGUI extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnChonChucVu;
-    private javax.swing.JButton btnChonChucVu1;
     private javax.swing.JButton btnChonChucVu2;
+    private javax.swing.JButton btnChonMaLoai;
+    private javax.swing.JButton btnChonMaNSX;
     private javax.swing.JLabel btnNhapExcel;
     private javax.swing.JLabel btnSua;
     private javax.swing.JLabel btnThem;

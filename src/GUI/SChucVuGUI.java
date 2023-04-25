@@ -92,7 +92,7 @@ public class SChucVuGUI extends javax.swing.JDialog {
         jLabel1.setText("QUẢN LÝ CHỨC VỤ");
 
         lblAccount.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user.png"))); // NOI18N
+        lblAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/planing.png"))); // NOI18N
 
         javax.swing.GroupLayout pnHeaderLayout = new javax.swing.GroupLayout(pnHeader);
         pnHeader.setLayout(pnHeaderLayout);
