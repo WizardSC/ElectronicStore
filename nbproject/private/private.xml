@@ -3,15 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Phuc%20Toan/Documents/NetBeansProjects/ElectronicStore/src/DAO/LoaiDAO.java</file>
-            <file>file:/C:/Users/Phuc%20Toan/Documents/NetBeansProjects/ElectronicStore/src/GUI/SNhaSanXuatGUI.java</file>
-            <file>file:/C:/Users/Phuc%20Toan/Documents/NetBeansProjects/ElectronicStore/src/DAO/MSSQLConnect.java</file>
-            <file>file:/C:/Users/Phuc%20Toan/Documents/NetBeansProjects/ElectronicStore/src/GUI/SMaLoaiGUI.java</file>
-            <file>file:/C:/Users/Phuc%20Toan/Documents/NetBeansProjects/ElectronicStore/src/BUS/NhaSanXuatBUS.java</file>
-            <file>file:/C:/Users/Phuc%20Toan/Documents/NetBeansProjects/ElectronicStore/src/GUI/SanPhamGUI.java</file>
-            <file>file:/C:/Users/Phuc%20Toan/Documents/NetBeansProjects/ElectronicStore/src/GUI/Main.java</file>
-            <file>file:/C:/Users/Phuc%20Toan/Documents/NetBeansProjects/ElectronicStore/src/DAO/NhaSanXuatDAO.java</file>
-            <file>file:/C:/Users/Phuc%20Toan/Documents/NetBeansProjects/ElectronicStore/src/BUS/LoaiBUS.java</file>
+            <file>file:/C:/Users/Phuc%20Toan/Documents/NetBeansProjects/ElectronicStore/src/DTO/KhuyenMaiDTO.java</file>
+            <file>file:/C:/Users/Phuc%20Toan/Documents/NetBeansProjects/ElectronicStore/src/GUI/SKhachHangGUI.java</file>
+            <file>file:/C:/Users/Phuc%20Toan/Documents/NetBeansProjects/ElectronicStore/src/DAO/KhuyenMaiDAO.java</file>
         </group>
     </open-files>
 </project-private>
