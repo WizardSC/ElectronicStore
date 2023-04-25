@@ -5,6 +5,7 @@
  */
 package GUI.model;
 
+import GUI.BanHangGUI;
 import GUI.ChiNhanhGUI;
 import GUI.GiaoDienGUI;
 import GUI.NhanVienGUI;
@@ -76,18 +77,22 @@ public class ChangeScreen {
         @Override
         public void mouseClicked(MouseEvent e) {
             switch (kind) {
+                case "BanHang":
+                    node = new BanHangGUI(MaCN);
+                    break;
+                    
                 case "NhanVien":
                     node = new NhanVienGUI(MaCN);
                     break;
                 case "ChiNhanh":
                     node = new ChiNhanhGUI(MaCN);
                     break;
-                case "PhieuNhap":
-                    node = new ChiNhanhGUI(MaCN);
-                    break;
-                case "HoaDon":
-                    node = new ChiNhanhGUI(MaCN);
-                    break;
+//                case "PhieuNhap":
+//                    node = new ChiNhanhGUI(MaCN);
+//                    break;
+//                case "HoaDon":
+//                    node = new ChiNhanhGUI(MaCN);
+//                    break;
                 case "SanPham":
                     node = new SanPhamGUI(MaCN);
                     break;
@@ -107,6 +112,7 @@ public class ChangeScreen {
             kindSelected = kind;
             pnItem.setBackground(new Color(153, 204, 255));
             lblItem.setBackground(new Color(153, 204, 255));
+
         }
 
         @Override
@@ -126,6 +132,8 @@ public class ChangeScreen {
                 pnItem.setBackground(new Color(128, 128, 128));
                 lblItem.setBackground(new Color(128, 128, 128));
                 lblItem.setForeground(new Color(255, 255, 255));
+            } else {
+
             }
         }
 
@@ -136,10 +144,11 @@ public class ChangeScreen {
             if (item.getKind().equalsIgnoreCase(kind)) {
                 item.getPn().setBackground(new Color(153, 204, 255));
                 item.getLbl().setBackground(new Color(153, 204, 255));
+                item.getLbl().setForeground(new Color(0, 0, 0)); // Thêm dòng này để đổi màu chữ thành đen
             } else {
                 item.getPn().setBackground(new Color(128, 128, 128));
                 item.getLbl().setBackground(new Color(128, 128, 128));
-
+                item.getLbl().setForeground(new Color(255, 255, 255)); // Thêm dòng này để đổi màu chữ thành trắng
             }
         }
     }

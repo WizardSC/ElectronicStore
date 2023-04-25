@@ -4,21 +4,47 @@
  */
 package GUI;
 
+import BUS.NhaSanXuatBUS;
+import DTO.NhaSanXuatDTO;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Phuc Toan
  */
 public class SNhaSanXuatGUI extends javax.swing.JDialog {
 
-    /**
-     * Creates new form SNhaSanXuatGUI
-     */
-    public SNhaSanXuatGUI() {
+    DefaultTableModel dtmNSX;
+    private NhaSanXuatBUS nsxBUS = new NhaSanXuatBUS();
+    String MaCN;
+    public SNhaSanXuatGUI(String temp) {
         setUndecorated(true);
         initComponents();
         setModal(true);
         setResizable(false);
         setLocationRelativeTo(null);
+        dtmNSX = (DefaultTableModel) tblDSNSX.getModel();
+        this.MaCN = temp;
+        nsxBUS.docMaCN(temp);
+        loadData();
+    }
+    
+    public void showAll(ArrayList<NhaSanXuatDTO> dsnsx){
+        dtmNSX.setRowCount(0);
+        for(int i=0;i<dsnsx.size();i++){
+            dtmNSX.addRow(new String[]{
+                dsnsx.get(i).getMaNSX(),
+                dsnsx.get(i).getTenNSX()
+            });
+        }
+        
+    }
+    
+    public void loadData(){
+        nsxBUS.docDanhSach();
+        ArrayList<NhaSanXuatDTO> dsnsx = nsxBUS.getListNSX();
+        showAll(dsnsx);
     }
 
     /**
@@ -36,7 +62,7 @@ public class SNhaSanXuatGUI extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         lblAccount = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblDSCV = new MyCustom.MyTable();
+        tblDSNSX = new MyCustom.MyTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -91,7 +117,7 @@ public class SNhaSanXuatGUI extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        tblDSCV.setModel(new javax.swing.table.DefaultTableModel(
+        tblDSNSX.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -110,12 +136,12 @@ public class SNhaSanXuatGUI extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        tblDSCV.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblDSNSX.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblDSCVMouseClicked(evt);
+                tblDSNSXMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tblDSCV);
+        jScrollPane1.setViewportView(tblDSNSX);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Mã CV");
@@ -230,12 +256,12 @@ public class SNhaSanXuatGUI extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_lblCloseMouseClicked
 
-    private void tblDSCVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDSCVMouseClicked
-        int k = tblDSCV.getSelectedRow();
-        txtMaCV.setText(tblDSCV.getModel().getValueAt(k, 0).toString());
-        txtTenCV.setText(tblDSCV.getModel().getValueAt(k, 1).toString());
+    private void tblDSNSXMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDSNSXMouseClicked
+        int k = tblDSNSX.getSelectedRow();
+        txtMaCV.setText(tblDSNSX.getModel().getValueAt(k, 0).toString());
+        txtTenCV.setText(tblDSNSX.getModel().getValueAt(k, 1).toString());
         System.out.println(txtMaCV.getText());
-    }//GEN-LAST:event_tblDSCVMouseClicked
+    }//GEN-LAST:event_tblDSNSXMouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
 
@@ -260,7 +286,7 @@ public class SNhaSanXuatGUI extends javax.swing.JDialog {
     private javax.swing.JLabel lblAccount;
     private javax.swing.JLabel lblClose;
     private javax.swing.JPanel pnHeader;
-    private MyCustom.MyTable tblDSCV;
+    private MyCustom.MyTable tblDSNSX;
     private javax.swing.JTextField txtMaCV;
     private javax.swing.JTextField txtMaNV1;
     private javax.swing.JTextField txtTenCV;

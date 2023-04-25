@@ -486,7 +486,7 @@ public class SanPhamGUI extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnChonMaNSXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonMaNSXActionPerformed
-        SNhaSanXuatGUI snsx = new SNhaSanXuatGUI();
+        SNhaSanXuatGUI snsx = new SNhaSanXuatGUI(MaCN);
         snsx.setVisible(true);
         
         
