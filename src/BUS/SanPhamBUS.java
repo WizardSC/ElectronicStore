@@ -16,6 +16,7 @@ import java.util.ArrayList;
 public class SanPhamBUS {
     private SanPhamDAO spDAO = new SanPhamDAO();
     private ArrayList<SanPham_ChiNhanhDTO> listSanPham = null;
+    
     String MaCN;
     public void docMaCN(String temp){
         this.MaCN = temp;
@@ -27,5 +28,15 @@ public class SanPhamBUS {
     
     public ArrayList<SanPham_ChiNhanhDTO> getListSanPham(){
         return listSanPham;
+    }
+    
+    public void update(SanPham_ChiNhanhDTO sp){
+        for(int i=0;i<listSanPham.size();i++){
+            if(listSanPham.get(i).getMaSP().equals(sp.getMaSP())){
+                listSanPham.set(i,sp);
+                spDAO.updateSanPham(sp);
+                return;
+            }
+        }
     }
 }

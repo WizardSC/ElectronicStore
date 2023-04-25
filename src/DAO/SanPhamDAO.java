@@ -6,6 +6,8 @@ package DAO;
 
 import DTO.SanPhamDTO;
 import DTO.SanPham_ChiNhanhDTO;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -54,5 +56,24 @@ public class SanPhamDAO {
             Logger.getLogger(SanPhamDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+    
+    public void updateSanPham(SanPham_ChiNhanhDTO sp){
+        try {
+            Connection connection = mssql.getConnection();
+            ArrayList<SanPham_ChiNhanhDTO> dssp = new ArrayList<>();
+            String sql = "UPDATE sanpham set TenSP = ?, DonViTinh = ?, MaLoai = ?, MaNSX = ?, MaNCC = ?, IMG = ? where MaSP = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, sp.getTenSP());
+            ps.setString(2,sp.getDonViTinh());
+            ps.setString(3,sp.getMaLoai());
+            ps.setString(4,sp.getMaNSX());
+            ps.setString(5,sp.getMaNCC());
+            ps.setString(6,sp.getIMG());
+            ps.setString(7,sp.getMaSP());
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(SanPhamDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
