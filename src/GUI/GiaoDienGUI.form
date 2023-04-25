@@ -54,7 +54,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="pnHeader" pref="1382" max="32767" attributes="0"/>
+                      <Component id="pnHeader" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jScrollPane1" min="-2" pref="236" max="-2" attributes="0"/>
@@ -238,11 +238,11 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="pnSanPham" alignment="1" pref="230" max="32767" attributes="0"/>
-                      <Component id="pnHoaDon2" alignment="1" pref="230" max="32767" attributes="0"/>
+                      <Component id="pnKhachHang" alignment="1" pref="230" max="32767" attributes="0"/>
                       <Component id="pnNhanVien" alignment="0" pref="230" max="32767" attributes="0"/>
                       <Component id="pnBanHang" alignment="0" pref="230" max="32767" attributes="0"/>
                       <Component id="pnHoaDon" alignment="1" pref="230" max="32767" attributes="0"/>
-                      <Component id="pnPhieuNhap1" alignment="0" pref="230" max="32767" attributes="0"/>
+                      <Component id="pnKhuyenMai" alignment="0" pref="230" max="32767" attributes="0"/>
                       <Component id="pnChucVu" alignment="1" pref="230" max="32767" attributes="0"/>
                       <Component id="pnHoaDon6" alignment="0" pref="230" max="32767" attributes="0"/>
                       <Component id="pnHoaDon4" alignment="0" pref="230" max="32767" attributes="0"/>
@@ -265,9 +265,9 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="pnSanPham" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="pnHoaDon2" min="-2" max="-2" attributes="0"/>
+                          <Component id="pnKhachHang" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="pnPhieuNhap1" min="-2" max="-2" attributes="0"/>
+                          <Component id="pnKhuyenMai" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                           <Component id="pnChucVu" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -465,7 +465,7 @@
                     </Container>
                   </SubComponents>
                 </Container>
-                <Container class="javax.swing.JPanel" name="pnPhieuNhap1">
+                <Container class="javax.swing.JPanel" name="pnKhuyenMai">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="80" green="80" red="80" type="rgb"/>
@@ -482,20 +482,20 @@
                               <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                               <Component id="imageAvatar6" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="lblPhieuNhap1" min="-2" pref="165" max="-2" attributes="0"/>
+                              <Component id="lblKhuyenMai" min="-2" pref="165" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblPhieuNhap1" alignment="0" pref="40" max="32767" attributes="0"/>
+                          <Component id="lblKhuyenMai" alignment="0" pref="40" max="32767" attributes="0"/>
                           <Component id="imageAvatar6" alignment="0" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JLabel" name="lblPhieuNhap1">
+                    <Component class="javax.swing.JLabel" name="lblKhuyenMai">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -586,7 +586,7 @@
                     </Container>
                   </SubComponents>
                 </Container>
-                <Container class="javax.swing.JPanel" name="pnHoaDon2">
+                <Container class="javax.swing.JPanel" name="pnKhachHang">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="80" green="80" red="80" type="rgb"/>
@@ -603,19 +603,19 @@
                               <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                               <Component id="imageAvatar7" min="-2" pref="40" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="lblHoaDon2" min="-2" pref="165" max="-2" attributes="0"/>
+                              <Component id="lblKhachHang" min="-2" pref="177" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblHoaDon2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblKhachHang" alignment="0" max="32767" attributes="0"/>
                           <Component id="imageAvatar7" alignment="1" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JLabel" name="lblHoaDon2">
+                    <Component class="javax.swing.JLabel" name="lblKhachHang">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>

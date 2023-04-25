@@ -50,7 +50,8 @@ public class MSSQLConnect {
         System.out.println("Thu tu 4");
 
     }
-
+    
+    
     public void Connect(String temp) {
 
         try {

@@ -8,6 +8,7 @@ package GUI.model;
 import GUI.BanHangGUI;
 import GUI.ChiNhanhGUI;
 import GUI.GiaoDienGUI;
+import GUI.KhuyenMaiGUI;
 import GUI.NhanVienGUI;
 import GUI.SanPhamGUI;
 import java.awt.BorderLayout;
@@ -95,6 +96,9 @@ public class ChangeScreen {
 //                    break;
                 case "SanPham":
                     node = new SanPhamGUI(MaCN);
+                    break;
+                case "KhuyenMai":
+                    node = new KhuyenMaiGUI(MaCN);
                     break;
                 default:
                     break;
