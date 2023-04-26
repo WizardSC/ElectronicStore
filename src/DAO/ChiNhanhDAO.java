@@ -22,14 +22,14 @@ public class ChiNhanhDAO {
 
     private MSSQLConnect msSQL = new MSSQLConnect();
     private ArrayList<ChiNhanhDTO> dscn = new ArrayList<>();
-    
+
 //    private Connection connection = msSQL.getConnection();
     private String MaCN;
 
     public void docMaCN(String temp) {
         this.MaCN = temp;
         msSQL.docMaCN(MaCN);
-        System.out.println("ChiNhanhDAO: " +MaCN);
+        System.out.println("ChiNhanhDAO: " + MaCN);
 
     }
 
@@ -38,7 +38,7 @@ public class ChiNhanhDAO {
 
             ArrayList<ChiNhanhDTO> dscn = new ArrayList<>();
             String sql = "select * from chinhanh";
-            
+
             ResultSet rs = msSQL.executeQuery(sql);
             while (rs.next()) {
                 ChiNhanhDTO cn = new ChiNhanhDTO(
@@ -56,5 +56,29 @@ public class ChiNhanhDAO {
             msSQL.Disconnect();
         }
         return null;
+    }
+
+    public ArrayList<ChiNhanhDTO> getList3ChiNhanh() {
+        try {
+            ArrayList<ChiNhanhDTO> dscn = new ArrayList<>();
+            String sql = "exec sp_SelectAllCN";
+
+            ResultSet rs = msSQL.executeQuery(sql);
+            while (rs.next()) {
+                ChiNhanhDTO cn = new ChiNhanhDTO(
+                        rs.getString("MaCN"),
+                        rs.getString("TenCN"),
+                        rs.getString("DiaChi")
+                );
+                dscn.add(cn);
+            }
+            return dscn;
+        } catch (SQLException ex) {
+            Logger.getLogger(ChiNhanhDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            msSQL.Disconnect();
+        }
+        return null;
+
     }
 }

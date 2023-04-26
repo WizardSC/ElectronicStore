@@ -15,7 +15,7 @@ public class Main {
 
     public static void main(String[] args) {
 //        new ChiNhanhGUI("CN002").setVisible(true);
-        new GiaoDienGUI("CN001").setVisible(true);
+        new GiaoDienGUI("CN002").setVisible(true);
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {

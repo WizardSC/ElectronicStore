@@ -28,8 +28,16 @@ public class ChiNhanhBUS {
         cnDAO.docMaCN(MaCN);
 
     }
-
+    
+    public void docDanhSach3CN(){
+        this.listChiNhanh = cnDAO.getList3ChiNhanh();
+    }
     public ArrayList<ChiNhanhDTO> getListChiNhanh() {
+        return listChiNhanh;
+    }
+    
+    public ArrayList<ChiNhanhDTO> getList3ChiNhanh(){
+        this.listChiNhanh = cnDAO.getList3ChiNhanh();
         return listChiNhanh;
     }
 }
