@@ -33,8 +33,24 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         kmBUS.docMaCN(temp);
         dtmKhuyenMai = (DefaultTableModel) tblDSKM.getModel();
         loadData();
+        loadMaKMTuTang();
         txtNgayBD.setDateFormatString("dd/MM/yyyy");
         txtNgayKT.setDateFormatString("dd/MM/yyyy");
+    }
+    
+    public void loadMaKMTuTang(){
+        kmBUS.docDanhSach();
+        ArrayList<KhuyenMaiDTO> dskm = kmBUS.getListKhuyenMai();
+        KhuyenMaiDTO lastMaKM = dskm.get(dskm.size()-1);
+        String MaKM = lastMaKM.getMaKM();
+        txtMaKM.setText(MaKM);
+        int sum = Integer.parseInt(MaKM.substring(3))+1;
+        if(sum<10){ 
+            txtMaKM.setText(String.valueOf("KM00")+sum);
+        } else {
+            txtMaKM.setText(String.valueOf("KM0")+sum);
+        }
+        txtMaKM.setEnabled(false);
     }
 
     public void showAllDSKM(ArrayList<KhuyenMaiDTO> dskm) {

@@ -29,6 +29,10 @@ public class SanPhamDTO {
         this.IMG = IMG;
     }
 
+    public SanPhamDTO(String MaSP) {
+        this.MaSP = MaSP;
+    }
+
     public String getMaSP() {
         return MaSP;
     }

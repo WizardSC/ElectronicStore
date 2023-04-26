@@ -125,7 +125,7 @@ public class NhanVienDAO {
     public void updateNhanVien(NhanVienDTO nv) {
         try {
             Connection connection = mssql.getConnection();
-            String sql = "UPDATE nhanvien SET Ho = ?, Ten = ?, NamSinh = ?,  GioiTinh = ?, SoDT = ?, DiaChi = ?, MaCV = ?, IMG = ? where MaNV = ?";
+            String sql = "UPDATE nhanvien SET Ho = ?, Ten = ?, NamSinh = ?,  GioiTinh = ?, SoDT = ?, DiaChi = ?, MaCV = ?, MaCN = ?, IMG = ? where MaNV = ?";
 
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, nv.getHo());
@@ -135,8 +135,9 @@ public class NhanVienDAO {
             ps.setString(5, nv.getSoDT());
             ps.setString(6, nv.getDiaChi());
             ps.setString(7, nv.getMaCV());
-            ps.setString(8, nv.getIMG());
-            ps.setString(9, nv.getMaNV());
+            ps.setString(8, nv.getMaCN());
+            ps.setString(9, nv.getIMG());
+            ps.setString(10, nv.getMaNV());
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(NhanVienDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -156,6 +157,33 @@ public class NhanVienDAO {
                 throw ex;
             }
         }
+    }
+
+    public ArrayList<NhanVienDTO> getListNV3ChiNhanh() {
+        try {
+            ArrayList<NhanVienDTO> dsnv = new ArrayList<>();
+            String sql = "EXEC sp_SelectAllNV3ChiNhanh";
+            ResultSet rs = mssql.executeQuery(sql);
+            while (rs.next()) {
+                NhanVienDTO nv = new NhanVienDTO(
+                        rs.getString("MaNV"),
+                        rs.getString("Ho"),
+                        rs.getString("Ten"),
+                        rs.getInt("NamSinh"),
+                        rs.getString("GioiTinh"),
+                        rs.getString("SoDT"),
+                        rs.getString("DiaChi"),
+                        rs.getString("MaCV"),
+                        rs.getString("MaCN"),
+                        rs.getString("IMG")
+                );
+                dsnv.add(nv);
+            }
+            return dsnv;
+        } catch (SQLException ex) {
+            Logger.getLogger(NhanVienDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 //    public void deleteNhanVien(String MaNV) throws SQLException, SQLIntegrityConstraintViolationException{
 //        try {

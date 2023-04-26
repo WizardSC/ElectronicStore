@@ -28,7 +28,23 @@ public class SanPhamDAO {
         this.MaCN = temp;
         mssql.docMaCN(temp);
     }
-
+    public ArrayList<SanPhamDTO> getListMaSP(){
+        try {
+            ArrayList<SanPhamDTO> dssp = new ArrayList<>();
+            String sql = "Select MaSP from sanpham";
+            ResultSet rs = mssql.executeQuery(sql);
+            while(rs.next()){
+                SanPhamDTO sp = new SanPhamDTO(
+                        rs.getString("MaSP")
+                );
+                dssp.add(sp);
+            }
+            return dssp;
+        } catch (SQLException ex) {
+            Logger.getLogger(SanPhamDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } return null;
+        
+    }
     public ArrayList<SanPham_ChiNhanhDTO> getListSanPham() {
         try {
             ArrayList<SanPham_ChiNhanhDTO> dssp = new ArrayList<>();
@@ -76,4 +92,7 @@ public class SanPhamDAO {
             Logger.getLogger(SanPhamDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    
+    
 }
