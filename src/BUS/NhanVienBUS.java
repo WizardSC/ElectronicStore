@@ -73,7 +73,16 @@ public class NhanVienBUS {
             }
         }
     }
+    public void updateChiNhanh(NhanVienDTO nv){
+        for(int i=0;i<listNhanVien.size();i++){
+            if (listNhanVien.get(i).getMaNV().equals(nv.getMaNV())) {
+                listNhanVien.set(i, nv);
 
+                nvDAO.updateChiNhanh(nv);
+                return;
+            }
+        }
+    }
     
     public void delete(String MaNV) throws XuLyException {
         docDanhSach(); //đọc danh sách nhân viên của chi nhánh hiện tại thôi

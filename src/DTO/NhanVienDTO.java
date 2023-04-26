@@ -38,6 +38,11 @@ public class NhanVienDTO {
         this.IMG = IMG;
     }
 
+    public NhanVienDTO(String MaNV, String MaCN) {
+        this.MaNV = MaNV;
+        this.MaCN = MaCN;
+    }
+
     
 
     public String getGioiTinh() {

@@ -141,6 +141,8 @@ public class NhanVienDAO {
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(NhanVienDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mssql.Disconnect();
         }
 
     }
@@ -156,6 +158,8 @@ public class NhanVienDAO {
             if (ex.getErrorCode() == 547) {
                 throw ex;
             }
+        } finally {
+            mssql.Disconnect();
         }
     }
 
@@ -182,8 +186,26 @@ public class NhanVienDAO {
             return dsnv;
         } catch (SQLException ex) {
             Logger.getLogger(NhanVienDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mssql.Disconnect();
         }
         return null;
+    }
+    public void updateChiNhanh(NhanVienDTO nv) {
+        try {
+            Connection connection = mssql.getConnection();
+            System.out.println("Thuc thi update Chi Nhanh");
+            String sql = "exec sp_ChuyenChiNhanhNV N'" + nv.getMaNV() +"'" + ", " + "N'" + nv.getMaCN() +"'";
+            PreparedStatement ps = connection.prepareStatement(sql);
+//            ps.setString(1, nv.getMaCN());
+//            ps.setString(2, nv.getMaNV());
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(NhanVienDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mssql.Disconnect();
+        }
+
     }
 //    public void deleteNhanVien(String MaNV) throws SQLException, SQLIntegrityConstraintViolationException{
 //        try {
