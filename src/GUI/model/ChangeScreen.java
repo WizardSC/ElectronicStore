@@ -81,7 +81,7 @@ public class ChangeScreen {
                 case "BanHang":
                     node = new BanHangGUI(MaCN);
                     break;
-                    
+
                 case "NhanVien":
                     node = new NhanVienGUI(MaCN);
                     break;
@@ -99,6 +99,9 @@ public class ChangeScreen {
                     break;
                 case "KhuyenMai":
                     node = new KhuyenMaiGUI(MaCN);
+                    break;
+                case "KhachHang";
+                    node = new KhachHangGUI(MaCN);
                     break;
                 default:
                     break;
