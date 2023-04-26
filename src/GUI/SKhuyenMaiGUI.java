@@ -4,19 +4,73 @@
  */
 package GUI;
 
+import BUS.KhuyenMaiBUS;
+import DTO.KhuyenMaiDTO;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Phuc Toan
  */
 public class SKhuyenMaiGUI extends javax.swing.JDialog {
 
-    /**
-     * Creates new form SKhuyenMaiGUI
-     */
-    public SKhuyenMaiGUI(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    DefaultTableModel dtmKhuyenMai;
+    private KhuyenMaiBUS kmBUS = new KhuyenMaiBUS();
+    String MaCN;
+    String HieuLuc;
+    public SKhuyenMaiGUI(String temp) {
+        setUndecorated(true);
         initComponents();
+        setResizable(false);
+        setModal(true);
+        setLocationRelativeTo(null);
+        this.MaCN = temp;
+        kmBUS.docMaCN(MaCN);
+        dtmKhuyenMai = (DefaultTableModel) tblDSKM.getModel();
+        loadData();
     }
+    
+    public void showAll(ArrayList<KhuyenMaiDTO> dskm){
+        dtmKhuyenMai.setRowCount(0);
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        for(int i=0;i<dskm.size();i++){
+            if(dskm.get(i).getNgayBD().before(date) && dskm.get(i).getNgayKT().after(date)){
+              HieuLuc = "Có hiệu lực";
+              
+            } else {
+              HieuLuc = "Không hiệu lực";
+            }
+            dtmKhuyenMai.addRow(new String[]{
+                dskm.get(i).getMaKM(),
+                dskm.get(i).getTenKM(),
+                String.valueOf(dskm.get(i).getPhanTramKM()),
+                String.valueOf(dskm.get(i).getDieuKien()),
+                String.valueOf(sdf.format(dskm.get(i).getNgayBD())),
+                String.valueOf(sdf.format(dskm.get(i).getNgayKT())),
+                HieuLuc
+            });
+        }
+    }
+        
+    
+    
+    
+    public void loadData(){
+        kmBUS.docDanhSach();
+        ArrayList<KhuyenMaiDTO> dskm = kmBUS.getListKhuyenMai();
+        showAll(dskm);
+    }
+    
+    public String getMaKM(){
+        return txtMaKM.getText();
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,11 +87,11 @@ public class SKhuyenMaiGUI extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         lblAccount = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblDSCV = new MyCustom.MyTable();
+        tblDSKM = new MyCustom.MyTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        txtMaCV = new javax.swing.JTextField();
+        txtMaKM = new javax.swing.JTextField();
         txtTenCV = new javax.swing.JTextField();
         txtMaNV1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -61,7 +115,7 @@ public class SKhuyenMaiGUI extends javax.swing.JDialog {
         });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 23)); // NOI18N
-        jLabel1.setText("QUẢN LÝ CHỨC VỤ");
+        jLabel1.setText("QUẢN LÝ KHUYẾN MÃI");
 
         lblAccount.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAccount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/hot-sale.png"))); // NOI18N
@@ -75,7 +129,7 @@ public class SKhuyenMaiGUI extends javax.swing.JDialog {
                 .addComponent(lblAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 474, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 431, Short.MAX_VALUE)
                 .addComponent(lblClose, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pnHeaderLayout.setVerticalGroup(
@@ -88,31 +142,32 @@ public class SKhuyenMaiGUI extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        tblDSCV.setModel(new javax.swing.table.DefaultTableModel(
+        tblDSKM.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã CV", "Tên CV"
+                "Mã KM", "Tên KM", "Phần trăm KM", "Điều kiện KM", "Ngày BD", "Ngày KT", "Hiệu lực"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, true, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        tblDSCV.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblDSKM.getTableHeader().setReorderingAllowed(false);
+        tblDSKM.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblDSCVMouseClicked(evt);
+                tblDSKMMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tblDSCV);
+        jScrollPane1.setViewportView(tblDSKM);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Mã CV");
@@ -122,7 +177,7 @@ public class SKhuyenMaiGUI extends javax.swing.JDialog {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã CV", "Tên CV" }));
 
-        txtMaCV.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtMaKM.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         txtTenCV.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
@@ -166,12 +221,12 @@ public class SKhuyenMaiGUI extends javax.swing.JDialog {
                         .addComponent(txtMaNV1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(97, 97, 97)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtMaCV, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMaKM, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtTenCV, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -190,23 +245,22 @@ public class SKhuyenMaiGUI extends javax.swing.JDialog {
                     .addComponent(txtMaNV1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtMaCV, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
+                        .addGap(29, 29, 29)
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel5))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtTenCV, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel5)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(txtMaKM, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txtTenCV, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -217,7 +271,9 @@ public class SKhuyenMaiGUI extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -227,64 +283,27 @@ public class SKhuyenMaiGUI extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_lblCloseMouseClicked
 
-    private void tblDSCVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDSCVMouseClicked
-        int k = tblDSCV.getSelectedRow();
-        txtMaCV.setText(tblDSCV.getModel().getValueAt(k, 0).toString());
-        txtTenCV.setText(tblDSCV.getModel().getValueAt(k, 1).toString());
-        System.out.println(txtMaCV.getText());
-    }//GEN-LAST:event_tblDSCVMouseClicked
+    private void tblDSKMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDSKMMouseClicked
+        int k = tblDSKM.getSelectedRow();
+        txtMaKM.setText(tblDSKM.getModel().getValueAt(k, 0).toString());
+        txtTenCV.setText(tblDSKM.getModel().getValueAt(k, 1).toString());
+        System.out.println(txtMaKM.getText());
+    }//GEN-LAST:event_tblDSKMMouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-
+        int k = tblDSKM.getSelectedRow();
+        if(tblDSKM.getModel().getValueAt(k,6).toString().equals("Không hiệu lực")){
+            JOptionPane.showMessageDialog(this, "Mã khuyến mãi không có hiệu lực","LỖI",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         dispose();
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        txtMaCV.setText("");
+        txtMaKM.setText("");
         dispose();
     }//GEN-LAST:event_jLabel5MouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SKhuyenMaiGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SKhuyenMaiGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SKhuyenMaiGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SKhuyenMaiGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                SKhuyenMaiGUI dialog = new SKhuyenMaiGUI(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> jComboBox1;
@@ -298,8 +317,8 @@ public class SKhuyenMaiGUI extends javax.swing.JDialog {
     private javax.swing.JLabel lblAccount;
     private javax.swing.JLabel lblClose;
     private javax.swing.JPanel pnHeader;
-    private MyCustom.MyTable tblDSCV;
-    private javax.swing.JTextField txtMaCV;
+    private MyCustom.MyTable tblDSKM;
+    private javax.swing.JTextField txtMaKM;
     private javax.swing.JTextField txtMaNV1;
     private javax.swing.JTextField txtTenCV;
     // End of variables declaration//GEN-END:variables

@@ -40,6 +40,7 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
     public void showAllDSKM(ArrayList<KhuyenMaiDTO> dskm) {
         dtmKhuyenMai.setRowCount(0);
         DecimalFormat dcf = new DecimalFormat(">##########");
+        
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Date now = new Date();
         for (int i = 0; i < dskm.size(); i++) {
@@ -51,7 +52,7 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
             dtmKhuyenMai.addRow(new String[]{
                 dskm.get(i).getMaKM(),
                 dskm.get(i).getTenKM(),
-                String.valueOf(dskm.get(i).getPhanTramKM()),
+                String.valueOf(dskm.get(i).getPhanTramKM() + "%"),
                 String.valueOf(dcf.format(dskm.get(i).getDieuKien())),
                 sdf.format(dskm.get(i).getNgayBD()),
                 sdf.format(dskm.get(i).getNgayKT()),
@@ -443,11 +444,13 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         txtMaKM.setEnabled(false);
         txtMaKM.setText(tblDSKM.getModel().getValueAt(k, 0).toString());
         txtTenKM.setText(tblDSKM.getModel().getValueAt(k, 1).toString());
-        txtPhanTramKM.setText(tblDSKM.getModel().getValueAt(k, 2).toString());
+//        txtPhanTramKM.setText(tblDSKM.getModel().getValueAt(k, 2).toString());
         String dk = tblDSKM.getModel().getValueAt(k, 3).toString();
+        String dk1 = tblDSKM.getModel().getValueAt(k, 2).toString();
         dk = dk.replace(">", "");
+        dk1 = dk1.replace("%", "");
         txtDieuKien.setText(dk);
-
+        txtPhanTramKM.setText(dk1);
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Date NgayBD = new Date();
         Date NgayKT = new Date();
