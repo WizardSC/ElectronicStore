@@ -47,6 +47,9 @@ public class SNhaSanXuatGUI extends javax.swing.JDialog {
         showAll(dsnsx);
     }
 
+    public String getMaNSX(){
+        return txtMaNSX.getText();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -66,7 +69,7 @@ public class SNhaSanXuatGUI extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        txtMaCV = new javax.swing.JTextField();
+        txtMaNSX = new javax.swing.JTextField();
         txtTenCV = new javax.swing.JTextField();
         txtMaNV1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -151,7 +154,7 @@ public class SNhaSanXuatGUI extends javax.swing.JDialog {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã CV", "Tên CV" }));
 
-        txtMaCV.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtMaNSX.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         txtTenCV.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
@@ -200,7 +203,7 @@ public class SNhaSanXuatGUI extends javax.swing.JDialog {
                             .addComponent(jLabel2))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtMaCV, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMaNSX, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtTenCV, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -224,7 +227,7 @@ public class SNhaSanXuatGUI extends javax.swing.JDialog {
                     .addComponent(jLabel2)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtMaCV, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMaNSX, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -258,9 +261,9 @@ public class SNhaSanXuatGUI extends javax.swing.JDialog {
 
     private void tblDSNSXMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDSNSXMouseClicked
         int k = tblDSNSX.getSelectedRow();
-        txtMaCV.setText(tblDSNSX.getModel().getValueAt(k, 0).toString());
+        txtMaNSX.setText(tblDSNSX.getModel().getValueAt(k, 0).toString());
         txtTenCV.setText(tblDSNSX.getModel().getValueAt(k, 1).toString());
-        System.out.println(txtMaCV.getText());
+        System.out.println(txtMaNSX.getText());
     }//GEN-LAST:event_tblDSNSXMouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
@@ -269,7 +272,7 @@ public class SNhaSanXuatGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        txtMaCV.setText("");
+        txtMaNSX.setText("");
         dispose();
     }//GEN-LAST:event_jLabel5MouseClicked
 
@@ -287,7 +290,7 @@ public class SNhaSanXuatGUI extends javax.swing.JDialog {
     private javax.swing.JLabel lblClose;
     private javax.swing.JPanel pnHeader;
     private MyCustom.MyTable tblDSNSX;
-    private javax.swing.JTextField txtMaCV;
+    private javax.swing.JTextField txtMaNSX;
     private javax.swing.JTextField txtMaNV1;
     private javax.swing.JTextField txtTenCV;
     // End of variables declaration//GEN-END:variables

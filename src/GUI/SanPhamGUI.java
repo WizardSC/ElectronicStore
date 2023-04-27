@@ -489,6 +489,7 @@ public class SanPhamGUI extends javax.swing.JPanel {
         SNhaSanXuatGUI snsx = new SNhaSanXuatGUI(MaCN);
         snsx.setVisible(true);
         
+        txtMaNSX.setText(snsx.getMaNSX());
         
     }//GEN-LAST:event_btnChonMaNSXActionPerformed
 
@@ -570,8 +571,11 @@ public class SanPhamGUI extends javax.swing.JPanel {
     private void btnChonMaLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonMaLoaiActionPerformed
         SMaLoaiGUI sml = new SMaLoaiGUI(MaCN);
         mssql.docMaCN(MaCN);
-        System.out.println("Thu tu 1");
+        
         sml.setVisible(true);
+        
+        txtMaLoai.setText(sml.getMaLoai());
+        
     }//GEN-LAST:event_btnChonMaLoaiActionPerformed
 
     private void btnChonChucVu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonChucVu2ActionPerformed

@@ -24,8 +24,26 @@ public class HoaDonBUS {
     public void docDanhSachMaHD(){
         this.listHoaDon = hdDAO.getListMaHDTuTang();
     }
+    public void docDanhSach(){
+        this.listHoaDon = hdDAO.getListHoaDon();
+    }
+    
+    public void docDanhSach3CN(){
+        this.listHoaDon = hdDAO.getListHoaDon3CN();
+    }
+    
+    public ArrayList<HoaDonDTO> getListHoaDon3CN(){
+        return listHoaDon;
+    }
     
     public ArrayList<HoaDonDTO> getListMaHDTuTang(){
         return listHoaDon; 
     }
+    
+    
+    public ArrayList<HoaDonDTO> getListHoaDon(){
+        return listHoaDon;
+        
+    }
+    
 }

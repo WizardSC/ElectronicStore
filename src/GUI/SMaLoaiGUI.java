@@ -45,6 +45,10 @@ public class SMaLoaiGUI extends javax.swing.JDialog {
         ArrayList<LoaiDTO> dsloai = loaiBUS.getListLoai();
         showAll(dsloai);
     }
+    
+    public String getMaLoai(){
+        return txtMaLoai.getText();
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -59,7 +63,7 @@ public class SMaLoaiGUI extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        txtMaCV = new javax.swing.JTextField();
+        txtMaLoai = new javax.swing.JTextField();
         txtTenCV = new javax.swing.JTextField();
         txtMaNV1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -144,7 +148,7 @@ public class SMaLoaiGUI extends javax.swing.JDialog {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã CV", "Tên CV" }));
 
-        txtMaCV.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtMaLoai.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         txtTenCV.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
@@ -193,7 +197,7 @@ public class SMaLoaiGUI extends javax.swing.JDialog {
                             .addComponent(jLabel2))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtMaCV, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMaLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtTenCV, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -217,7 +221,7 @@ public class SMaLoaiGUI extends javax.swing.JDialog {
                     .addComponent(jLabel2)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtMaCV, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMaLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -251,9 +255,9 @@ public class SMaLoaiGUI extends javax.swing.JDialog {
 
     private void tblDSLoaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDSLoaiMouseClicked
         int k = tblDSLoai.getSelectedRow();
-        txtMaCV.setText(tblDSLoai.getModel().getValueAt(k, 0).toString());
+        txtMaLoai.setText(tblDSLoai.getModel().getValueAt(k, 0).toString());
         txtTenCV.setText(tblDSLoai.getModel().getValueAt(k, 1).toString());
-        System.out.println(txtMaCV.getText());
+        System.out.println(txtMaLoai.getText());
     }//GEN-LAST:event_tblDSLoaiMouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
@@ -262,7 +266,7 @@ public class SMaLoaiGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        txtMaCV.setText("");
+        txtMaLoai.setText("");
         dispose();
     }//GEN-LAST:event_jLabel5MouseClicked
 
@@ -280,7 +284,7 @@ public class SMaLoaiGUI extends javax.swing.JDialog {
     private javax.swing.JLabel lblClose;
     private javax.swing.JPanel pnHeader;
     private MyCustom.MyTable tblDSLoai;
-    private javax.swing.JTextField txtMaCV;
+    private javax.swing.JTextField txtMaLoai;
     private javax.swing.JTextField txtMaNV1;
     private javax.swing.JTextField txtTenCV;
     // End of variables declaration//GEN-END:variables
