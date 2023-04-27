@@ -8,6 +8,7 @@ package GUI.model;
 import GUI.BanHangGUI;
 import GUI.ChiNhanhGUI;
 import GUI.GiaoDienGUI;
+import GUI.KhachHangGUI;
 import GUI.KhuyenMaiGUI;
 import GUI.NhanVienGUI;
 import GUI.SanPhamGUI;
@@ -100,7 +101,7 @@ public class ChangeScreen {
                 case "KhuyenMai":
                     node = new KhuyenMaiGUI(MaCN);
                     break;
-                case "KhachHang";
+                case "KhachHang":
                     node = new KhachHangGUI(MaCN);
                     break;
                 default:
