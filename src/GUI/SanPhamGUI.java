@@ -6,6 +6,7 @@ package GUI;
 
 import BUS.SanPhamBUS;
 import DAO.MSSQLConnect;
+import DTO.SanPhamDTO;
 import DTO.SanPham_ChiNhanhDTO;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -26,6 +27,10 @@ public class SanPhamGUI extends javax.swing.JPanel {
         spBUS.docMaCN(temp);
         dtmSanPham = (DefaultTableModel) tblDSSP.getModel();
         loadData();
+        loadMaSP();
+        txtSoLuong.setEnabled(false);
+        txtDonGia.setEnabled(false);
+        txtMaSP.setEnabled(false);
     }
     
     public void showAllDSSP(ArrayList<SanPham_ChiNhanhDTO> dssp){
@@ -51,7 +56,18 @@ public class SanPhamGUI extends javax.swing.JPanel {
         ArrayList<SanPham_ChiNhanhDTO> dssp = spBUS.getListSanPham();
         showAllDSSP(dssp);
     }
-
+    
+    public void loadMaSP(){
+        spBUS.docDanhSachMaSP();
+        ArrayList<SanPhamDTO> dssp = spBUS.getListMaSP();
+        SanPhamDTO lastMaSP = dssp.get(dssp.size()  - 1);
+        int sum = Integer.parseInt(lastMaSP.getMaSP().substring(3)) + 1;
+        if(sum >= 10){
+            txtMaSP.setText("SP0" + sum);
+        } else {
+            txtMaSP.setText("SP00" + sum);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -511,6 +527,18 @@ public class SanPhamGUI extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSuaMouseClicked
 
     private void btnThemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemMouseClicked
+        String MaSP = txtMaSP.getText();
+        String TenSP = txtTenSP.getText();
+        int SoLuong = 0;
+        int DonGia = 0;
+        String DonViTinh = cbxDonViTinh.getSelectedItem().toString();
+        String MaLoai = txtMaLoai.getText();
+        String MaNCC = txtMaNCC.getText();
+        String MaNSX = txtMaNSX.getText();
+        String IMG = "null";
+        SanPham_ChiNhanhDTO sp = new SanPham_ChiNhanhDTO(MaSP, TenSP, DonViTinh, SoLuong, DonGia, MaLoai, MaNSX, MaNCC, IMG, MaCN);
+        spBUS.add(sp);
+        loadData();
 //        String MaNV = txtMaNV.getText();
 //        String Ho = txtHo.getText();
 //        String Ten = txtTen.getText();

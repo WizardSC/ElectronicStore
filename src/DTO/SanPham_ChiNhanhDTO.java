@@ -18,6 +18,11 @@ public class SanPham_ChiNhanhDTO extends SanPhamDTO{
         this.MaCN = MaCN;
     }
 
+    public SanPham_ChiNhanhDTO(String MaSP) {
+        super(MaSP);
+    }
+
+     
     public void setMaCN(String MaCN) {
         this.MaCN = MaCN;
     }

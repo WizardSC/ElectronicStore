@@ -20,7 +20,6 @@ import java.util.logging.Logger;
  */
 public class SanPhamDAO {
 
-    private ArrayList<SanPhamDTO> dssp = new ArrayList<>();
     private MSSQLConnect mssql = new MSSQLConnect();
     String MaCN;
 
@@ -73,7 +72,31 @@ public class SanPhamDAO {
         }
         return null;
     }
-    
+    public void insertSanPham(SanPham_ChiNhanhDTO sp){
+        try {
+            Connection connection = mssql.getConnection();
+            String sql = "INSERT INTO sanpham VALUES(?,?,?,?,?,?,?,?,NEWID())";
+            String sql1 = "INSERT INTO sanpham_chinhanh VALUES(?,?,?,NEWID())";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            PreparedStatement ps1 = connection.prepareStatement(sql1);
+            ps.setString(1, sp.getMaSP());
+            ps.setString(2,sp.getTenSP());
+            ps.setString(3,sp.getDonViTinh());
+            ps.setInt(4,sp.getDonGia());
+            ps.setString(5,sp.getMaLoai());
+            ps.setString(6,sp.getMaNSX());
+            ps.setString(7,sp.getMaNCC());
+            ps.setString(8,sp.getIMG());
+            ps1.setString(1,sp.getMaSP());
+            ps1.setString(2,sp.getMaCN());
+            ps1.setInt(3,sp.getSoLuong());
+            ps.executeUpdate();
+            ps1.executeUpdate();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(SanPhamDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     public void updateSanPham(SanPham_ChiNhanhDTO sp){
         try {
             Connection connection = mssql.getConnection();

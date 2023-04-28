@@ -646,7 +646,7 @@ public class GiaoDienGUI extends javax.swing.JFrame {
                         .addGroup(pnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(0, 0, 0)
                         .addComponent(pnView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         pnRootLayout.setVerticalGroup(
@@ -690,7 +690,6 @@ public class GiaoDienGUI extends javax.swing.JFrame {
     private MyCustom.ImageAvatar imageAvatar11;
     private MyCustom.ImageAvatar imageAvatar12;
     private MyCustom.ImageAvatar imageAvatar13;
-    private MyCustom.ImageAvatar imageAvatar14;
     private MyCustom.ImageAvatar imageAvatar15;
     private MyCustom.ImageAvatar imageAvatar2;
     private MyCustom.ImageAvatar imageAvatar3;
@@ -717,7 +716,6 @@ public class GiaoDienGUI extends javax.swing.JFrame {
     private javax.swing.JLabel lblNhanVien;
     private javax.swing.JLabel lblNhapHang;
     private javax.swing.JLabel lblPhieuNhap;
-    private javax.swing.JLabel lblPhieuNhap1;
     private javax.swing.JLabel lblSanPham;
     private javax.swing.JPanel pnBanHang;
     private javax.swing.JPanel pnChucVu;
@@ -732,7 +730,6 @@ public class GiaoDienGUI extends javax.swing.JFrame {
     private javax.swing.JPanel pnNhanVien;
     private javax.swing.JPanel pnNhapHang;
     private javax.swing.JPanel pnPhieuNhap;
-    private javax.swing.JPanel pnPhieuNhap1;
     private javax.swing.JPanel pnRoot;
     private javax.swing.JPanel pnSanPham;
     private javax.swing.JPanel pnView;
