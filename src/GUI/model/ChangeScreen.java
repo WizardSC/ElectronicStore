@@ -12,6 +12,7 @@ import GUI.HoaDonGUI;
 import GUI.KhachHangGUI;
 import GUI.KhuyenMaiGUI;
 import GUI.NhanVienGUI;
+import GUI.NhapHangGUI;
 import GUI.SanPhamGUI;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -114,7 +115,9 @@ public class ChangeScreen {
                 case "PhieuNhap":
                     node = new KhachHangGUI(MaCN);
                     break;
-
+                case "NhapHang":
+                    node = new NhapHangGUI(MaCN);
+                    break;
                 default:
                     break;
             }

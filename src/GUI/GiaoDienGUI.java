@@ -62,6 +62,7 @@ public class GiaoDienGUI extends javax.swing.JFrame {
         list.add(new DanhMuc("KhuyenMai",pnKhuyenMai,lblKhuyenMai));
         list.add(new DanhMuc("KhachHang",pnKhachHang,lblKhachHang));
         list.add(new DanhMuc("HoaDon",pnHoaDon,lblHoaDon));
+        list.add(new DanhMuc("NhapHang",pnNhapHang,lblNhapHang));
         
         
 
@@ -130,6 +131,9 @@ public class GiaoDienGUI extends javax.swing.JFrame {
         pnPhieuNhap = new javax.swing.JPanel();
         lblPhieuNhap = new javax.swing.JLabel();
         imageAvatar13 = new MyCustom.ImageAvatar();
+        pnNhapHang = new javax.swing.JPanel();
+        lblNhapHang = new javax.swing.JLabel();
+        imageAvatar15 = new MyCustom.ImageAvatar();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -203,7 +207,7 @@ public class GiaoDienGUI extends javax.swing.JFrame {
         pnView.setLayout(pnViewLayout);
         pnViewLayout.setHorizontalGroup(
             pnViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1146, Short.MAX_VALUE)
+            .addGap(0, 1156, Short.MAX_VALUE)
         );
         pnViewLayout.setVerticalGroup(
             pnViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -532,6 +536,35 @@ public class GiaoDienGUI extends javax.swing.JFrame {
             .addComponent(imageAvatar13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        pnNhapHang.setBackground(new java.awt.Color(128, 128, 128));
+        pnNhapHang.setPreferredSize(new java.awt.Dimension(226, 40));
+
+        lblNhapHang.setBackground(new java.awt.Color(255, 255, 255));
+        lblNhapHang.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
+        lblNhapHang.setForeground(new java.awt.Color(255, 255, 255));
+        lblNhapHang.setText(" NHẬP HÀNG");
+
+        imageAvatar15.setForeground(new java.awt.Color(255, 255, 240));
+        imageAvatar15.setBorderSize(2);
+        imageAvatar15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lblNhapHang.png"))); // NOI18N
+        imageAvatar15.setInheritsPopupMenu(true);
+
+        javax.swing.GroupLayout pnNhapHangLayout = new javax.swing.GroupLayout(pnNhapHang);
+        pnNhapHang.setLayout(pnNhapHangLayout);
+        pnNhapHangLayout.setHorizontalGroup(
+            pnNhapHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnNhapHangLayout.createSequentialGroup()
+                .addGap(8, 8, 8)
+                .addComponent(imageAvatar15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblNhapHang, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        pnNhapHangLayout.setVerticalGroup(
+            pnNhapHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblNhapHang, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+            .addComponent(imageAvatar15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout pnMenuLayout = new javax.swing.GroupLayout(pnMenu);
         pnMenu.setLayout(pnMenuLayout);
         pnMenuLayout.setHorizontalGroup(
@@ -547,6 +580,7 @@ public class GiaoDienGUI extends javax.swing.JFrame {
             .addComponent(pnHoaDon7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
             .addComponent(pnHoaDon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
             .addComponent(pnPhieuNhap, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+            .addComponent(pnNhapHang, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
         );
         pnMenuLayout.setVerticalGroup(
             pnMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -555,7 +589,9 @@ public class GiaoDienGUI extends javax.swing.JFrame {
                 .addComponent(pnBanHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(pnHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(76, 76, 76)
+                .addGap(18, 18, 18)
+                .addComponent(pnNhapHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(pnPhieuNhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(pnSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -654,6 +690,8 @@ public class GiaoDienGUI extends javax.swing.JFrame {
     private MyCustom.ImageAvatar imageAvatar11;
     private MyCustom.ImageAvatar imageAvatar12;
     private MyCustom.ImageAvatar imageAvatar13;
+    private MyCustom.ImageAvatar imageAvatar14;
+    private MyCustom.ImageAvatar imageAvatar15;
     private MyCustom.ImageAvatar imageAvatar2;
     private MyCustom.ImageAvatar imageAvatar3;
     private MyCustom.ImageAvatar imageAvatar6;
@@ -677,7 +715,9 @@ public class GiaoDienGUI extends javax.swing.JFrame {
     private javax.swing.JLabel lblKhuyenMai;
     private javax.swing.JLabel lblMinimize;
     private javax.swing.JLabel lblNhanVien;
+    private javax.swing.JLabel lblNhapHang;
     private javax.swing.JLabel lblPhieuNhap;
+    private javax.swing.JLabel lblPhieuNhap1;
     private javax.swing.JLabel lblSanPham;
     private javax.swing.JPanel pnBanHang;
     private javax.swing.JPanel pnChucVu;
@@ -690,7 +730,9 @@ public class GiaoDienGUI extends javax.swing.JFrame {
     private javax.swing.JPanel pnKhuyenMai;
     private javax.swing.JPanel pnMenu;
     private javax.swing.JPanel pnNhanVien;
+    private javax.swing.JPanel pnNhapHang;
     private javax.swing.JPanel pnPhieuNhap;
+    private javax.swing.JPanel pnPhieuNhap1;
     private javax.swing.JPanel pnRoot;
     private javax.swing.JPanel pnSanPham;
     private javax.swing.JPanel pnView;
