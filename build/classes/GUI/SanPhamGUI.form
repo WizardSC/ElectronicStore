@@ -165,7 +165,7 @@
                               <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="btnChonMaNSX" min="-2" pref="44" max="-2" attributes="0"/>
-                                  <Component id="btnChonChucVu2" min="-2" pref="44" max="-2" attributes="0"/>
+                                  <Component id="btnChonNCC" min="-2" pref="44" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                           </Group>
@@ -253,7 +253,7 @@
                                       <Component id="txtDonGia" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                                       <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="txtMaNCC" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                                      <Component id="btnChonChucVu2" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                                      <Component id="btnChonNCC" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -511,12 +511,12 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnChonMaLoaiActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnChonChucVu2">
+            <Component class="javax.swing.JButton" name="btnChonNCC">
               <Properties>
                 <Property name="text" type="java.lang.String" value="jButton1"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnChonChucVu2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnChonNCCActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

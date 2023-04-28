@@ -87,7 +87,7 @@ public class SanPhamGUI extends javax.swing.JPanel {
         lblGioiTinh = new javax.swing.JLabel();
         cbxDonViTinh = new javax.swing.JComboBox<>();
         btnChonMaLoai = new javax.swing.JButton();
-        btnChonChucVu2 = new javax.swing.JButton();
+        btnChonNCC = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblDSSP = new MyCustom.MyTable();
         cbxDonViTinh1 = new javax.swing.JComboBox<>();
@@ -211,10 +211,10 @@ public class SanPhamGUI extends javax.swing.JPanel {
             }
         });
 
-        btnChonChucVu2.setText("jButton1");
-        btnChonChucVu2.addActionListener(new java.awt.event.ActionListener() {
+        btnChonNCC.setText("jButton1");
+        btnChonNCC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnChonChucVu2ActionPerformed(evt);
+                btnChonNCCActionPerformed(evt);
             }
         });
 
@@ -263,7 +263,7 @@ public class SanPhamGUI extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnChonMaNSX, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnChonChucVu2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnChonNCC, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(1, 1, 1))
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
@@ -329,7 +329,7 @@ public class SanPhamGUI extends javax.swing.JPanel {
                                 .addComponent(txtDonGia, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel6)
                                 .addComponent(txtMaNCC, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnChonChucVu2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnChonNCC, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel3))
                         .addGap(17, 17, 17)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -578,15 +578,17 @@ public class SanPhamGUI extends javax.swing.JPanel {
         
     }//GEN-LAST:event_btnChonMaLoaiActionPerformed
 
-    private void btnChonChucVu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonChucVu2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnChonChucVu2ActionPerformed
+    private void btnChonNCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonNCCActionPerformed
+        SNhaCungCapGUI sncc = new SNhaCungCapGUI(MaCN);
+        sncc.setVisible(true);
+        txtMaNCC.setText(sncc.getMaNCC());
+    }//GEN-LAST:event_btnChonNCCActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnChonChucVu2;
     private javax.swing.JButton btnChonMaLoai;
     private javax.swing.JButton btnChonMaNSX;
+    private javax.swing.JButton btnChonNCC;
     private javax.swing.JLabel btnNhapExcel;
     private javax.swing.JLabel btnSua;
     private javax.swing.JLabel btnThem;
