@@ -121,14 +121,10 @@ public class SanPhamDAO {
         try {
             Connection connection = mssql.getConnection();
             ArrayList<SanPham_ChiNhanhDTO> dssp = new ArrayList<>();
-            String sql = "delete from sanpham_chinhanh where MaSP = ?"; //xóa ở thực thể yếu trước
-            String sql1 = "delete from sanpham where MaSP = ?"; //sau đó mới xóa trong sản phẩm
+            String sql = "exec sp_deleteSan7Pham ?"; 
             PreparedStatement ps = connection.prepareStatement(sql);
-            PreparedStatement ps1 = connection.prepareStatement(sql1);
             ps.setString(1,MaSP);
-            ps1.setString(1,MaSP);
             ps.executeUpdate();
-            ps1.executeUpdate();
         } catch (SQLServerException ex) {
             if (ex.getErrorCode() == 547) {
                 throw ex;
