@@ -6,6 +6,7 @@ package DAO;
 
 import DTO.SanPhamDTO;
 import DTO.SanPham_ChiNhanhDTO;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -116,6 +117,26 @@ public class SanPhamDAO {
         }
     }
     
+    public void deleteSanPham(String MaSP) throws SQLException, SQLServerException{
+        try {
+            Connection connection = mssql.getConnection();
+            ArrayList<SanPham_ChiNhanhDTO> dssp = new ArrayList<>();
+            String sql = "delete from sanpham_chinhanh where MaSP = ?"; //xóa ở thực thể yếu trước
+            String sql1 = "delete from sanpham where MaSP = ?"; //sau đó mới xóa trong sản phẩm
+            PreparedStatement ps = connection.prepareStatement(sql);
+            PreparedStatement ps1 = connection.prepareStatement(sql1);
+            ps.setString(1,MaSP);
+            ps1.setString(1,MaSP);
+            ps.executeUpdate();
+            ps1.executeUpdate();
+        } catch (SQLServerException ex) {
+            if (ex.getErrorCode() == 547) {
+                throw ex;
+            }
+        } finally {
+            mssql.Disconnect();
+        }
+    }
     
     
 }

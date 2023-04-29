@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/DAO/NhaCungCapDAO.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>50</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Phuc%20Toan/Documents/NetBeansProjects/ElectronicStore/src/DAO/NhaCungCapDAO.java</file>
-            <file>file:/C:/Users/Phuc%20Toan/Documents/NetBeansProjects/ElectronicStore/src/GUI/HoaDonGUI.java</file>
-            <file>file:/C:/Users/Phuc%20Toan/Documents/NetBeansProjects/ElectronicStore/src/GUI/KhuyenMaiGUI.java</file>
-            <file>file:/C:/Users/Phuc%20Toan/Documents/NetBeansProjects/ElectronicStore/src/BUS/HoaDonBUS.java</file>
-            <file>file:/C:/Users/Phuc%20Toan/Documents/NetBeansProjects/ElectronicStore/src/GUI/GiaoDienGUI.java</file>
-            <file>file:/C:/Users/Phuc%20Toan/Documents/NetBeansProjects/ElectronicStore/src/DAO/HoaDonDAO.java</file>
-            <file>file:/C:/Users/Phuc%20Toan/Documents/NetBeansProjects/ElectronicStore/src/GUI/SNhaCungCapGUI.java</file>
-            <file>file:/C:/Users/Phuc%20Toan/Documents/NetBeansProjects/ElectronicStore/src/BUS/NhaCungCapBUS.java</file>
-            <file>file:/C:/Users/Phuc%20Toan/Documents/NetBeansProjects/ElectronicStore/src/GUI/model/ChangeScreen.java</file>
-            <file>file:/C:/Users/Phuc%20Toan/Documents/NetBeansProjects/ElectronicStore/src/GUI/SanPhamGUI.java</file>
             <file>file:/C:/Users/Phuc%20Toan/Documents/NetBeansProjects/ElectronicStore/src/GUI/Main.java</file>
         </group>
     </open-files>

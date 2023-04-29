@@ -7,6 +7,8 @@ package BUS;
 import DAO.SanPhamDAO;
 import DTO.SanPhamDTO;
 import DTO.SanPham_ChiNhanhDTO;
+import MyCustom.XuLyException;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.util.ArrayList;
 
 /**
@@ -44,6 +46,23 @@ public class SanPhamBUS {
             if(listSanPham.get(i).getMaSP().equals(sp.getMaSP())){
                 listSanPham.set(i,sp);
                 spDAO.updateSanPham(sp);
+                return;
+            }
+        }
+    }
+    
+    public void delete(String MaSP) throws XuLyException{
+        for(SanPhamDTO sp : listSanPham){
+            if(sp.getMaSP().equals(MaSP)){
+                try {
+                    listSanPham.remove(sp);
+                    spDAO.deleteSanPham(MaSP);
+                } catch (SQLServerException e){
+                    throw new XuLyException("Không thể xóa sản phẩm vì đã có dữ liệu liên quan đến sản phẩm này trong CSDL ");    
+                    
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
                 return;
             }
         }

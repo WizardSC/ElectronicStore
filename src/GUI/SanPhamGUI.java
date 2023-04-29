@@ -8,7 +8,9 @@ import BUS.SanPhamBUS;
 import DAO.MSSQLConnect;
 import DTO.SanPhamDTO;
 import DTO.SanPham_ChiNhanhDTO;
+import MyCustom.XuLyException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -554,6 +556,19 @@ public class SanPhamGUI extends javax.swing.JPanel {
     }//GEN-LAST:event_btnThemMouseClicked
 
     private void btnXoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXoaMouseClicked
+        String MaSP = txtMaSP.getText();
+        int result = JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa sản phẩm không?");
+        if (result == JOptionPane.YES_OPTION){
+            try {
+                spBUS.delete(MaSP);
+                loadData();
+            } catch (XuLyException e){
+                JOptionPane.showMessageDialog(this, e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+            } catch (Exception e){
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Đã xảy ra lỗi khi xóa nhân viên.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            }
+        }
 //        String MaNV = txtMaNV.getText();
 //        int result = JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa nhân viên không?");
 //        if (result == JOptionPane.YES_OPTION) {
