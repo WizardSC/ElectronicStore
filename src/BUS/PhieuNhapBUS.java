@@ -24,7 +24,14 @@ public class PhieuNhapBUS {
         this.listPhieuNhap = pnDAO.getListPhieuNhap();
     }
     
+    public void docDanhSach3CN(){    
+        this.listPhieuNhap = pnDAO.getListPhieuNhap3CN();
+    }
     public ArrayList<PhieuNhapDTO> getListPhieuNhap(){
+        return listPhieuNhap;
+    }
+    
+    public ArrayList<PhieuNhapDTO> getListPhieuNhap3CN(){
         return listPhieuNhap;
     }
 }

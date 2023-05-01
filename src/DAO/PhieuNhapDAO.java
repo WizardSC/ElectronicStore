@@ -46,5 +46,29 @@ public class PhieuNhapDAO {
         }
         return null;
     }
+    
+    public ArrayList<PhieuNhapDTO> getListPhieuNhap3CN(){
+        try {
+            ArrayList<PhieuNhapDTO> dspn = new ArrayList<>();
+            String sql = "exec sp_SelectAllPN";
+            ResultSet rs = mssql.executeQuery(sql);
+            while(rs.next()){
+                PhieuNhapDTO pn = new PhieuNhapDTO(
+                        rs.getString("MaPN"),
+                        rs.getDate("NgapLap"),
+                        rs.getInt("TongTien"),
+                        rs.getString("MaNV"),
+                        rs.getString("MaNCC")
+                );
+                dspn.add(pn);
 
+            }
+            return dspn;
+        } catch (SQLException ex) {
+            Logger.getLogger(PhieuNhapDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mssql.Disconnect();
+        }
+        return null;
+    }
 }
