@@ -64,7 +64,7 @@ public class GiaoDienGUI extends javax.swing.JFrame {
         list.add(new DanhMuc("HoaDon",pnHoaDon,lblHoaDon));
         list.add(new DanhMuc("NhapHang",pnNhapHang,lblNhapHang));
         
-        
+        list.add(new DanhMuc("PhieuNhap",pnPhieuNhap,lblPhieuNhap));
 
         controller.setEvent(list);
 
