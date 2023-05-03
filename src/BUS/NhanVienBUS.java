@@ -103,4 +103,26 @@ public class NhanVienBUS {
         }
 
     }
+    
+    public ArrayList<NhanVienDTO> searchMaNV3CN(String tk){
+        ArrayList<NhanVienDTO> dsnv = new ArrayList<>();
+        this.listNhanVien = nvDAO.getListNV3ChiNhanh();
+        tk = tk.toLowerCase();
+        for(NhanVienDTO nv : listNhanVien){
+            if(nv.getMaNV().toLowerCase().contains(tk)){
+                dsnv.add(nv);
+            }
+        }
+        return dsnv;
+    }
+    public ArrayList<NhanVienDTO> searchMaNV(String tuKhoa){
+        ArrayList<NhanVienDTO> dsnv = new ArrayList<>();
+        tuKhoa = tuKhoa.toLowerCase();
+        for(NhanVienDTO nv : listNhanVien){
+            if(nv.getMaNV().toLowerCase().contains(tuKhoa)){
+                dsnv.add(nv);
+            }
+        }
+        return dsnv;
+    }
     }
