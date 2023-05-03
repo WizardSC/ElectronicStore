@@ -5,8 +5,10 @@
 package GUI;
 
 import BUS.NhaCungCapBUS;
+import BUS.PhieuNhapBUS;
 import BUS.SanPhamBUS;
 import DTO.NhaCungCapDTO;
+import DTO.PhieuNhapDTO;
 import DTO.SanPham_ChiNhanhDTO;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
@@ -22,11 +24,12 @@ import javax.swing.text.NumberFormatter;
  * @author Phuc Toan
  */
 public class NhapHangGUI extends javax.swing.JPanel {
-
+    private PhieuNhapBUS pnBUS = new PhieuNhapBUS();
     private NhaCungCapBUS nccBUS = new NhaCungCapBUS();
     private SanPhamBUS spBUS = new SanPhamBUS();
     DefaultComboBoxModel dcbmNhaCungCap;
     DefaultTableModel dtmSanPham;
+    DefaultTableModel dtmHangChoNhap;
     String MaCN;
 
     public NhapHangGUI(String temp) {
@@ -35,10 +38,13 @@ public class NhapHangGUI extends javax.swing.JPanel {
         this.MaCN = temp;
         nccBUS.docMaCN(MaCN);
         spBUS.docMaCN(MaCN);
+        pnBUS.docMaCN(MaCN);
         dcbmNhaCungCap = (DefaultComboBoxModel) cbxNhaCungCap.getModel();
         dtmSanPham = (DefaultTableModel) tblDSSP.getModel();
+        dtmHangChoNhap =  (DefaultTableModel) tblGioHang.getModel();
         loadMaNCClenCBX();
         loadDataDSSP();
+        loadMaPN3CN();
         txtMaNCC.setEnabled(false);
     }
 
@@ -71,6 +77,19 @@ public class NhapHangGUI extends javax.swing.JPanel {
         ArrayList<SanPham_ChiNhanhDTO> dssp = spBUS.getListSanPham();
         showAllDSSP(dssp);
     }
+    
+    public void loadMaPN3CN(){
+        pnBUS.docDanhSach3CN();
+        ArrayList<PhieuNhapDTO> dspn = pnBUS.getListPhieuNhap3CN();
+        PhieuNhapDTO lastPN = dspn.get(dspn.size()-1);
+        String MaPN = lastPN.getMaPN();
+        int sum = Integer.parseInt(MaPN.substring(3)) + 1;
+        if (sum < 10){
+            txtMaPN.setText("PN00"+String.valueOf(sum));
+        } else {
+            txtMaPN.setText("PN0"+String.valueOf(sum));
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -102,7 +121,7 @@ public class NhapHangGUI extends javax.swing.JPanel {
         btnThem1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        txtMaHD = new javax.swing.JTextField();
+        txtMaPN = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         txtMaNCC = new javax.swing.JTextField();
@@ -226,10 +245,10 @@ public class NhapHangGUI extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(cbxNhaCungCap, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtMaSP, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
@@ -247,36 +266,37 @@ public class NhapHangGUI extends javax.swing.JPanel {
                             .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnThem))
-                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 240));
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "GIỎ HÀNG", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18), new java.awt.Color(255, 0, 0))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "HÀNG CHỜ NHẬP", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18), new java.awt.Color(255, 0, 0))); // NOI18N
 
         tblGioHang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Mã SP", "Tên SP", "Số lượng", "Đơn giá"
+                "Mã SP", "Tên SP", "Số lượng", "Đơn giá", "Thành tiền"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        tblGioHang.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tblGioHang);
         if (tblGioHang.getColumnModel().getColumnCount() > 0) {
+            tblGioHang.getColumnModel().getColumn(0).setResizable(false);
+            tblGioHang.getColumnModel().getColumn(1).setResizable(false);
             tblGioHang.getColumnModel().getColumn(2).setResizable(false);
             tblGioHang.getColumnModel().getColumn(3).setResizable(false);
+            tblGioHang.getColumnModel().getColumn(4).setResizable(false);
         }
 
         btnThem1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -296,14 +316,14 @@ public class NhapHangGUI extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel6.setText("Mã PN");
 
-        txtMaHD.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtMaPN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtMaHDMouseClicked(evt);
+                txtMaPNMouseClicked(evt);
             }
         });
-        txtMaHD.addActionListener(new java.awt.event.ActionListener() {
+        txtMaPN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMaHDActionPerformed(evt);
+                txtMaPNActionPerformed(evt);
             }
         });
 
@@ -370,7 +390,7 @@ public class NhapHangGUI extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(txtMaHD, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtMaPN, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -396,7 +416,7 @@ public class NhapHangGUI extends javax.swing.JPanel {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtMaHD, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMaPN, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel10)
                     .addComponent(txtMaNCC, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -487,14 +507,19 @@ public class NhapHangGUI extends javax.swing.JPanel {
     }//GEN-LAST:event_tblDSSPMouseClicked
 
     private void btnThemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemMouseClicked
-
+        String MaPN = txtMaPN.getText();
+        String MaSP = txtMaSP.getText();
+        String TenSP = txtTenSP.getText();
+        int SoLuong = Integer.parseInt(txtSoLuong.getValue().toString());
+        int DonGia = Integer.parseInt(txtDonGia.getText());
+        int ThanhTien = SoLuong * DonGia;
     }//GEN-LAST:event_btnThemMouseClicked
 
     private void btnThem1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThem1MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_btnThem1MouseClicked
 
-    private void txtMaHDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMaHDMouseClicked
+    private void txtMaPNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMaPNMouseClicked
 //        hdBUS.docDanhSachMaHD();
 //        ArrayList<HoaDonDTO> dshd = hdBUS.getListMaHDTuTang();
 //        HoaDonDTO lastHoaDon = dshd.get(dshd.size()-1);
@@ -507,11 +532,11 @@ public class NhapHangGUI extends javax.swing.JPanel {
 //            txtMaHD.setText(String.valueOf("HD0" + sum));
 //        }
 //        txtMaHD.setEnabled(false);
-    }//GEN-LAST:event_txtMaHDMouseClicked
+    }//GEN-LAST:event_txtMaPNMouseClicked
 
-    private void txtMaHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaHDActionPerformed
+    private void txtMaPNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaPNActionPerformed
 
-    }//GEN-LAST:event_txtMaHDActionPerformed
+    }//GEN-LAST:event_txtMaPNActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 //        SNhanVienGUI snv = new SNhanVienGUI(MaCN);
@@ -588,9 +613,9 @@ public class NhapHangGUI extends javax.swing.JPanel {
     private MyCustom.MyTable tblDSSP;
     private MyCustom.MyTable tblGioHang;
     private javax.swing.JTextField txtDonGia;
-    private javax.swing.JTextField txtMaHD;
     private javax.swing.JTextField txtMaNCC;
     private javax.swing.JTextField txtMaNV;
+    private javax.swing.JTextField txtMaPN;
     private javax.swing.JTextField txtMaSP;
     private javax.swing.JSpinner txtSoLuong;
     private javax.swing.JTextField txtTenSP;

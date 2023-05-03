@@ -160,7 +160,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
         txtMaCN = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         btnChonChucVu1 = new javax.swing.JButton();
-        jLabel11 = new javax.swing.JLabel();
+        btnReset = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblDSNV = new MyCustom.MyTable();
         btnThem = new javax.swing.JLabel();
@@ -244,8 +244,13 @@ public class NhanVienGUI extends javax.swing.JPanel {
             }
         });
 
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/circular.png"))); // NOI18N
+        btnReset.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/circular.png"))); // NOI18N
+        btnReset.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnResetMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -272,7 +277,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
                                 .addComponent(jLabel4)
                                 .addGap(26, 26, 26)
                                 .addComponent(txtNamSinh, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblGioiTinh)
@@ -371,7 +376,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
                                 .addComponent(jLabel4))
                             .addComponent(txtNamSinh, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
         tblDSNV.setModel(new javax.swing.table.DefaultTableModel(
@@ -677,12 +682,27 @@ public class NhanVienGUI extends javax.swing.JPanel {
         tuKhoaTimKiem = cbxTimKiem.getSelectedItem().toString();
     }//GEN-LAST:event_cbxTimKiemActionPerformed
 
+    private void btnResetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnResetMouseClicked
+        txtMaNV.setText("");
+        txtHo.setText("");
+        txtTen.setText("");
+        txtSoDT.setText("");
+        txtNamSinh.setText("");
+        txtDiaChi.setText("");
+        txtMaCV.setText("");
+        txtMaCN.setText("");
+        loadData();
+        
+        
+    }//GEN-LAST:event_btnResetMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChonChucVu;
     private javax.swing.JButton btnChonChucVu1;
     private javax.swing.JLabel btnChuyenCN;
     private javax.swing.JLabel btnNhapExcel;
+    private javax.swing.JLabel btnReset;
     private javax.swing.JLabel btnSua;
     private javax.swing.JLabel btnThem;
     private javax.swing.JLabel btnXoa;
@@ -692,7 +712,6 @@ public class NhanVienGUI extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cbxTimKiem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
