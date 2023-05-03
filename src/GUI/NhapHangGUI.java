@@ -24,6 +24,7 @@ import javax.swing.text.NumberFormatter;
  * @author Phuc Toan
  */
 public class NhapHangGUI extends javax.swing.JPanel {
+
     private PhieuNhapBUS pnBUS = new PhieuNhapBUS();
     private NhaCungCapBUS nccBUS = new NhaCungCapBUS();
     private SanPhamBUS spBUS = new SanPhamBUS();
@@ -31,6 +32,7 @@ public class NhapHangGUI extends javax.swing.JPanel {
     DefaultTableModel dtmSanPham;
     DefaultTableModel dtmHangChoNhap;
     String MaCN;
+    boolean NhapHang = true;
 
     public NhapHangGUI(String temp) {
 
@@ -41,7 +43,7 @@ public class NhapHangGUI extends javax.swing.JPanel {
         pnBUS.docMaCN(MaCN);
         dcbmNhaCungCap = (DefaultComboBoxModel) cbxNhaCungCap.getModel();
         dtmSanPham = (DefaultTableModel) tblDSSP.getModel();
-        dtmHangChoNhap =  (DefaultTableModel) tblGioHang.getModel();
+        dtmHangChoNhap = (DefaultTableModel) tblGioHang.getModel();
         loadMaNCClenCBX();
         loadDataDSSP();
         loadMaPN3CN();
@@ -63,12 +65,24 @@ public class NhapHangGUI extends javax.swing.JPanel {
         dtmSanPham.setRowCount(0);
 
         for (int i = 0; i < dssp.size(); i++) {
-            dtmSanPham.addRow(new String[]{
-                dssp.get(i).getMaSP(),
-                dssp.get(i).getTenSP(),
-                String.valueOf(dssp.get(i).getSoLuong()),
-                String.valueOf(dssp.get(i).getDonGia())
-            });
+            double DonGia = dssp.get(i).getDonGia();
+            int DonGiaChia = (int) (DonGia/1.05);
+            if (dssp.get(i).getDonGia() == 0) {
+                dtmSanPham.addRow(new String[]{
+                    dssp.get(i).getMaSP(),
+                    dssp.get(i).getTenSP(),
+                    String.valueOf(dssp.get(i).getSoLuong()),
+                    String.valueOf(dssp.get(i).getDonGia())
+                });
+            } else {
+                dtmSanPham.addRow(new String[]{
+                    dssp.get(i).getMaSP(),
+                    dssp.get(i).getTenSP(),
+                    String.valueOf(dssp.get(i).getSoLuong()),
+                    String.valueOf(DonGiaChia)
+                });
+
+            }
         }
     }
 
@@ -77,17 +91,17 @@ public class NhapHangGUI extends javax.swing.JPanel {
         ArrayList<SanPham_ChiNhanhDTO> dssp = spBUS.getListSanPham();
         showAllDSSP(dssp);
     }
-    
-    public void loadMaPN3CN(){
+
+    public void loadMaPN3CN() {
         pnBUS.docDanhSach3CN();
         ArrayList<PhieuNhapDTO> dspn = pnBUS.getListPhieuNhap3CN();
-        PhieuNhapDTO lastPN = dspn.get(dspn.size()-1);
+        PhieuNhapDTO lastPN = dspn.get(dspn.size() - 1);
         String MaPN = lastPN.getMaPN();
         int sum = Integer.parseInt(MaPN.substring(3)) + 1;
-        if (sum < 10){
-            txtMaPN.setText("PN00"+String.valueOf(sum));
+        if (sum < 10) {
+            txtMaPN.setText("PN00" + String.valueOf(sum));
         } else {
-            txtMaPN.setText("PN0"+String.valueOf(sum));
+            txtMaPN.setText("PN0" + String.valueOf(sum));
         }
     }
 
@@ -497,6 +511,10 @@ public class NhapHangGUI extends javax.swing.JPanel {
         txtMaSP.setText(tblDSSP.getModel().getValueAt(k, 0).toString());
         txtTenSP.setText(tblDSSP.getModel().getValueAt(k, 1).toString());
         txtDonGia.setText(tblDSSP.getModel().getValueAt(k, 3).toString());
+        int DonGia = Integer.parseInt(tblDSSP.getModel().getValueAt(k, 3).toString());
+        if (DonGia == 0) {
+            NhapHang = false;
+        }
         int SoLuongConLai = Integer.parseInt(tblDSSP.getModel().getValueAt(k, 2).toString());
         SpinnerNumberModel modeSpinner = new SpinnerNumberModel(1, 0, SoLuongConLai, 1);
         txtSoLuong.setModel(modeSpinner);
@@ -513,6 +531,11 @@ public class NhapHangGUI extends javax.swing.JPanel {
         int SoLuong = Integer.parseInt(txtSoLuong.getValue().toString());
         int DonGia = Integer.parseInt(txtDonGia.getText());
         int ThanhTien = SoLuong * DonGia;
+        if (NhapHang == false) {
+            System.out.println("Lam false");
+        } else {
+            System.out.println("Lam true");
+        }
     }//GEN-LAST:event_btnThemMouseClicked
 
     private void btnThem1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThem1MouseClicked
@@ -556,7 +579,6 @@ public class NhapHangGUI extends javax.swing.JPanel {
     private void cbxNhaCungCapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxNhaCungCapActionPerformed
         String MaNCC = (String) cbxNhaCungCap.getSelectedItem();
         if (String.valueOf(MaNCC).equals("Tất cả sản phẩm")) {
-            System.out.println("true");
             loadDataDSSP();
         } else {
             txtMaNCC.setText(MaNCC);

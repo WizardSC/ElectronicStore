@@ -76,8 +76,8 @@ public class SanPhamDAO {
     public void insertSanPham(SanPham_ChiNhanhDTO sp){
         try {
             Connection connection = mssql.getConnection();
-            String sql = "INSERT INTO sanpham VALUES(?,?,?,?,?,?,?,?,NEWID())";
-            String sql1 = "INSERT INTO sanpham_chinhanh VALUES(?,?,?,NEWID())";
+            String sql = "INSERT INTO sanpham (MaSP, TenSP, DonViTinh, DonGia, MaLoai, MaNSX, MaNCC, IMG) VALUES(?,?,?,?,?,?,?,?)";
+            String sql1 = "INSERT INTO sanpham_chinhanh (MaSP, MaCN, SoLuong) VALUES(?,?,?)";
             PreparedStatement ps = connection.prepareStatement(sql);
             PreparedStatement ps1 = connection.prepareStatement(sql1);
             ps.setString(1, sp.getMaSP());
@@ -133,6 +133,11 @@ public class SanPhamDAO {
             mssql.Disconnect();
         }
     }
+    
+//    public void updateGiaBan(String MaSP, int GiaBan){
+//        Connection connection = mssql.getConnection();
+//        ArrayList<SanPham
+//    }
     
     
 }
