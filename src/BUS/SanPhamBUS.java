@@ -67,4 +67,15 @@ public class SanPhamBUS {
             }
         }
     }
+    
+    public void updateGiaBan(SanPhamDTO sp){
+        docDanhSachMaSP();
+        for(int i=0;i<listMaSP.size();i++){
+            if(listMaSP.get(i).getMaSP().equals(sp.getMaSP())){
+                listMaSP.set(i,sp);
+                spDAO.updateGiaBan(sp);
+                return;
+            }
+        }
+    }
 }

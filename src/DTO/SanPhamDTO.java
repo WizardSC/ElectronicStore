@@ -29,6 +29,12 @@ public class SanPhamDTO {
         this.IMG = IMG;
     }
 
+    public SanPhamDTO(String MaSP, int DonGia) {
+        this.MaSP = MaSP;
+        this.DonGia = DonGia;
+    }
+    
+
     public SanPhamDTO(String MaSP) {
         this.MaSP = MaSP;
     }

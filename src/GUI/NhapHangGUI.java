@@ -9,6 +9,7 @@ import BUS.PhieuNhapBUS;
 import BUS.SanPhamBUS;
 import DTO.NhaCungCapDTO;
 import DTO.PhieuNhapDTO;
+import DTO.SanPhamDTO;
 import DTO.SanPham_ChiNhanhDTO;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
@@ -515,8 +516,9 @@ public class NhapHangGUI extends javax.swing.JPanel {
         if (DonGia == 0) {
             NhapHang = false;
         }
-        int SoLuongConLai = Integer.parseInt(tblDSSP.getModel().getValueAt(k, 2).toString());
-        SpinnerNumberModel modeSpinner = new SpinnerNumberModel(1, 0, SoLuongConLai, 1);
+        
+//        int SoLuongConLai = Integer.parseInt(tblDSSP.getModel().getValueAt(k, 2).toString());
+        SpinnerNumberModel modeSpinner = new SpinnerNumberModel(1, 0, 100, 1);
         txtSoLuong.setModel(modeSpinner);
         JFormattedTextField txtSpinner = ((JSpinner.NumberEditor) txtSoLuong.getEditor()).getTextField();
         ((NumberFormatter) txtSpinner.getFormatter()).setAllowsInvalid(false);
@@ -531,8 +533,12 @@ public class NhapHangGUI extends javax.swing.JPanel {
         int SoLuong = Integer.parseInt(txtSoLuong.getValue().toString());
         int DonGia = Integer.parseInt(txtDonGia.getText());
         int ThanhTien = SoLuong * DonGia;
+        SanPhamDTO sp = new SanPhamDTO(MaSP, DonGia);
         if (NhapHang == false) {
             System.out.println("Lam false");
+            
+            spBUS.updateGiaBan(sp);
+            loadDataDSSP();
         } else {
             System.out.println("Lam true");
         }

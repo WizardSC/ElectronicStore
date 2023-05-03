@@ -31,11 +31,12 @@ public class SanPhamDAO {
     public ArrayList<SanPhamDTO> getListMaSP(){
         try {
             ArrayList<SanPhamDTO> dssp = new ArrayList<>();
-            String sql = "Select MaSP from sanpham";
+            String sql = "Select * from sanpham";
             ResultSet rs = mssql.executeQuery(sql);
             while(rs.next()){
                 SanPhamDTO sp = new SanPhamDTO(
-                        rs.getString("MaSP")
+                        rs.getString("MaSP"),
+                        rs.getInt("DonGia")
                 );
                 dssp.add(sp);
             }
@@ -134,10 +135,19 @@ public class SanPhamDAO {
         }
     }
     
-//    public void updateGiaBan(String MaSP, int GiaBan){
-//        Connection connection = mssql.getConnection();
-//        ArrayList<SanPham
-//    }
+    public void updateGiaBan(SanPhamDTO sp){
+        try {
+            Connection connection = mssql.getConnection();
+            ArrayList<SanPhamDTO> dssp = new ArrayList<>();
+            String sql = "update sanpham set DonGia = ? * 1.05 where MaSP = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1,sp.getDonGia());
+            ps.setString(2,sp.getMaSP());
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(SanPhamDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     
 }
