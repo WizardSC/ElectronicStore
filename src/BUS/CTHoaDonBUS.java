@@ -35,5 +35,10 @@ public class CTHoaDonBUS {
         return dscthd;
     }
     
+    public void add(CTHoaDonDTO cthd){
+        docDanhSach();
+        listCTHD.add(cthd);
+        cthdDAO.insertCTHD(cthd);
+    }
     
 }

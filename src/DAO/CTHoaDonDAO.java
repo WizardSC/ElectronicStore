@@ -5,6 +5,8 @@
 package DAO;
 
 import DTO.CTHoaDonDTO;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -47,5 +49,23 @@ public class CTHoaDonDAO {
             mssql.Disconnect();
         }
         return null;
+    }
+    
+    public void insertCTHD(CTHoaDonDTO cthd){
+        try {
+            Connection connection = mssql.getConnection();
+            String sql = "Insert into cthoadon (MaHD, MaSP, TenSP, SoLuong, DonGia, ThanhTien) values (?,?,?,?,?,?)";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1,cthd.getMaHD());
+            ps.setString(2,cthd.getMaSP());
+            ps.setString(3,cthd.getTenSP());
+            ps.setInt(4,cthd.getSoLuong());
+            ps.setInt(5,cthd.getDonGia());
+            ps.setInt(6,cthd.getThanhTien());
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(CTHoaDonDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 }

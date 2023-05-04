@@ -568,7 +568,6 @@ public class NhapHangGUI extends javax.swing.JPanel {
         int ThanhTien = SoLuong * DonGia;
         SanPhamDTO sp = new SanPhamDTO(MaSP, DonGia);
 
-        int k = tblDSSP.getSelectedRow();
 
         spBUS.capNhatSLNhapHang(MaSP, SoLuong, SoLuongTrongKho);
         spBUS.docDanhSach();

@@ -4,8 +4,10 @@
  */
 package GUI;
 
+import BUS.CTHoaDonBUS;
 import BUS.HoaDonBUS;
 import BUS.SanPhamBUS;
+import DTO.CTHoaDonDTO;
 import DTO.HoaDonDTO;
 import DTO.SanPham_ChiNhanhDTO;
 import java.util.ArrayList;
@@ -24,16 +26,23 @@ public class BanHangGUI extends javax.swing.JPanel {
 
     private SanPhamBUS spBUS = new SanPhamBUS();
     private HoaDonBUS hdBUS = new HoaDonBUS();
+    private CTHoaDonBUS cthdBUS = new CTHoaDonBUS();
+    ArrayList<CTHoaDonDTO> dscthd = new ArrayList<>();
     DefaultTableModel dtmSanPham;
+    DefaultTableModel dtmGioHang;
     String MaCN;
+    int SoLuongTrongKho;
+    
     public BanHangGUI(String temp) {
         initComponents();
         this.MaCN = temp;
         spBUS.docMaCN(temp);
         hdBUS.docMaCN(temp);
         dtmSanPham = (DefaultTableModel) tblDSSP.getModel();
+        dtmGioHang = (DefaultTableModel) tblGioHang.getModel();
         loadData();
-        
+        loadDataMaHD();
+        txtMaHD.setEnabled(false);
         
     }
     public void loadDataMaHD(){
@@ -58,6 +67,19 @@ public class BanHangGUI extends javax.swing.JPanel {
             String.valueOf(dssp.get(i).getSoLuong()),
             String.valueOf(dssp.get(i).getDonGia())
         });
+        }
+    }
+    
+    public void outModelGioHang(ArrayList<CTHoaDonDTO> dscthd){
+        dtmGioHang.setRowCount(0);
+        for(int i=0;i<dscthd.size();i++){
+            dtmGioHang.addRow(new String[]{
+                dscthd.get(i).getMaSP(),
+                dscthd.get(i).getTenSP(),
+                String.valueOf(dscthd.get(i).getSoLuong()),
+                String.valueOf(dscthd.get(i).getDonGia()),
+                String.valueOf(dscthd.get(i).getThanhTien())
+            });
         }
     }
     public void loadData(){
@@ -93,7 +115,7 @@ public class BanHangGUI extends javax.swing.JPanel {
         txtSoLuong = new javax.swing.JSpinner();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        myTable2 = new MyCustom.MyTable();
+        tblGioHang = new MyCustom.MyTable();
         btnThem1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -109,7 +131,7 @@ public class BanHangGUI extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jTextField9 = new javax.swing.JTextField();
+        txtTongTien = new javax.swing.JTextField();
         btnThem2 = new javax.swing.JLabel();
         btnThem3 = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
@@ -262,18 +284,35 @@ public class BanHangGUI extends javax.swing.JPanel {
         jPanel3.setBackground(new java.awt.Color(255, 255, 240));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "GIỎ HÀNG", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18), new java.awt.Color(255, 0, 0))); // NOI18N
 
-        myTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tblGioHang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Mã SP", "Tên SP", "Số lượng", "Đơn giá", "Thành tiền"
             }
-        ));
-        jScrollPane2.setViewportView(myTable2);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tblGioHang);
+        if (tblGioHang.getColumnModel().getColumnCount() > 0) {
+            tblGioHang.getColumnModel().getColumn(0).setResizable(false);
+            tblGioHang.getColumnModel().getColumn(0).setPreferredWidth(20);
+            tblGioHang.getColumnModel().getColumn(1).setResizable(false);
+            tblGioHang.getColumnModel().getColumn(1).setPreferredWidth(250);
+            tblGioHang.getColumnModel().getColumn(2).setResizable(false);
+            tblGioHang.getColumnModel().getColumn(2).setPreferredWidth(35);
+            tblGioHang.getColumnModel().getColumn(3).setResizable(false);
+            tblGioHang.getColumnModel().getColumn(3).setPreferredWidth(35);
+            tblGioHang.getColumnModel().getColumn(4).setResizable(false);
+            tblGioHang.getColumnModel().getColumn(4).setPreferredWidth(35);
+        }
 
         btnThem1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnThem1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -286,6 +325,7 @@ public class BanHangGUI extends javax.swing.JPanel {
             }
         });
 
+        jPanel4.setBackground(new java.awt.Color(255, 255, 240));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "THÔNG TIN HÓA ĐƠN", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18), new java.awt.Color(255, 0, 0))); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -400,7 +440,7 @@ public class BanHangGUI extends javax.swing.JPanel {
                         .addGap(15, 20, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField9)
+                            .addComponent(txtTongTien)
                             .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
@@ -432,7 +472,7 @@ public class BanHangGUI extends javax.swing.JPanel {
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnThem2)
@@ -493,6 +533,34 @@ public class BanHangGUI extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnThemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemMouseClicked
+        String MaHD = txtMaHD.getText();
+        String MaSP = txtMaSP.getText();
+        String TenSP = txtTenSP.getText();
+        int SoLuongBan = Integer.parseInt(txtSoLuong.getValue().toString());
+        int DonGia = Integer.parseInt(txtDonGia.getText());
+        int ThanhTien = SoLuongBan * DonGia;
+        spBUS.capNhatSLBanHang(MaSP, SoLuongBan, SoLuongTrongKho);
+        boolean flag = true;
+        for(CTHoaDonDTO cthd : dscthd){
+            if(cthd.getMaSP().equals(MaSP)){
+                int SLCu = cthd.getSoLuong();
+                cthd.setSoLuong(SLCu + SoLuongBan);
+                int SLMoi = cthd.getSoLuong();
+                cthd.setThanhTien(SLMoi * DonGia);
+                flag = false;
+                break;
+            }
+        }
+        if(flag){
+            dscthd.add(new CTHoaDonDTO(MaHD, MaSP, TenSP, SoLuongBan, DonGia, ThanhTien));
+        }
+        outModelGioHang(dscthd);
+        loadData();
+        int TongTien = 0;
+        for(CTHoaDonDTO cthd : dscthd){
+            TongTien = TongTien + cthd.getThanhTien();
+            txtTongTien.setText(String.valueOf(TongTien));
+        }
         
     }//GEN-LAST:event_btnThemMouseClicked
 
@@ -543,7 +611,8 @@ public class BanHangGUI extends javax.swing.JPanel {
 
     private void tblDSSPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDSSPMouseClicked
         int k = tblDSSP.getSelectedRow();
-        txtMaSP.setText(tblDSSP.getModel().getValueAt(k,0).toString());
+        String MaSP = tblDSSP.getModel().getValueAt(k,0).toString();
+        txtMaSP.setText(MaSP);
         txtTenSP.setText(tblDSSP.getModel().getValueAt(k,1).toString());
         txtDonGia.setText(tblDSSP.getModel().getValueAt(k,3).toString());
         int SoLuongConLai = Integer.parseInt(tblDSSP.getModel().getValueAt(k,2).toString());
@@ -553,6 +622,13 @@ public class BanHangGUI extends javax.swing.JPanel {
         ((NumberFormatter) txtSpinner.getFormatter()).setAllowsInvalid(false);
         txtSpinner.setEditable(false);
         txtSpinner.setHorizontalAlignment(JTextField.LEFT);
+        spBUS.docDanhSach();
+        ArrayList<SanPham_ChiNhanhDTO> dssp = spBUS.getListSanPham();
+        for(SanPham_ChiNhanhDTO sp : dssp){
+            if(sp.getMaSP().equals(MaSP)){
+                SoLuongTrongKho = sp.getSoLuong();
+            }
+        }
     }//GEN-LAST:event_tblDSSPMouseClicked
 
 
@@ -585,9 +661,8 @@ public class BanHangGUI extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField9;
-    private MyCustom.MyTable myTable2;
     private MyCustom.MyTable tblDSSP;
+    private MyCustom.MyTable tblGioHang;
     private javax.swing.JTextField txtDonGia;
     private javax.swing.JTextField txtMaHD;
     private javax.swing.JTextField txtMaKM;
@@ -595,5 +670,6 @@ public class BanHangGUI extends javax.swing.JPanel {
     private javax.swing.JTextField txtMaSP;
     private javax.swing.JSpinner txtSoLuong;
     private javax.swing.JTextField txtTenSP;
+    private javax.swing.JTextField txtTongTien;
     // End of variables declaration//GEN-END:variables
 }

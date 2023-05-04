@@ -6,6 +6,7 @@ package GUI;
 
 import BUS.KhuyenMaiBUS;
 import DTO.KhuyenMaiDTO;
+import MyCustom.XuLyException;
 
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -465,6 +467,19 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
     }//GEN-LAST:event_btnThemMouseClicked
 
     private void btnXoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXoaMouseClicked
+        String MaKM = txtMaKM.getText();
+        int result = JOptionPane.showConfirmDialog(this,"Bạn có muốn xóa khuyến mãi không?");
+        if(result == JOptionPane.YES_OPTION){
+            try{
+                kmBUS.delete(MaKM);
+                loadData();
+            } catch (XuLyException e) {
+                JOptionPane.showMessageDialog(this, e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Đã xảy ra lỗi khi xóa khuyến mãi", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            }
+        }
 //        String MaNV = txtMaNV.getText();
 //        int result = JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa nhân viên không?");
 //        if (result == JOptionPane.YES_OPTION) {
