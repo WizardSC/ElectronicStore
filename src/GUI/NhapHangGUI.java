@@ -7,11 +7,17 @@ package GUI;
 import BUS.NhaCungCapBUS;
 import BUS.PhieuNhapBUS;
 import BUS.SanPhamBUS;
+import DTO.CTPhieuNhapDTO;
 import DTO.NhaCungCapDTO;
 import DTO.PhieuNhapDTO;
 import DTO.SanPhamDTO;
 import DTO.SanPham_ChiNhanhDTO;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFormattedTextField;
 import javax.swing.JSpinner;
@@ -29,10 +35,12 @@ public class NhapHangGUI extends javax.swing.JPanel {
     private PhieuNhapBUS pnBUS = new PhieuNhapBUS();
     private NhaCungCapBUS nccBUS = new NhaCungCapBUS();
     private SanPhamBUS spBUS = new SanPhamBUS();
+    ArrayList<CTPhieuNhapDTO> dsctpn = new ArrayList<>();
     DefaultComboBoxModel dcbmNhaCungCap;
     DefaultTableModel dtmSanPham;
     DefaultTableModel dtmHangChoNhap;
     String MaCN;
+    int SoLuongTrongKho;
     boolean NhapHang = true;
 
     public NhapHangGUI(String temp) {
@@ -67,7 +75,7 @@ public class NhapHangGUI extends javax.swing.JPanel {
 
         for (int i = 0; i < dssp.size(); i++) {
             double DonGia = dssp.get(i).getDonGia();
-            int DonGiaChia = (int) (DonGia/1.05);
+            int DonGiaChia = (int) (DonGia / 1.05);
             if (dssp.get(i).getDonGia() == 0) {
                 dtmSanPham.addRow(new String[]{
                     dssp.get(i).getMaSP(),
@@ -84,6 +92,19 @@ public class NhapHangGUI extends javax.swing.JPanel {
                 });
 
             }
+        }
+    }
+
+    public void outModelHangChoNhap(ArrayList<CTPhieuNhapDTO> dsctpn) {
+        dtmHangChoNhap.setRowCount(0);
+        for (int i = 0; i < dsctpn.size(); i++) {
+            dtmHangChoNhap.addRow(new String[]{
+                dsctpn.get(i).getMaSP(),
+                dsctpn.get(i).getTenSP(),
+                String.valueOf(dsctpn.get(i).getSoLuong()),
+                String.valueOf(dsctpn.get(i).getDonGia()),
+                String.valueOf(dsctpn.get(i).getThanhTien())
+            });
         }
     }
 
@@ -144,10 +165,10 @@ public class NhapHangGUI extends javax.swing.JPanel {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jTextField9 = new javax.swing.JTextField();
+        txtTongTien = new javax.swing.JTextField();
         btnThem2 = new javax.swing.JLabel();
-        btnThem3 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        btnTaoPhieuNhap = new javax.swing.JLabel();
+        txtNgayLap = new com.toedter.calendar.JDateChooser();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 240));
 
@@ -372,16 +393,18 @@ public class NhapHangGUI extends javax.swing.JPanel {
             }
         });
 
-        btnThem3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnThem3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnThem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add.png"))); // NOI18N
-        btnThem3.setText("TẠO HÓA ĐƠN");
-        btnThem3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnThem3.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnTaoPhieuNhap.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnTaoPhieuNhap.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnTaoPhieuNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add.png"))); // NOI18N
+        btnTaoPhieuNhap.setText("TẠO PHIẾU NHẬP");
+        btnTaoPhieuNhap.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnTaoPhieuNhap.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnThem3MouseClicked(evt);
+                btnTaoPhieuNhapMouseClicked(evt);
             }
         });
+
+        txtNgayLap.setDateFormatString("dd/MM/yyyy");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -393,7 +416,7 @@ public class NhapHangGUI extends javax.swing.JPanel {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel13)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField9))
+                        .addComponent(txtTongTien))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
@@ -417,11 +440,11 @@ public class NhapHangGUI extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtMaNCC, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtNgayLap, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(27, 27, 27))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnThem3, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnTaoPhieuNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnThem2, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47))
@@ -442,14 +465,14 @@ public class NhapHangGUI extends javax.swing.JPanel {
                         .addComponent(txtMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel12)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtNgayLap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnThem3)
+                    .addComponent(btnTaoPhieuNhap)
                     .addComponent(btnThem2))
                 .addGap(24, 24, 24))
         );
@@ -509,14 +532,24 @@ public class NhapHangGUI extends javax.swing.JPanel {
 
     private void tblDSSPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDSSPMouseClicked
         int k = tblDSSP.getSelectedRow();
-        txtMaSP.setText(tblDSSP.getModel().getValueAt(k, 0).toString());
+        String MaSP = tblDSSP.getModel().getValueAt(k, 0).toString();
+
+        txtMaSP.setText(MaSP);
         txtTenSP.setText(tblDSSP.getModel().getValueAt(k, 1).toString());
         txtDonGia.setText(tblDSSP.getModel().getValueAt(k, 3).toString());
         int DonGia = Integer.parseInt(tblDSSP.getModel().getValueAt(k, 3).toString());
         if (DonGia == 0) {
             NhapHang = false;
         }
-        
+        spBUS.docDanhSach();
+        ArrayList<SanPham_ChiNhanhDTO> dssp = spBUS.getListSanPham();
+        for (SanPham_ChiNhanhDTO sp : dssp) {
+            if (sp.getMaSP().equals(MaSP)) {
+                SoLuongTrongKho = sp.getSoLuong();
+            }
+        }
+        System.out.println(SoLuongTrongKho);
+
 //        int SoLuongConLai = Integer.parseInt(tblDSSP.getModel().getValueAt(k, 2).toString());
         SpinnerNumberModel modeSpinner = new SpinnerNumberModel(1, 0, 100, 1);
         txtSoLuong.setModel(modeSpinner);
@@ -534,17 +567,43 @@ public class NhapHangGUI extends javax.swing.JPanel {
         int DonGia = Integer.parseInt(txtDonGia.getText());
         int ThanhTien = SoLuong * DonGia;
         SanPhamDTO sp = new SanPhamDTO(MaSP, DonGia);
-        
+
         int k = tblDSSP.getSelectedRow();
-        int SoLuongTrongKho = Integer.parseInt(tblDSSP.getModel().getValueAt(k,2).toString());
+
         spBUS.capNhatSLNhapHang(MaSP, SoLuong, SoLuongTrongKho);
+        spBUS.docDanhSach();
+        boolean flag = true;
+
+        for (CTPhieuNhapDTO ctpn : dsctpn) {
+            if (ctpn.getMaSP().equals(MaSP)) {
+                int SLCu = ctpn.getSoLuong();
+                ctpn.setSoLuong(SLCu + SoLuong);
+                int SLMoi = ctpn.getSoLuong();
+                ctpn.setThanhTien(SLMoi * DonGia);
+                flag = false;
+                break;
+            }
+        }
+        if (flag) {
+            dsctpn.add(new CTPhieuNhapDTO(MaPN, MaSP, TenSP, SoLuong, DonGia, ThanhTien));
+        }
+        outModelHangChoNhap(dsctpn);
+        int TongTien = 0;
+        for (CTPhieuNhapDTO ctpn : dsctpn) {
+            TongTien = TongTien + ctpn.getThanhTien();
+            txtTongTien.setText(String.valueOf(TongTien));
+        }
         if (NhapHang == false) {
             System.out.println("Lam false");
             spBUS.updateGiaBan(sp);
             loadDataDSSP();
-        } else {
-            System.out.println("Lam true");
+            return;
         }
+        txtMaSP.setText("");
+        txtTenSP.setText("");
+        txtSoLuong.setValue(0);
+        txtDonGia.setText("");
+
     }//GEN-LAST:event_btnThemMouseClicked
 
     private void btnThem1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThem1MouseClicked
@@ -581,9 +640,22 @@ public class NhapHangGUI extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnThem2MouseClicked
 
-    private void btnThem3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThem3MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnThem3MouseClicked
+    private void btnTaoPhieuNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTaoPhieuNhapMouseClicked
+        String MaPN = txtMaPN.getText();
+        String MaNV = txtMaNV.getText();
+        String MaNCC = txtMaNCC.getText();
+        int TongTien = Integer.parseInt(txtTongTien.getText());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String NgayLap = sdf.format(txtNgayLap.getDate());
+
+        try {
+            Date NgayLap1 = sdf.parse(NgayLap);
+            PhieuNhapDTO pn = new PhieuNhapDTO(MaPN, NgayLap1, TongTien, MaNV, MaNCC);
+           
+        } catch (ParseException ex) {
+            Logger.getLogger(NhapHangGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnTaoPhieuNhapMouseClicked
 
     private void cbxNhaCungCapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxNhaCungCapActionPerformed
         String MaNCC = (String) cbxNhaCungCap.getSelectedItem();
@@ -617,13 +689,12 @@ public class NhapHangGUI extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btnTaoPhieuNhap;
     private javax.swing.JLabel btnThem;
     private javax.swing.JLabel btnThem1;
     private javax.swing.JLabel btnThem2;
-    private javax.swing.JLabel btnThem3;
     private javax.swing.JComboBox<String> cbxNhaCungCap;
     private javax.swing.JButton jButton2;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -640,7 +711,6 @@ public class NhapHangGUI extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField9;
     private MyCustom.MyTable tblDSSP;
     private MyCustom.MyTable tblGioHang;
     private javax.swing.JTextField txtDonGia;
@@ -648,7 +718,9 @@ public class NhapHangGUI extends javax.swing.JPanel {
     private javax.swing.JTextField txtMaNV;
     private javax.swing.JTextField txtMaPN;
     private javax.swing.JTextField txtMaSP;
+    private com.toedter.calendar.JDateChooser txtNgayLap;
     private javax.swing.JSpinner txtSoLuong;
     private javax.swing.JTextField txtTenSP;
+    private javax.swing.JTextField txtTongTien;
     // End of variables declaration//GEN-END:variables
 }

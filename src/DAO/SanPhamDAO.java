@@ -154,7 +154,7 @@ public class SanPhamDAO {
         try {
             Connection connection = mssql.getConnection();
             ArrayList<SanPhamDTO> dssp = new ArrayList<>();
-            String sql = "update sanpham set DonGia = ? where MaSP = ?";
+            String sql = "update sanpham_chinhanh set SoLuong = ? where MaSP = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1,SoLuongNhap + SoLuongTrongKho);
             ps.setString(2,MaSP);
