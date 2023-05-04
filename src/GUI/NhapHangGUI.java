@@ -534,9 +534,12 @@ public class NhapHangGUI extends javax.swing.JPanel {
         int DonGia = Integer.parseInt(txtDonGia.getText());
         int ThanhTien = SoLuong * DonGia;
         SanPhamDTO sp = new SanPhamDTO(MaSP, DonGia);
+        
+        int k = tblDSSP.getSelectedRow();
+        int SoLuongTrongKho = Integer.parseInt(tblDSSP.getModel().getValueAt(k,2).toString());
+        spBUS.capNhatSLNhapHang(MaSP, SoLuong, SoLuongTrongKho);
         if (NhapHang == false) {
             System.out.println("Lam false");
-            
             spBUS.updateGiaBan(sp);
             loadDataDSSP();
         } else {
@@ -568,10 +571,10 @@ public class NhapHangGUI extends javax.swing.JPanel {
     }//GEN-LAST:event_txtMaPNActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-//        SNhanVienGUI snv = new SNhanVienGUI(MaCN);
-//        snv.setVisible(true);
-//        String MaNV = snv.getMaNV();
-//        txtMaNV.setText(MaNV);
+        SNhanVienGUI snv = new SNhanVienGUI(MaCN);
+        snv.setVisible(true);
+        String MaNV = snv.getMaNV();
+        txtMaNV.setText(MaNV);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnThem2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThem2MouseClicked

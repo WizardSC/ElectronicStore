@@ -78,4 +78,8 @@ public class SanPhamBUS {
             }
         }
     }
+    
+    public void capNhatSLNhapHang(String MaSP, int SoLuongNhap, int SoLuongTrongKho){
+        spDAO.capNhatSLNhapHang(MaSP, SoLuongNhap, SoLuongTrongKho);
+    }
 }

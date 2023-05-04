@@ -150,4 +150,19 @@ public class SanPhamDAO {
     }
     
     
+    public void capNhatSLNhapHang(String MaSP, int SoLuongNhap, int SoLuongTrongKho){
+        try {
+            Connection connection = mssql.getConnection();
+            ArrayList<SanPhamDTO> dssp = new ArrayList<>();
+            String sql = "update sanpham set DonGia = ? where MaSP = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1,SoLuongNhap + SoLuongTrongKho);
+            ps.setString(2,MaSP);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(SanPhamDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
 }
