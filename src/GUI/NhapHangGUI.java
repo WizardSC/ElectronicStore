@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import BUS.CTPhieuNhapBUS;
 import BUS.NhaCungCapBUS;
 import BUS.PhieuNhapBUS;
 import BUS.SanPhamBUS;
@@ -20,6 +21,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
@@ -35,6 +37,7 @@ public class NhapHangGUI extends javax.swing.JPanel {
     private PhieuNhapBUS pnBUS = new PhieuNhapBUS();
     private NhaCungCapBUS nccBUS = new NhaCungCapBUS();
     private SanPhamBUS spBUS = new SanPhamBUS();
+    private CTPhieuNhapBUS ctpnBUS = new CTPhieuNhapBUS();
     ArrayList<CTPhieuNhapDTO> dsctpn = new ArrayList<>();
     DefaultComboBoxModel dcbmNhaCungCap;
     DefaultTableModel dtmSanPham;
@@ -50,6 +53,7 @@ public class NhapHangGUI extends javax.swing.JPanel {
         nccBUS.docMaCN(MaCN);
         spBUS.docMaCN(MaCN);
         pnBUS.docMaCN(MaCN);
+        ctpnBUS.docMaCN(MaCN);
         dcbmNhaCungCap = (DefaultComboBoxModel) cbxNhaCungCap.getModel();
         dtmSanPham = (DefaultTableModel) tblDSSP.getModel();
         dtmHangChoNhap = (DefaultTableModel) tblGioHang.getModel();
@@ -57,6 +61,7 @@ public class NhapHangGUI extends javax.swing.JPanel {
         loadDataDSSP();
         loadMaPN3CN();
         txtMaNCC.setEnabled(false);
+        txtMaPN.setEnabled(false);
     }
 
     public void loadMaNCClenCBX() {
@@ -166,7 +171,6 @@ public class NhapHangGUI extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         txtTongTien = new javax.swing.JTextField();
-        btnThem2 = new javax.swing.JLabel();
         btnTaoPhieuNhap = new javax.swing.JLabel();
         txtNgayLap = new com.toedter.calendar.JDateChooser();
 
@@ -201,6 +205,12 @@ public class NhapHangGUI extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(tblDSSP);
+        if (tblDSSP.getColumnModel().getColumnCount() > 0) {
+            tblDSSP.getColumnModel().getColumn(0).setPreferredWidth(20);
+            tblDSSP.getColumnModel().getColumn(1).setPreferredWidth(200);
+            tblDSSP.getColumnModel().getColumn(2).setPreferredWidth(20);
+            tblDSSP.getColumnModel().getColumn(3).setPreferredWidth(25);
+        }
 
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("jLabel9");
@@ -281,7 +291,7 @@ public class NhapHangGUI extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(cbxNhaCungCap, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -329,10 +339,15 @@ public class NhapHangGUI extends javax.swing.JPanel {
         jScrollPane2.setViewportView(tblGioHang);
         if (tblGioHang.getColumnModel().getColumnCount() > 0) {
             tblGioHang.getColumnModel().getColumn(0).setResizable(false);
+            tblGioHang.getColumnModel().getColumn(0).setPreferredWidth(20);
             tblGioHang.getColumnModel().getColumn(1).setResizable(false);
+            tblGioHang.getColumnModel().getColumn(1).setPreferredWidth(150);
             tblGioHang.getColumnModel().getColumn(2).setResizable(false);
+            tblGioHang.getColumnModel().getColumn(2).setPreferredWidth(25);
             tblGioHang.getColumnModel().getColumn(3).setResizable(false);
+            tblGioHang.getColumnModel().getColumn(3).setPreferredWidth(25);
             tblGioHang.getColumnModel().getColumn(4).setResizable(false);
+            tblGioHang.getColumnModel().getColumn(4).setPreferredWidth(30);
         }
 
         btnThem1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -347,7 +362,7 @@ public class NhapHangGUI extends javax.swing.JPanel {
         });
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 240));
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "THÔNG TIN HÓA ĐƠN", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18), new java.awt.Color(255, 0, 0))); // NOI18N
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "THÔNG TIN PHIẾU NHẬP", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18), new java.awt.Color(255, 0, 0))); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel6.setText("Mã PN");
@@ -379,17 +394,6 @@ public class NhapHangGUI extends javax.swing.JPanel {
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
-            }
-        });
-
-        btnThem2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnThem2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnThem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add.png"))); // NOI18N
-        btnThem2.setText("THÊM VÀO GIỎ");
-        btnThem2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnThem2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnThem2MouseClicked(evt);
             }
         });
 
@@ -429,15 +433,15 @@ public class NhapHangGUI extends javax.swing.JPanel {
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(txtMaPN, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(0, 2, Short.MAX_VALUE)))
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGap(28, 28, 28)
                                 .addComponent(jLabel10))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                                 .addComponent(jLabel12)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtMaNCC, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtNgayLap, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -445,9 +449,7 @@ public class NhapHangGUI extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnTaoPhieuNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnThem2, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47))
+                .addGap(164, 164, 164))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -470,11 +472,9 @@ public class NhapHangGUI extends javax.swing.JPanel {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(txtTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTaoPhieuNhap)
-                    .addComponent(btnThem2))
-                .addGap(24, 24, 24))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnTaoPhieuNhap)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -482,25 +482,25 @@ public class NhapHangGUI extends javax.swing.JPanel {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnThem1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(164, 164, 164))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnThem1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(178, 178, 178))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnThem1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -515,7 +515,7 @@ public class NhapHangGUI extends javax.swing.JPanel {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -636,10 +636,6 @@ public class NhapHangGUI extends javax.swing.JPanel {
         txtMaNV.setText(MaNV);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void btnThem2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThem2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnThem2MouseClicked
-
     private void btnTaoPhieuNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTaoPhieuNhapMouseClicked
         String MaPN = txtMaPN.getText();
         String MaNV = txtMaNV.getText();
@@ -655,6 +651,20 @@ public class NhapHangGUI extends javax.swing.JPanel {
         } catch (ParseException ex) {
             Logger.getLogger(NhapHangGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
+        for (CTPhieuNhapDTO ctpn : dsctpn) {
+
+            ctpnBUS.add(ctpn);
+        }
+        JOptionPane.showMessageDialog(this, "In phiếu nhập thành công","THÔNG BÁO",JOptionPane.INFORMATION_MESSAGE);
+        dtmHangChoNhap.setRowCount(0);
+        dsctpn.clear();
+        loadDataDSSP();
+        loadMaPN3CN();
+        txtMaNV.setText("");
+        txtMaNCC.setText("");
+        txtTongTien.setText("");
+        txtNgayLap.setDate(null);
+
     }//GEN-LAST:event_btnTaoPhieuNhapMouseClicked
 
     private void cbxNhaCungCapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxNhaCungCapActionPerformed
@@ -692,7 +702,6 @@ public class NhapHangGUI extends javax.swing.JPanel {
     private javax.swing.JLabel btnTaoPhieuNhap;
     private javax.swing.JLabel btnThem;
     private javax.swing.JLabel btnThem1;
-    private javax.swing.JLabel btnThem2;
     private javax.swing.JComboBox<String> cbxNhaCungCap;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel10;

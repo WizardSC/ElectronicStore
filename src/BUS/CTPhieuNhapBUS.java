@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * @author Phuc Toan
  */
 public class CTPhieuNhapBUS {
-    private ArrayList<CTPhieuNhapDTO> listCTPN;
+    private ArrayList<CTPhieuNhapDTO> listCTPN = null;
     private CTPhieuNhapDAO ctpnDAO = new CTPhieuNhapDAO();
     String MaCN;
     
@@ -24,7 +24,7 @@ public class CTPhieuNhapBUS {
     public void docDanhSach(){
         this.listCTPN = ctpnDAO.getListCTPN();
     }
-    
+   
     public ArrayList<CTPhieuNhapDTO> getListCTPNtheoMaPN(String MaPN){
         ArrayList<CTPhieuNhapDTO> dsctpn = new ArrayList<>();
         for(CTPhieuNhapDTO ctpn : listCTPN){
@@ -33,5 +33,11 @@ public class CTPhieuNhapBUS {
             }
         }
         return dsctpn;
+    }
+    
+    public void add(CTPhieuNhapDTO ctpn){
+        docDanhSach();
+        listCTPN.add(ctpn);
+        ctpnDAO.insertCTPN(ctpn);
     }
 }

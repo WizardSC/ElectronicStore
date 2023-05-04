@@ -293,15 +293,19 @@ public class HoaDonGUI extends javax.swing.JPanel {
         });
         tblDSCTHD.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tblDSCTHD);
+        if (tblDSCTHD.getColumnModel().getColumnCount() > 0) {
+            tblDSCTHD.getColumnModel().getColumn(0).setPreferredWidth(15);
+            tblDSCTHD.getColumnModel().getColumn(1).setPreferredWidth(180);
+            tblDSCTHD.getColumnModel().getColumn(2).setPreferredWidth(30);
+            tblDSCTHD.getColumnModel().getColumn(3).setPreferredWidth(25);
+            tblDSCTHD.getColumnModel().getColumn(4).setPreferredWidth(40);
+        }
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
