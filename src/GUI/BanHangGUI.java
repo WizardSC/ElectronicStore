@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
@@ -43,6 +44,7 @@ public class BanHangGUI extends javax.swing.JPanel {
         this.MaCN = temp;
         spBUS.docMaCN(temp);
         hdBUS.docMaCN(temp);
+        cthdBUS.docMaCN(temp);
         dtmSanPham = (DefaultTableModel) tblDSSP.getModel();
         dtmGioHang = (DefaultTableModel) tblGioHang.getModel();
         loadData();
@@ -609,6 +611,12 @@ public class BanHangGUI extends javax.swing.JPanel {
         } catch (ParseException ex) {
             Logger.getLogger(BanHangGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        for(CTHoaDonDTO cthd : dscthd){
+            cthdBUS.add(cthd);
+            
+        }
+        JOptionPane.showMessageDialog(null, "In hóa đơn thành công");
         loadData();
         loadDataMaHD();
     }//GEN-LAST:event_btnTaoHoaDonMouseClicked
