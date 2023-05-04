@@ -37,18 +37,18 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         txtNgayBD.setDateFormatString("dd/MM/yyyy");
         txtNgayKT.setDateFormatString("dd/MM/yyyy");
     }
-    
-    public void loadMaKMTuTang(){
+
+    public void loadMaKMTuTang() {
         kmBUS.docDanhSach();
         ArrayList<KhuyenMaiDTO> dskm = kmBUS.getListKhuyenMai();
-        KhuyenMaiDTO lastMaKM = dskm.get(dskm.size()-1);
+        KhuyenMaiDTO lastMaKM = dskm.get(dskm.size() - 1);
         String MaKM = lastMaKM.getMaKM();
         txtMaKM.setText(MaKM);
-        int sum = Integer.parseInt(MaKM.substring(3))+1;
-        if(sum<10){ 
-            txtMaKM.setText(String.valueOf("KM00")+sum);
+        int sum = Integer.parseInt(MaKM.substring(3)) + 1;
+        if (sum < 10) {
+            txtMaKM.setText(String.valueOf("KM00") + sum);
         } else {
-            txtMaKM.setText(String.valueOf("KM0")+sum);
+            txtMaKM.setText(String.valueOf("KM0") + sum);
         }
         txtMaKM.setEnabled(false);
     }
@@ -56,7 +56,7 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
     public void showAllDSKM(ArrayList<KhuyenMaiDTO> dskm) {
         dtmKhuyenMai.setRowCount(0);
         DecimalFormat dcf = new DecimalFormat(">##########");
-        
+
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Date now = new Date();
         for (int i = 0; i < dskm.size(); i++) {
@@ -152,12 +152,19 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tblDSKM);
         if (tblDSKM.getColumnModel().getColumnCount() > 0) {
             tblDSKM.getColumnModel().getColumn(0).setResizable(false);
+            tblDSKM.getColumnModel().getColumn(0).setPreferredWidth(20);
             tblDSKM.getColumnModel().getColumn(1).setResizable(false);
+            tblDSKM.getColumnModel().getColumn(1).setPreferredWidth(200);
             tblDSKM.getColumnModel().getColumn(2).setResizable(false);
+            tblDSKM.getColumnModel().getColumn(2).setPreferredWidth(25);
             tblDSKM.getColumnModel().getColumn(3).setResizable(false);
+            tblDSKM.getColumnModel().getColumn(3).setPreferredWidth(25);
             tblDSKM.getColumnModel().getColumn(4).setResizable(false);
+            tblDSKM.getColumnModel().getColumn(4).setPreferredWidth(30);
             tblDSKM.getColumnModel().getColumn(5).setResizable(false);
+            tblDSKM.getColumnModel().getColumn(5).setPreferredWidth(30);
             tblDSKM.getColumnModel().getColumn(6).setResizable(false);
+            tblDSKM.getColumnModel().getColumn(6).setPreferredWidth(30);
         }
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 240));
@@ -409,6 +416,21 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSuaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSuaMouseClicked
+        String MaKM = txtMaKM.getText();
+        String TenKM = txtTenKM.getText();
+        int PhanTramKM = Integer.parseInt(txtPhanTramKM.getText());
+        int DieuKien = Integer.parseInt(txtDieuKien.getText());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date NgayBD = sdf.parse(sdf.format(txtNgayBD.getDate()));
+            Date NgayKT = sdf.parse(sdf.format(txtNgayKT.getDate()));
+            KhuyenMaiDTO km = new KhuyenMaiDTO(MaKM, TenKM, PhanTramKM, DieuKien, NgayBD, NgayKT);
+            kmBUS.update(km);
+        } catch (ParseException ex) {
+            Logger.getLogger(KhuyenMaiGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        loadData();
+
 //        String MaNV = txtMaNV.getText();
 //        String Ho = txtHo.getText();
 //        String Ten = txtTen.getText();
@@ -425,18 +447,21 @@ public class KhuyenMaiGUI extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSuaMouseClicked
 
     private void btnThemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemMouseClicked
-//        String MaNV = txtMaNV.getText();
-//        String Ho = txtHo.getText();
-//        String Ten = txtTen.getText();
-//        int NamSinh = Integer.parseInt(txtNamSinh.getText());
-//        String GioiTinh = cbxGioiTinh.getSelectedItem().toString();
-//        String SoDT = txtSoDT.getText();
-//        String DiaChi = txtDiaChi.getText();
-//        String MaCV = txtMaCV.getText();
-//        String IMG = null;
-//        NhanVienDTO nv = new NhanVienDTO(MaNV, Ho, Ten, NamSinh, GioiTinh, SoDT, DiaChi, MaCV, MaCN, IMG);
-//        nvBUS.add(nv);
-//        loadData();
+        String MaKM = txtMaKM.getText();
+        String TenKM = txtTenKM.getText();
+        int PhanTramKM = Integer.parseInt(txtPhanTramKM.getText());
+        int DieuKien = Integer.parseInt(txtDieuKien.getText());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date NgayBD = sdf.parse(sdf.format(txtNgayBD.getDate()));
+            Date NgayKT = sdf.parse(sdf.format(txtNgayKT.getDate()));
+            KhuyenMaiDTO km = new KhuyenMaiDTO(MaKM, TenKM, PhanTramKM, DieuKien, NgayBD, NgayKT);
+            kmBUS.add(km);
+        } catch (ParseException ex) {
+            Logger.getLogger(KhuyenMaiGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        loadData();
+        loadMaKMTuTang();
     }//GEN-LAST:event_btnThemMouseClicked
 
     private void btnXoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXoaMouseClicked

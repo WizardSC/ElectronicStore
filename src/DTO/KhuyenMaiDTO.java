@@ -4,7 +4,7 @@
  */
 package DTO;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  *
@@ -27,6 +27,7 @@ public class KhuyenMaiDTO {
         this.NgayKT = NgayKT;
     }
 
+   
     public String getMaKM() {
         return MaKM;
     }

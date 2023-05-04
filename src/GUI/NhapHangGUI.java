@@ -643,7 +643,7 @@ public class NhapHangGUI extends javax.swing.JPanel {
         int TongTien = Integer.parseInt(txtTongTien.getText());
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String NgayLap = sdf.format(txtNgayLap.getDate());
-
+        
         try {
             Date NgayLap1 = sdf.parse(NgayLap);
             PhieuNhapDTO pn = new PhieuNhapDTO(MaPN, NgayLap1, TongTien, MaNV, MaNCC);
