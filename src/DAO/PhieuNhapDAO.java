@@ -5,6 +5,9 @@
 package DAO;
 
 import DTO.PhieuNhapDTO;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -70,5 +73,23 @@ public class PhieuNhapDAO {
             mssql.Disconnect();
         }
         return null;
+    }
+    
+    public void insertPhieuNhap(PhieuNhapDTO pn){
+        try {
+            Connection connection = mssql.getConnection();
+            String sql = "Insert into phieunhap (MaPN, NgapLap, TongTien, MaNV, MaNCC) values (?,?,?,?,?)";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            java.sql.Date ngayLap = new java.sql.Date(pn.getNgayLap().getTime());
+            ps.setString(1,pn.getMaPN());
+            ps.setDate(2, ngayLap);
+            ps.setInt(3,pn.getTongTien());
+            ps.setString(4,pn.getMaNV());
+            ps.setString(5,pn.getMaNCC());
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(PhieuNhapDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 }

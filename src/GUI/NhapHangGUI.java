@@ -651,7 +651,7 @@ public class NhapHangGUI extends javax.swing.JPanel {
         try {
             Date NgayLap1 = sdf.parse(NgayLap);
             PhieuNhapDTO pn = new PhieuNhapDTO(MaPN, NgayLap1, TongTien, MaNV, MaNCC);
-           
+            pnBUS.add(pn);
         } catch (ParseException ex) {
             Logger.getLogger(NhapHangGUI.class.getName()).log(Level.SEVERE, null, ex);
         }

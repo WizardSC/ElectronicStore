@@ -34,4 +34,9 @@ public class PhieuNhapBUS {
     public ArrayList<PhieuNhapDTO> getListPhieuNhap3CN(){
         return listPhieuNhap;
     }
+    
+    public void add(PhieuNhapDTO pn){
+        listPhieuNhap.add(pn);
+        pnDAO.insertPhieuNhap(pn);
+    }
 }
