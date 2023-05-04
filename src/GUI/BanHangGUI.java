@@ -10,7 +10,12 @@ import BUS.SanPhamBUS;
 import DTO.CTHoaDonDTO;
 import DTO.HoaDonDTO;
 import DTO.SanPham_ChiNhanhDTO;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFormattedTextField;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
@@ -136,8 +141,8 @@ public class BanHangGUI extends javax.swing.JPanel {
         jButton4 = new javax.swing.JButton();
         txtTongTien = new javax.swing.JTextField();
         btnThem2 = new javax.swing.JLabel();
-        btnThem3 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        btnTaoHoaDon = new javax.swing.JLabel();
+        txtNgayLap = new com.toedter.calendar.JDateChooser();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 240));
 
@@ -392,16 +397,18 @@ public class BanHangGUI extends javax.swing.JPanel {
             }
         });
 
-        btnThem3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnThem3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnThem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add.png"))); // NOI18N
-        btnThem3.setText("TẠO HÓA ĐƠN");
-        btnThem3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnThem3.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnTaoHoaDon.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnTaoHoaDon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnTaoHoaDon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add.png"))); // NOI18N
+        btnTaoHoaDon.setText("TẠO HÓA ĐƠN");
+        btnTaoHoaDon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnTaoHoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnThem3MouseClicked(evt);
+                btnTaoHoaDonMouseClicked(evt);
             }
         });
+
+        txtNgayLap.setDateFormatString("dd/MM/yyyy");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -437,7 +444,7 @@ public class BanHangGUI extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                                 .addComponent(jLabel13))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(btnThem3, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnTaoHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(114, 114, 114)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -449,7 +456,7 @@ public class BanHangGUI extends javax.swing.JPanel {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtTongTien)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(txtNgayLap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -473,7 +480,7 @@ public class BanHangGUI extends javax.swing.JPanel {
                         .addComponent(txtMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel12)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtNgayLap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
@@ -484,7 +491,7 @@ public class BanHangGUI extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnThem2)
-                    .addComponent(btnThem3))
+                    .addComponent(btnTaoHoaDon))
                 .addGap(48, 48, 48))
         );
 
@@ -580,9 +587,31 @@ public class BanHangGUI extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnThem2MouseClicked
 
-    private void btnThem3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThem3MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnThem3MouseClicked
+    private void btnTaoHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTaoHoaDonMouseClicked
+        String MaHD = txtMaHD.getText();
+        String MaNV = txtMaNV.getText();
+        String MaKM = txtMaKM.getText();
+        String MaKH = txtMaKH.getText();
+        double TongTien = Double.parseDouble(txtTongTien.getText());
+        if (MaKM != null && !MaKM.isEmpty()) {
+            System.out.println(MaKM);
+        } else {
+            MaKM = null;
+            System.out.println("Giá trị của txtMaKM là null hoặc rỗng");
+            System.out.println(MaKM);
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date NgayLap = sdf.parse(sdf.format(txtNgayLap.getDate()));
+            HoaDonDTO hd = new HoaDonDTO(MaHD, NgayLap, (int) TongTien, MaNV, MaKH, MaKM);
+            hdBUS.add(hd);
+
+        } catch (ParseException ex) {
+            Logger.getLogger(BanHangGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        loadData();
+        loadDataMaHD();
+    }//GEN-LAST:event_btnTaoHoaDonMouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         SNhanVienGUI snv = new SNhanVienGUI(MaCN);
@@ -659,14 +688,13 @@ public class BanHangGUI extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChonKH;
+    private javax.swing.JLabel btnTaoHoaDon;
     private javax.swing.JLabel btnThem;
     private javax.swing.JLabel btnThem1;
     private javax.swing.JLabel btnThem2;
-    private javax.swing.JLabel btnThem3;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -693,6 +721,7 @@ public class BanHangGUI extends javax.swing.JPanel {
     private javax.swing.JTextField txtMaKM;
     private javax.swing.JTextField txtMaNV;
     private javax.swing.JTextField txtMaSP;
+    private com.toedter.calendar.JDateChooser txtNgayLap;
     private javax.swing.JSpinner txtSoLuong;
     private javax.swing.JTextField txtTenSP;
     private javax.swing.JTextField txtTongTien;
