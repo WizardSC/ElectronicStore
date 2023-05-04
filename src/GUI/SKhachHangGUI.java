@@ -4,20 +4,52 @@
  */
 package GUI;
 
+import BUS.KhachHangBUS;
+import DTO.KhachHangDTO;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Phuc Toan
  */
 public class SKhachHangGUI extends javax.swing.JDialog {
 
-    /**
-     * Creates new form SKhachHangGUI
-     */
-    public SKhachHangGUI(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    DefaultTableModel dtmKhachHang;
+    private KhachHangBUS khBUS = new KhachHangBUS();
+    String MaCN;
+
+    public SKhachHangGUI(String temp) {
+        setUndecorated(true);
         initComponents();
+        setModal(true);
+        setLocationRelativeTo(null);
+        dtmKhachHang = (DefaultTableModel) tblDSKH.getModel();
+
+        this.MaCN = temp;
+        khBUS.docMaCN(MaCN);
+        loadData();
     }
 
+    public void showAll(ArrayList<KhachHangDTO> dskh) {
+        dtmKhachHang.setRowCount(0);
+        for (int i = 0; i < dskh.size(); i++) {
+            dtmKhachHang.addRow(new String[]{
+                dskh.get(i).getMaKH(),
+                dskh.get(i).getHo(),
+                dskh.get(i).getTen()
+            });
+        }
+    }
+
+    public void loadData() {
+        khBUS.docDanhSach();
+        ArrayList<KhachHangDTO> dskh = khBUS.getListKhachHang();
+        showAll(dskh);
+    }
+    public String getMaKH(){
+        return txtMaKH.getText();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,11 +65,11 @@ public class SKhachHangGUI extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         lblAccount = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblDSCV = new MyCustom.MyTable();
+        tblDSKH = new MyCustom.MyTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        txtMaCV = new javax.swing.JTextField();
+        txtMaKH = new javax.swing.JTextField();
         txtTenCV = new javax.swing.JTextField();
         txtMaNV1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -88,31 +120,36 @@ public class SKhachHangGUI extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        tblDSCV.setModel(new javax.swing.table.DefaultTableModel(
+        tblDSKH.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Mã CV", "Tên CV"
+                "Mã KH", "Họ", "Tên"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        tblDSCV.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblDSKH.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblDSCVMouseClicked(evt);
+                tblDSKHMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tblDSCV);
+        jScrollPane1.setViewportView(tblDSKH);
+        if (tblDSKH.getColumnModel().getColumnCount() > 0) {
+            tblDSKH.getColumnModel().getColumn(0).setResizable(false);
+            tblDSKH.getColumnModel().getColumn(1).setResizable(false);
+            tblDSKH.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Mã CV");
@@ -122,7 +159,7 @@ public class SKhachHangGUI extends javax.swing.JDialog {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã CV", "Tên CV" }));
 
-        txtMaCV.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtMaKH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         txtTenCV.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
@@ -171,7 +208,7 @@ public class SKhachHangGUI extends javax.swing.JDialog {
                             .addComponent(jLabel2))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtMaCV, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMaKH, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtTenCV, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -195,7 +232,7 @@ public class SKhachHangGUI extends javax.swing.JDialog {
                     .addComponent(jLabel2)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtMaCV, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMaKH, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -227,12 +264,12 @@ public class SKhachHangGUI extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_lblCloseMouseClicked
 
-    private void tblDSCVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDSCVMouseClicked
-        int k = tblDSCV.getSelectedRow();
-        txtMaCV.setText(tblDSCV.getModel().getValueAt(k, 0).toString());
-        txtTenCV.setText(tblDSCV.getModel().getValueAt(k, 1).toString());
-        System.out.println(txtMaCV.getText());
-    }//GEN-LAST:event_tblDSCVMouseClicked
+    private void tblDSKHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDSKHMouseClicked
+        int k = tblDSKH.getSelectedRow();
+        txtMaKH.setText(tblDSKH.getModel().getValueAt(k, 0).toString());
+        txtTenCV.setText(tblDSKH.getModel().getValueAt(k, 1).toString());
+        System.out.println(txtMaKH.getText());
+    }//GEN-LAST:event_tblDSKHMouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
 
@@ -240,51 +277,10 @@ public class SKhachHangGUI extends javax.swing.JDialog {
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        txtMaCV.setText("");
+        txtMaKH.setText("");
         dispose();
     }//GEN-LAST:event_jLabel5MouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SKhachHangGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SKhachHangGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SKhachHangGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SKhachHangGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                SKhachHangGUI dialog = new SKhachHangGUI(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> jComboBox1;
@@ -298,8 +294,8 @@ public class SKhachHangGUI extends javax.swing.JDialog {
     private javax.swing.JLabel lblAccount;
     private javax.swing.JLabel lblClose;
     private javax.swing.JPanel pnHeader;
-    private MyCustom.MyTable tblDSCV;
-    private javax.swing.JTextField txtMaCV;
+    private MyCustom.MyTable tblDSKH;
+    private javax.swing.JTextField txtMaKH;
     private javax.swing.JTextField txtMaNV1;
     private javax.swing.JTextField txtTenCV;
     // End of variables declaration//GEN-END:variables

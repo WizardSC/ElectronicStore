@@ -22,13 +22,16 @@ public class SKhuyenMaiGUI extends javax.swing.JDialog {
     private KhuyenMaiBUS kmBUS = new KhuyenMaiBUS();
     String MaCN;
     String HieuLuc;
-    public SKhuyenMaiGUI(String temp) {
+    double TongTien;
+    int PhanTramKM;
+    public SKhuyenMaiGUI(String temp, double TongTien) {
         setUndecorated(true);
         initComponents();
         setResizable(false);
         setModal(true);
         setLocationRelativeTo(null);
         this.MaCN = temp;
+        this.TongTien = TongTien;
         kmBUS.docMaCN(MaCN);
         dtmKhuyenMai = (DefaultTableModel) tblDSKM.getModel();
         loadData();
@@ -70,6 +73,10 @@ public class SKhuyenMaiGUI extends javax.swing.JDialog {
         return txtMaKM.getText();
     }
     
+    public int getPhanTramKM(){
+        return PhanTramKM;
+    }
+    
     
 
     /**
@@ -94,8 +101,8 @@ public class SKhuyenMaiGUI extends javax.swing.JDialog {
         txtMaKM = new javax.swing.JTextField();
         txtTenCV = new javax.swing.JTextField();
         txtMaNV1 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        btnChon = new javax.swing.JLabel();
+        btnBoChon = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -183,22 +190,22 @@ public class SKhuyenMaiGUI extends javax.swing.JDialog {
 
         txtMaNV1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/check-mark.png"))); // NOI18N
-        jLabel4.setText("CHỌN");
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnChon.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnChon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnChon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/check-mark.png"))); // NOI18N
+        btnChon.setText("CHỌN");
+        btnChon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
+                btnChonMouseClicked(evt);
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancel1.png"))); // NOI18N
-        jLabel5.setText("BỎ CHỌN");
-        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnBoChon.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnBoChon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancel1.png"))); // NOI18N
+        btnBoChon.setText("BỎ CHỌN");
+        btnBoChon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel5MouseClicked(evt);
+                btnBoChonMouseClicked(evt);
             }
         });
 
@@ -230,8 +237,8 @@ public class SKhuyenMaiGUI extends javax.swing.JDialog {
                             .addComponent(txtTenCV, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnBoChon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnChon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(139, 139, 139)))
                 .addContainerGap())
         );
@@ -248,9 +255,9 @@ public class SKhuyenMaiGUI extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(29, 29, 29)
-                        .addComponent(jLabel4)
+                        .addComponent(btnChon)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel5))
+                        .addComponent(btnBoChon))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -287,31 +294,38 @@ public class SKhuyenMaiGUI extends javax.swing.JDialog {
         int k = tblDSKM.getSelectedRow();
         txtMaKM.setText(tblDSKM.getModel().getValueAt(k, 0).toString());
         txtTenCV.setText(tblDSKM.getModel().getValueAt(k, 1).toString());
+        PhanTramKM = Integer.parseInt(tblDSKM.getModel().getValueAt(k,2).toString());
         System.out.println(txtMaKM.getText());
     }//GEN-LAST:event_tblDSKMMouseClicked
 
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+    private void btnChonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnChonMouseClicked
         int k = tblDSKM.getSelectedRow();
         if(tblDSKM.getModel().getValueAt(k,6).toString().equals("Không hiệu lực")){
             JOptionPane.showMessageDialog(this, "Mã khuyến mãi không có hiệu lực","LỖI",JOptionPane.ERROR_MESSAGE);
             return;
         }
+        
+        if(Double.parseDouble(tblDSKM.getModel().getValueAt(k,3).toString()) > TongTien){
+            JOptionPane.showMessageDialog(this, "Không đủ điều kiện tham gia khuyến mãi", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
         dispose();
-    }//GEN-LAST:event_jLabel4MouseClicked
+    }//GEN-LAST:event_btnChonMouseClicked
 
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+    private void btnBoChonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBoChonMouseClicked
         txtMaKM.setText("");
         dispose();
-    }//GEN-LAST:event_jLabel5MouseClicked
+    }//GEN-LAST:event_btnBoChonMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btnBoChon;
+    private javax.swing.JLabel btnChon;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAccount;
