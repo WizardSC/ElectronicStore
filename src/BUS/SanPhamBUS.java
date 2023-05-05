@@ -89,4 +89,8 @@ public class SanPhamBUS {
     public void capNhatSLXoaSPGioHang(String MaSP, int SoLuongXoa, int SoLuongTrongKho){
         spDAO.capNhatSLXoaSPGioHang(MaSP, SoLuongXoa, SoLuongTrongKho);
     }
+    
+    public void capNhatSPXoaSPHangChoNhap(String MaSP, int SoLuongNhap, int SoLuongTrongKho){
+        spDAO.capNhatSLXoaSPHangChoNhap(MaSP, SoLuongNhap, SoLuongTrongKho);
+    }
 }

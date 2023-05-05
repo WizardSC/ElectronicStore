@@ -56,7 +56,7 @@ public class NhapHangGUI extends javax.swing.JPanel {
         ctpnBUS.docMaCN(MaCN);
         dcbmNhaCungCap = (DefaultComboBoxModel) cbxNhaCungCap.getModel();
         dtmSanPham = (DefaultTableModel) tblDSSP.getModel();
-        dtmHangChoNhap = (DefaultTableModel) tblGioHang.getModel();
+        dtmHangChoNhap = (DefaultTableModel) tblHangChoNhap.getModel();
         loadMaNCClenCBX();
         loadDataDSSP();
         loadMaPN3CN();
@@ -158,8 +158,8 @@ public class NhapHangGUI extends javax.swing.JPanel {
         txtSoLuong = new javax.swing.JSpinner();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tblGioHang = new MyCustom.MyTable();
-        btnThem1 = new javax.swing.JLabel();
+        tblHangChoNhap = new MyCustom.MyTable();
+        btnXoa = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         txtMaPN = new javax.swing.JTextField();
@@ -319,7 +319,7 @@ public class NhapHangGUI extends javax.swing.JPanel {
         jPanel3.setBackground(new java.awt.Color(255, 255, 240));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "HÀNG CHỜ NHẬP", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18), new java.awt.Color(255, 0, 0))); // NOI18N
 
-        tblGioHang.setModel(new javax.swing.table.DefaultTableModel(
+        tblHangChoNhap.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -335,29 +335,29 @@ public class NhapHangGUI extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tblGioHang.getTableHeader().setReorderingAllowed(false);
-        jScrollPane2.setViewportView(tblGioHang);
-        if (tblGioHang.getColumnModel().getColumnCount() > 0) {
-            tblGioHang.getColumnModel().getColumn(0).setResizable(false);
-            tblGioHang.getColumnModel().getColumn(0).setPreferredWidth(20);
-            tblGioHang.getColumnModel().getColumn(1).setResizable(false);
-            tblGioHang.getColumnModel().getColumn(1).setPreferredWidth(150);
-            tblGioHang.getColumnModel().getColumn(2).setResizable(false);
-            tblGioHang.getColumnModel().getColumn(2).setPreferredWidth(25);
-            tblGioHang.getColumnModel().getColumn(3).setResizable(false);
-            tblGioHang.getColumnModel().getColumn(3).setPreferredWidth(25);
-            tblGioHang.getColumnModel().getColumn(4).setResizable(false);
-            tblGioHang.getColumnModel().getColumn(4).setPreferredWidth(30);
+        tblHangChoNhap.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(tblHangChoNhap);
+        if (tblHangChoNhap.getColumnModel().getColumnCount() > 0) {
+            tblHangChoNhap.getColumnModel().getColumn(0).setResizable(false);
+            tblHangChoNhap.getColumnModel().getColumn(0).setPreferredWidth(20);
+            tblHangChoNhap.getColumnModel().getColumn(1).setResizable(false);
+            tblHangChoNhap.getColumnModel().getColumn(1).setPreferredWidth(150);
+            tblHangChoNhap.getColumnModel().getColumn(2).setResizable(false);
+            tblHangChoNhap.getColumnModel().getColumn(2).setPreferredWidth(25);
+            tblHangChoNhap.getColumnModel().getColumn(3).setResizable(false);
+            tblHangChoNhap.getColumnModel().getColumn(3).setPreferredWidth(25);
+            tblHangChoNhap.getColumnModel().getColumn(4).setResizable(false);
+            tblHangChoNhap.getColumnModel().getColumn(4).setPreferredWidth(30);
         }
 
-        btnThem1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnThem1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnThem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add.png"))); // NOI18N
-        btnThem1.setText("XÓA SẢN PHẨM");
-        btnThem1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnThem1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnXoa.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnXoa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add.png"))); // NOI18N
+        btnXoa.setText("XÓA SẢN PHẨM");
+        btnXoa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnXoa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnThem1MouseClicked(evt);
+                btnXoaMouseClicked(evt);
             }
         });
 
@@ -489,7 +489,7 @@ public class NhapHangGUI extends javax.swing.JPanel {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnThem1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(178, 178, 178))
         );
         jPanel3Layout.setVerticalGroup(
@@ -498,7 +498,7 @@ public class NhapHangGUI extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnThem1)
+                .addComponent(btnXoa)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -568,7 +568,6 @@ public class NhapHangGUI extends javax.swing.JPanel {
         int ThanhTien = SoLuong * DonGia;
         SanPhamDTO sp = new SanPhamDTO(MaSP, DonGia);
 
-
         spBUS.capNhatSLNhapHang(MaSP, SoLuong, SoLuongTrongKho);
         spBUS.docDanhSach();
         boolean flag = true;
@@ -605,9 +604,26 @@ public class NhapHangGUI extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnThemMouseClicked
 
-    private void btnThem1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThem1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnThem1MouseClicked
+    private void btnXoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXoaMouseClicked
+        int k = tblHangChoNhap.getSelectedRow();
+        String MaSP = tblHangChoNhap.getModel().getValueAt(k, 0).toString();
+        int SoLuongNhap = Integer.parseInt(tblHangChoNhap.getModel().getValueAt(k, 2).toString());
+        spBUS.docDanhSach();
+        ArrayList<SanPham_ChiNhanhDTO> dssp = spBUS.getListSanPham();
+        for (SanPham_ChiNhanhDTO sp : dssp) {
+            if (sp.getMaSP().equals(MaSP)) {
+                SoLuongTrongKho = sp.getSoLuong();
+                System.out.println(SoLuongTrongKho);
+            }
+        }
+        spBUS.capNhatSPXoaSPHangChoNhap(MaSP, SoLuongNhap, SoLuongTrongKho);
+        dsctpn.remove(k);
+        dtmHangChoNhap.removeRow(k);
+        if (dsctpn.size() == 0) {
+            loadDataDSSP();
+        }
+
+    }//GEN-LAST:event_btnXoaMouseClicked
 
     private void txtMaPNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMaPNMouseClicked
 //        hdBUS.docDanhSachMaHD();
@@ -642,7 +658,7 @@ public class NhapHangGUI extends javax.swing.JPanel {
         int TongTien = Integer.parseInt(txtTongTien.getText());
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String NgayLap = sdf.format(txtNgayLap.getDate());
-        
+
         try {
             Date NgayLap1 = sdf.parse(NgayLap);
             PhieuNhapDTO pn = new PhieuNhapDTO(MaPN, NgayLap1, TongTien, MaNV, MaNCC);
@@ -654,7 +670,7 @@ public class NhapHangGUI extends javax.swing.JPanel {
 
             ctpnBUS.add(ctpn);
         }
-        JOptionPane.showMessageDialog(this, "In phiếu nhập thành công","THÔNG BÁO",JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "In phiếu nhập thành công", "THÔNG BÁO", JOptionPane.INFORMATION_MESSAGE);
         dtmHangChoNhap.setRowCount(0);
         dsctpn.clear();
         loadDataDSSP();
@@ -700,7 +716,7 @@ public class NhapHangGUI extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnTaoPhieuNhap;
     private javax.swing.JLabel btnThem;
-    private javax.swing.JLabel btnThem1;
+    private javax.swing.JLabel btnXoa;
     private javax.swing.JComboBox<String> cbxNhaCungCap;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel10;
@@ -720,7 +736,7 @@ public class NhapHangGUI extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private MyCustom.MyTable tblDSSP;
-    private MyCustom.MyTable tblGioHang;
+    private MyCustom.MyTable tblHangChoNhap;
     private javax.swing.JTextField txtDonGia;
     private javax.swing.JTextField txtMaNCC;
     private javax.swing.JTextField txtMaNV;
