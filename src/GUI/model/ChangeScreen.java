@@ -7,6 +7,7 @@ package GUI.model;
 
 import GUI.BanHangGUI;
 import GUI.ChiNhanhGUI;
+import GUI.ChucVuGUI;
 import GUI.GiaoDienGUI;
 import GUI.HoaDonGUI;
 import GUI.KhachHangGUI;
@@ -118,6 +119,9 @@ public class ChangeScreen {
                     break;
                 case "NhapHang":
                     node = new NhapHangGUI(MaCN);
+                    break;
+                case "ChucVu":
+                    node = new ChucVuGUI(MaCN);
                     break;
                 default:
                     break;
