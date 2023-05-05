@@ -6,7 +6,9 @@ package GUI;
 
 import BUS.ChucVuBUS;
 import DTO.ChucVuDTO;
+import MyCustom.XuLyException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -24,6 +26,7 @@ public class ChucVuGUI extends javax.swing.JPanel {
         this.MaCN = temp;
         cvBUS.docMaCN(MaCN);
         loadDataDSCV();
+        loadMaCVMoiNhat();
     }
     
     public void showAllDSCV(ArrayList<ChucVuDTO> dscv){
@@ -41,6 +44,19 @@ public class ChucVuGUI extends javax.swing.JPanel {
         ArrayList<ChucVuDTO> dscv = cvBUS.getListChucVu();
         showAllDSCV(dscv);
     }
+    
+    public void loadMaCVMoiNhat(){
+        cvBUS.docDanhSach();
+        ArrayList<ChucVuDTO> dscv = cvBUS.getListChucVu();
+        ChucVuDTO cv = dscv.get(dscv.size()-1);
+        String MaCV = cv.getMaCV();
+        int sum = Integer.parseInt(MaCV.substring(3)) + 1;
+        if(sum<=10){
+            txtMaCV.setText("CV00" + sum);
+        } else {
+            txtMaCV.setText("CV0" + sum);
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -55,8 +71,8 @@ public class ChucVuGUI extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtMaKH = new javax.swing.JTextField();
-        txtMaKH1 = new javax.swing.JTextField();
+        txtMaCV = new javax.swing.JTextField();
+        txtTenCV = new javax.swing.JTextField();
         btnThem = new javax.swing.JLabel();
         btnSua = new javax.swing.JLabel();
         btnXoa = new javax.swing.JLabel();
@@ -78,9 +94,9 @@ public class ChucVuGUI extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Tên CV");
 
-        txtMaKH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtMaCV.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
-        txtMaKH1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtTenCV.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         btnThem.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnThem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -135,6 +151,11 @@ public class ChucVuGUI extends javax.swing.JPanel {
             }
         });
         tblDSCV.getTableHeader().setReorderingAllowed(false);
+        tblDSCV.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDSCVMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblDSCV);
         if (tblDSCV.getColumnModel().getColumnCount() > 0) {
             tblDSCV.getColumnModel().getColumn(0).setResizable(false);
@@ -162,8 +183,8 @@ public class ChucVuGUI extends javax.swing.JPanel {
                             .addComponent(jLabel2))
                         .addGap(40, 40, 40)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtMaKH1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtMaKH, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtTenCV, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMaCV, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(90, 90, 90))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -174,11 +195,11 @@ public class ChucVuGUI extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(jLabel1))
-                    .addComponent(txtMaKH, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMaCV, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtMaKH1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTenCV, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnThem)
@@ -251,20 +272,47 @@ public class ChucVuGUI extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnThemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemMouseClicked
-     
+        String MaCV = txtMaCV.getText();
+        String TenCV  = txtTenCV.getText();
+        ChucVuDTO cv = new ChucVuDTO(MaCV, TenCV);
+        cvBUS.add(cv);
+        loadDataDSCV();
     }//GEN-LAST:event_btnThemMouseClicked
 
     private void btnSuaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSuaMouseClicked
-  
+        String MaCV = txtMaCV.getText();
+        String TenCV  = txtTenCV.getText();
+        ChucVuDTO cv = new ChucVuDTO(MaCV, TenCV);
+        cvBUS.update(cv);
+        loadDataDSCV();
     }//GEN-LAST:event_btnSuaMouseClicked
 
     private void btnXoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXoaMouseClicked
+      String MaCV = txtMaCV.getText();
+      int result = JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa chức vụ không?");
+      if (result == JOptionPane.YES_OPTION){
+          try {
+              cvBUS.delete(MaCV);
+              loadDataDSCV();
+          } catch (XuLyException e){
+                JOptionPane.showMessageDialog(this, e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+            } catch (Exception e){
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Đã xảy ra lỗi khi xóa chức vụ", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            }
+      }
       
     }//GEN-LAST:event_btnXoaMouseClicked
 
     private void tblDSNVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDSNVMouseClicked
     
     }//GEN-LAST:event_tblDSNVMouseClicked
+
+    private void tblDSCVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDSCVMouseClicked
+        int k = tblDSCV.getSelectedRow();
+        txtMaCV.setText(tblDSCV.getModel().getValueAt(k,0).toString());
+        txtTenCV.setText(tblDSCV.getModel().getValueAt(k, 1).toString());
+    }//GEN-LAST:event_tblDSCVMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -279,7 +327,7 @@ public class ChucVuGUI extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane3;
     private MyCustom.MyTable tblDSCV;
     private MyCustom.MyTable tblDSNV;
-    private javax.swing.JTextField txtMaKH;
-    private javax.swing.JTextField txtMaKH1;
+    private javax.swing.JTextField txtMaCV;
+    private javax.swing.JTextField txtTenCV;
     // End of variables declaration//GEN-END:variables
 }

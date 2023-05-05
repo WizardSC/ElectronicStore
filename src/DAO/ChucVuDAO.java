@@ -5,7 +5,9 @@
 package DAO;
 
 import DTO.ChucVuDTO;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -22,11 +24,12 @@ public class ChucVuDAO {
     private MSSQLConnect mssql = new MSSQLConnect();
 
     String MaCN;
-    
-    public void docMaCN(String temp){
+
+    public void docMaCN(String temp) {
         this.MaCN = temp;
         mssql.docMaCN(temp);
     }
+
     public ArrayList<ChucVuDTO> getListChucVu() {
         try {
             ArrayList<ChucVuDTO> dscv = new ArrayList<>();
@@ -49,4 +52,48 @@ public class ChucVuDAO {
         return null;
     }
 
+    public void insertChucVu(ChucVuDTO cv) {
+        try {
+            Connection connection = mssql.getConnection();
+            String sql = "insert into chucvu (MaCV, TenCV) values (?,?)";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, cv.getMaCV());
+            ps.setString(2, cv.getTenCV());
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ChucVuDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void updateChucVu(ChucVuDTO cv) {
+        try {
+            Connection connection = mssql.getConnection();
+            String sql = "Update Chucvu set TenCV = ? where MaCV = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, cv.getTenCV());
+            ps.setString(2, cv.getMaCV());
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ChucVuDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void deleteChucVu(String MaCV) throws SQLException, SQLServerException {
+        try {
+            Connection connection = mssql.getConnection();
+            String sql = "delete from chucvu where MaCV = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+
+            ps.setString(1, MaCV);
+            ps.executeUpdate();
+        } catch (SQLServerException ex) {
+            if (ex.getErrorCode() == 547) {
+                throw ex;
+            }
+        } finally {
+            mssql.Disconnect();
+        }
+    }
 }

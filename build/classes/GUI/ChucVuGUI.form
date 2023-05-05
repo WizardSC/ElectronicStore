@@ -99,8 +99,8 @@
                               </Group>
                               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtMaKH1" min="-2" pref="200" max="-2" attributes="0"/>
-                                  <Component id="txtMaKH" min="-2" pref="200" max="-2" attributes="0"/>
+                                  <Component id="txtTenCV" min="-2" pref="200" max="-2" attributes="0"/>
+                                  <Component id="txtMaCV" min="-2" pref="200" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
                           </Group>
@@ -117,12 +117,12 @@
                               <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="txtMaKH" alignment="0" min="-2" pref="32" max="-2" attributes="0"/>
+                          <Component id="txtMaCV" alignment="0" min="-2" pref="32" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtMaKH1" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                          <Component id="txtTenCV" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="90" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -157,14 +157,14 @@
                 <Property name="text" type="java.lang.String" value="T&#xea;n CV"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtMaKH">
+            <Component class="javax.swing.JTextField" name="txtMaCV">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="1"/>
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtMaKH1">
+            <Component class="javax.swing.JTextField" name="txtTenCV">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="1"/>
@@ -258,6 +258,9 @@
                       <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblDSCVMouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
