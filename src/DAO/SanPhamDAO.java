@@ -178,4 +178,17 @@ public class SanPhamDAO {
         }
     }
     
+    public void capNhatSLXoaSPGioHang(String MaSP, int SoLuongXoa, int SoLuongTrongKho){
+        try {
+            Connection connection = mssql.getConnection();
+            String sql = "update sanpham_chinhanh set SoLuong = ? where MaSP = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, SoLuongXoa + SoLuongTrongKho);
+            ps.setString(2,MaSP);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(SanPhamDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
 }
