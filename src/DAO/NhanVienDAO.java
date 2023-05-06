@@ -71,7 +71,7 @@ public class NhanVienDAO {
     public ArrayList<NhanVienDTO> getListMaNV(){
         try {
             ArrayList<NhanVienDTO> dsnv = new ArrayList<>();
-            String sql = "select MaNV from nhanvien";
+            String sql = "select MaNV from nhanvien where MaNV not in(Select MaNV from taikhoan)";
             ResultSet rs = mssql.executeQuery(sql);
             while(rs.next()){
                 NhanVienDTO nv = new NhanVienDTO(
