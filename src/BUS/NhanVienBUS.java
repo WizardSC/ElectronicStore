@@ -39,6 +39,9 @@ public class NhanVienBUS {
         this.listNhanVien = nvDAO.getListNV3ChiNhanh();
     }
     
+    public void docMaNV(){
+        this.listNhanVien = nvDAO.getListMaNV();
+    }
     public void docDanhSachNVMaTuTang() {
         this.listNhanVien = nvDAO.getListNVMaTuTang(MaCN);
     }
@@ -47,7 +50,9 @@ public class NhanVienBUS {
         
         return listNhanVien;
     }
-
+    public ArrayList<NhanVienDTO> getListMaNV(){
+        return listNhanVien;
+    }
     public ArrayList<NhanVienDTO> getListNV3ChiNhanh(){
 //        this.listNhanVien = nvDAO.getListNV3ChiNhanh();
         return listNhanVien;

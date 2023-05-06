@@ -67,7 +67,26 @@ public class NhanVienDAO {
         }
         return null;
     }
-
+    
+    public ArrayList<NhanVienDTO> getListMaNV(){
+        try {
+            ArrayList<NhanVienDTO> dsnv = new ArrayList<>();
+            String sql = "select MaNV from nhanvien";
+            ResultSet rs = mssql.executeQuery(sql);
+            while(rs.next()){
+                NhanVienDTO nv = new NhanVienDTO(
+                        rs.getString("MaNV")
+                );
+                dsnv.add(nv);
+            }
+            return dsnv;
+        } catch (SQLException ex) {
+            Logger.getLogger(NhanVienDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mssql.Disconnect();
+        } 
+        return null;
+    }
     public ArrayList<NhanVienDTO> getListNhanVien() {
         try {
             ArrayList<NhanVienDTO> dsnv = new ArrayList<>();
@@ -97,7 +116,7 @@ public class NhanVienDAO {
         }
         return null;
     }
-
+    
     public void insertNhanVien(NhanVienDTO nv) {
         try {
             Connection connection = mssql.getConnection();

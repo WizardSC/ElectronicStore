@@ -16,6 +16,7 @@ import GUI.NhanVienGUI;
 import GUI.NhapHangGUI;
 import GUI.PhieuNhapGUI;
 import GUI.SanPhamGUI;
+import GUI.TaiKhoanGUI;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
@@ -122,6 +123,9 @@ public class ChangeScreen {
                     break;
                 case "ChucVu":
                     node = new ChucVuGUI(MaCN);
+                    break;
+                case "TaiKhoan":
+                    node = new TaiKhoanGUI(MaCN);
                     break;
                 default:
                     break;

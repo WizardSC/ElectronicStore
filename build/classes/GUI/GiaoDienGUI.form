@@ -245,7 +245,7 @@
                       <Component id="pnChucVu" alignment="1" pref="230" max="32767" attributes="0"/>
                       <Component id="pnHoaDon6" alignment="0" pref="230" max="32767" attributes="0"/>
                       <Component id="pnHoaDon4" alignment="0" pref="230" max="32767" attributes="0"/>
-                      <Component id="pnHoaDon7" alignment="1" pref="230" max="32767" attributes="0"/>
+                      <Component id="pnTaiKhoan" alignment="1" pref="230" max="32767" attributes="0"/>
                       <Component id="pnHoaDon" alignment="1" pref="230" max="32767" attributes="0"/>
                       <Component id="pnPhieuNhap" alignment="0" pref="230" max="32767" attributes="0"/>
                       <Component id="pnNhapHang" alignment="0" pref="230" max="32767" attributes="0"/>
@@ -271,7 +271,7 @@
                           <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                           <Component id="pnChucVu" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="pnHoaDon7" min="-2" max="-2" attributes="0"/>
+                          <Component id="pnTaiKhoan" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="52" max="32767" attributes="0"/>
                           <Component id="pnHoaDon4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -766,7 +766,7 @@
                     </Container>
                   </SubComponents>
                 </Container>
-                <Container class="javax.swing.JPanel" name="pnHoaDon7">
+                <Container class="javax.swing.JPanel" name="pnTaiKhoan">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="80" green="80" red="80" type="rgb"/>
@@ -783,19 +783,19 @@
                               <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                               <Component id="imageAvatar12" min="-2" pref="40" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="lblHoaDon7" min="-2" pref="165" max="-2" attributes="0"/>
+                              <Component id="lblTaiKhoan" min="-2" pref="165" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblHoaDon7" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblTaiKhoan" alignment="0" max="32767" attributes="0"/>
                           <Component id="imageAvatar12" alignment="1" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JLabel" name="lblHoaDon7">
+                    <Component class="javax.swing.JLabel" name="lblTaiKhoan">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>

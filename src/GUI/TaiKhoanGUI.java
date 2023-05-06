@@ -4,17 +4,40 @@
  */
 package GUI;
 
+import BUS.NhanVienBUS;
+import DTO.NhanVienDTO;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+
 /**
  *
  * @author Phuc Toan
  */
 public class TaiKhoanGUI extends javax.swing.JPanel {
 
-    /**
-     * Creates new form TaiKhoanGUI
-     */
-    public TaiKhoanGUI() {
+    String MaCN;
+    private NhanVienBUS nvBUS = new NhanVienBUS();
+    DefaultComboBoxModel dcbmMaNV;
+
+    public TaiKhoanGUI(String temp) {
         initComponents();
+        this.MaCN = temp;
+        nvBUS.docMaCN(temp);
+        dcbmMaNV = (DefaultComboBoxModel) cbxMaNV.getModel();
+        loadDataMaNV();
+    }
+
+    public void showAllMaNV(ArrayList<NhanVienDTO> dsnv) {
+        cbxMaNV.removeAllItems();
+        for (int i = 0; i < dsnv.size(); i++) {
+            cbxMaNV.addItem(dsnv.get(i).getMaNV());
+        }
+    }
+    
+    public void loadDataMaNV(){
+        nvBUS.docMaNV();
+        ArrayList<NhanVienDTO> dsnv = nvBUS.getListMaNV();
+        showAllMaNV(dsnv);
     }
 
     /**
@@ -30,15 +53,17 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtMaCV = new javax.swing.JTextField();
         txtTenCV = new javax.swing.JTextField();
         btnThem = new javax.swing.JLabel();
         btnSua = new javax.swing.JLabel();
         btnXoa = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tblDSCV = new MyCustom.MyTable();
+        txtTenCV1 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        txtMaCV1 = new javax.swing.JTextField();
+        cbxMaNV = new javax.swing.JComboBox<>();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tblDSNV = new MyCustom.MyTable();
+        tblDSTK = new MyCustom.MyTable();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 240));
         jPanel1.setPreferredSize(new java.awt.Dimension(896, 744));
@@ -48,12 +73,10 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "THÔNG TIN CHỨC VỤ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setText("Mã CV");
+        jLabel1.setText("Mã NV");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setText("Tên CV");
-
-        txtMaCV.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setText("Tên đăng nhập");
 
         txtTenCV.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
@@ -90,110 +113,110 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
             }
         });
 
-        tblDSCV.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Mã CV", "Tên CV"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
+        txtTenCV1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tblDSCV.getTableHeader().setReorderingAllowed(false);
-        tblDSCV.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblDSCVMouseClicked(evt);
-            }
-        });
-        jScrollPane2.setViewportView(tblDSCV);
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setText("Tình trạng");
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setText("Mật khẩu");
+
+        txtMaCV1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+        cbxMaNV.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(671, Short.MAX_VALUE)
+                .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(68, 68, 68))
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 654, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
-                        .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(68, 68, 68))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(40, 40, 40)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTenCV, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtMaCV, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(90, 90, 90))))
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel3))
+                .addGap(40, 40, 40)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtTenCV1, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                    .addComponent(txtMaCV1, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                    .addComponent(txtTenCV, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                    .addComponent(cbxMaNV, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(67, 67, 67)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
+                        .addGap(28, 28, 28)
                         .addComponent(jLabel1))
-                    .addComponent(txtMaCV, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(cbxMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtTenCV, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel4))
+                    .addComponent(txtMaCV1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtTenCV1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnThem)
                     .addComponent(btnSua)
                     .addComponent(btnXoa))
                 .addGap(60, 60, 60))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
         );
 
-        tblDSNV.setModel(new javax.swing.table.DefaultTableModel(
+        tblDSTK.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Mã NV", "Họ", "Tên", "Năm sinh", "Giới tính", "Số ĐT", "Địa chỉ", "Mã CV", "Mã CN", "IMG"
+                "Mã NV", "Tên đăng nhập", "Mật khẩu", "Tình trạng", "Mã CV"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        tblDSNV.getTableHeader().setReorderingAllowed(false);
-        tblDSNV.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblDSTK.getTableHeader().setReorderingAllowed(false);
+        tblDSTK.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblDSNVMouseClicked(evt);
+                tblDSTKMouseClicked(evt);
             }
         });
-        jScrollPane3.setViewportView(tblDSNV);
+        jScrollPane3.setViewportView(tblDSTK);
+        if (tblDSTK.getColumnModel().getColumnCount() > 0) {
+            tblDSTK.getColumnModel().getColumn(0).setResizable(false);
+            tblDSTK.getColumnModel().getColumn(1).setResizable(false);
+            tblDSTK.getColumnModel().getColumn(2).setResizable(false);
+            tblDSTK.getColumnModel().getColumn(3).setResizable(false);
+            tblDSTK.getColumnModel().getColumn(4).setResizable(false);
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -228,62 +251,50 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnThemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemMouseClicked
-        String MaCV = txtMaCV.getText();
-        String TenCV  = txtTenCV.getText();
-        ChucVuDTO cv = new ChucVuDTO(MaCV, TenCV);
-        cvBUS.add(cv);
-        loadDataDSCV();
+
     }//GEN-LAST:event_btnThemMouseClicked
 
     private void btnSuaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSuaMouseClicked
-        String MaCV = txtMaCV.getText();
-        String TenCV  = txtTenCV.getText();
-        ChucVuDTO cv = new ChucVuDTO(MaCV, TenCV);
-        cvBUS.update(cv);
-        loadDataDSCV();
+
     }//GEN-LAST:event_btnSuaMouseClicked
 
     private void btnXoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXoaMouseClicked
-        String MaCV = txtMaCV.getText();
-        int result = JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa chức vụ không?");
-        if (result == JOptionPane.YES_OPTION){
-            try {
-                cvBUS.delete(MaCV);
-                loadDataDSCV();
-            } catch (XuLyException e){
-                JOptionPane.showMessageDialog(this, e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
-            } catch (Exception e){
-                e.printStackTrace();
-                JOptionPane.showMessageDialog(this, "Đã xảy ra lỗi khi xóa chức vụ", "Lỗi", JOptionPane.ERROR_MESSAGE);
-            }
-        }
+//        String MaCV = txtMaCV.getText();
+//        int result = JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa chức vụ không?");
+//        if (result == JOptionPane.YES_OPTION){
+//            try {
+//                cvBUS.delete(MaCV);
+//                loadDataDSCV();
+//            } catch (XuLyException e){
+//                JOptionPane.showMessageDialog(this, e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+//            } catch (Exception e){
+//                e.printStackTrace();
+//                JOptionPane.showMessageDialog(this, "Đã xảy ra lỗi khi xóa chức vụ", "Lỗi", JOptionPane.ERROR_MESSAGE);
+//            }
+//        }
 
     }//GEN-LAST:event_btnXoaMouseClicked
 
-    private void tblDSCVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDSCVMouseClicked
-        int k = tblDSCV.getSelectedRow();
-        txtMaCV.setText(tblDSCV.getModel().getValueAt(k,0).toString());
-        txtTenCV.setText(tblDSCV.getModel().getValueAt(k, 1).toString());
-    }//GEN-LAST:event_tblDSCVMouseClicked
+    private void tblDSTKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDSTKMouseClicked
 
-    private void tblDSNVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDSNVMouseClicked
-
-    }//GEN-LAST:event_tblDSNVMouseClicked
+    }//GEN-LAST:event_tblDSTKMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnSua;
     private javax.swing.JLabel btnThem;
     private javax.swing.JLabel btnXoa;
+    private javax.swing.JComboBox<String> cbxMaNV;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private MyCustom.MyTable tblDSCV;
-    private MyCustom.MyTable tblDSNV;
-    private javax.swing.JTextField txtMaCV;
+    private MyCustom.MyTable tblDSTK;
+    private javax.swing.JTextField txtMaCV1;
     private javax.swing.JTextField txtTenCV;
+    private javax.swing.JTextField txtTenCV1;
     // End of variables declaration//GEN-END:variables
 }

@@ -66,6 +66,7 @@ public class GiaoDienGUI extends javax.swing.JFrame {
         
         list.add(new DanhMuc("PhieuNhap",pnPhieuNhap,lblPhieuNhap));
         list.add(new DanhMuc("ChucVu",pnChucVu,lblChucVu));
+        list.add(new DanhMuc("TaiKhoan",pnTaiKhoan,lblTaiKhoan));
         controller.setEvent(list);
 
         controller.getMaCN(MaCN);
@@ -122,8 +123,8 @@ public class GiaoDienGUI extends javax.swing.JFrame {
         pnHoaDon6 = new javax.swing.JPanel();
         lblHoaDon6 = new javax.swing.JLabel();
         imageAvatar11 = new MyCustom.ImageAvatar();
-        pnHoaDon7 = new javax.swing.JPanel();
-        lblHoaDon7 = new javax.swing.JLabel();
+        pnTaiKhoan = new javax.swing.JPanel();
+        lblTaiKhoan = new javax.swing.JLabel();
         imageAvatar12 = new MyCustom.ImageAvatar();
         pnHoaDon = new javax.swing.JPanel();
         lblHoaDon = new javax.swing.JLabel();
@@ -450,31 +451,31 @@ public class GiaoDienGUI extends javax.swing.JFrame {
             .addComponent(imageAvatar11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        pnHoaDon7.setBackground(new java.awt.Color(128, 128, 128));
-        pnHoaDon7.setPreferredSize(new java.awt.Dimension(226, 40));
+        pnTaiKhoan.setBackground(new java.awt.Color(128, 128, 128));
+        pnTaiKhoan.setPreferredSize(new java.awt.Dimension(226, 40));
 
-        lblHoaDon7.setBackground(new java.awt.Color(255, 255, 255));
-        lblHoaDon7.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
-        lblHoaDon7.setForeground(new java.awt.Color(255, 255, 255));
-        lblHoaDon7.setText("  TÀI KHOẢN");
+        lblTaiKhoan.setBackground(new java.awt.Color(255, 255, 255));
+        lblTaiKhoan.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
+        lblTaiKhoan.setForeground(new java.awt.Color(255, 255, 255));
+        lblTaiKhoan.setText("  TÀI KHOẢN");
 
         imageAvatar12.setForeground(new java.awt.Color(255, 255, 240));
         imageAvatar12.setBorderSize(2);
         imageAvatar12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user.png"))); // NOI18N
 
-        javax.swing.GroupLayout pnHoaDon7Layout = new javax.swing.GroupLayout(pnHoaDon7);
-        pnHoaDon7.setLayout(pnHoaDon7Layout);
-        pnHoaDon7Layout.setHorizontalGroup(
-            pnHoaDon7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnHoaDon7Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnTaiKhoanLayout = new javax.swing.GroupLayout(pnTaiKhoan);
+        pnTaiKhoan.setLayout(pnTaiKhoanLayout);
+        pnTaiKhoanLayout.setHorizontalGroup(
+            pnTaiKhoanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnTaiKhoanLayout.createSequentialGroup()
                 .addGap(8, 8, 8)
                 .addComponent(imageAvatar12, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblHoaDon7, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lblTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        pnHoaDon7Layout.setVerticalGroup(
-            pnHoaDon7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblHoaDon7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        pnTaiKhoanLayout.setVerticalGroup(
+            pnTaiKhoanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblTaiKhoan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(imageAvatar12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
@@ -577,7 +578,7 @@ public class GiaoDienGUI extends javax.swing.JFrame {
             .addComponent(pnChucVu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
             .addComponent(pnHoaDon6, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
             .addComponent(pnHoaDon4, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
-            .addComponent(pnHoaDon7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+            .addComponent(pnTaiKhoan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
             .addComponent(pnHoaDon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
             .addComponent(pnPhieuNhap, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
             .addComponent(pnNhapHang, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
@@ -602,7 +603,7 @@ public class GiaoDienGUI extends javax.swing.JFrame {
                 .addGap(13, 13, 13)
                 .addComponent(pnChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(pnHoaDon7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addComponent(pnHoaDon4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -709,7 +710,6 @@ public class GiaoDienGUI extends javax.swing.JFrame {
     private javax.swing.JLabel lblHoaDon;
     private javax.swing.JLabel lblHoaDon4;
     private javax.swing.JLabel lblHoaDon6;
-    private javax.swing.JLabel lblHoaDon7;
     private javax.swing.JLabel lblKhachHang;
     private javax.swing.JLabel lblKhuyenMai;
     private javax.swing.JLabel lblMinimize;
@@ -717,13 +717,13 @@ public class GiaoDienGUI extends javax.swing.JFrame {
     private javax.swing.JLabel lblNhapHang;
     private javax.swing.JLabel lblPhieuNhap;
     private javax.swing.JLabel lblSanPham;
+    private javax.swing.JLabel lblTaiKhoan;
     private javax.swing.JPanel pnBanHang;
     private javax.swing.JPanel pnChucVu;
     private javax.swing.JPanel pnHeader;
     private javax.swing.JPanel pnHoaDon;
     private javax.swing.JPanel pnHoaDon4;
     private javax.swing.JPanel pnHoaDon6;
-    private javax.swing.JPanel pnHoaDon7;
     private javax.swing.JPanel pnKhachHang;
     private javax.swing.JPanel pnKhuyenMai;
     private javax.swing.JPanel pnMenu;
@@ -732,6 +732,7 @@ public class GiaoDienGUI extends javax.swing.JFrame {
     private javax.swing.JPanel pnPhieuNhap;
     private javax.swing.JPanel pnRoot;
     private javax.swing.JPanel pnSanPham;
+    private javax.swing.JPanel pnTaiKhoan;
     private javax.swing.JPanel pnView;
     // End of variables declaration//GEN-END:variables
 }
