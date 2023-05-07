@@ -88,4 +88,17 @@ public class TaiKhoanDAO {
             Logger.getLogger(TaiKhoanDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void updateMatKhauTK(TaiKhoanDTO tk){
+        try {
+            Connection connection = mssql.getConnection();
+            String sql = "update taikhoan set MatKhau = ? where TenDangNhap = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1,tk.getMatKhau());
+            ps.setString(2,tk.getTenDangNhap());
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(TaiKhoanDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
