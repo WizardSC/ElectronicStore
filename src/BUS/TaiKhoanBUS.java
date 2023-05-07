@@ -24,13 +24,19 @@ public class TaiKhoanBUS {
     public void docDanhSach(){
         this.listTaiKhoan = tkDAO.getListTaiKhoan();
     }
-    
+    public void docDanhSach3CN(){
+        this.listTaiKhoan = tkDAO.getListTK3CN();
+    }
     public ArrayList<TaiKhoanDTO> getListTaiKhoan(){
         return listTaiKhoan;
     }
-    
+    public ArrayList<TaiKhoanDTO> getListTaiKhoan3CN(){
+        return listTaiKhoan;
+    }
     public void add(TaiKhoanDTO tk){
         listTaiKhoan.add(tk);
         tkDAO.insertTaiKhoan(tk);
     }
+    
+    
 }

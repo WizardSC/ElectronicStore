@@ -26,7 +26,29 @@ public class TaiKhoanDAO {
         this.MaCN = temp;
         mssql.docMaCN(MaCN);
     }
-
+    public ArrayList<TaiKhoanDTO> getListTK3CN(){
+        try {
+            ArrayList<TaiKhoanDTO> dstk = new ArrayList<>();
+            String sql = "exec sp_SelectAllTK";
+            ResultSet rs = mssql.executeQuery(sql);
+            while(rs.next()){
+                TaiKhoanDTO tk = new TaiKhoanDTO(
+                        rs.getString("TenDangNhap"),
+                        rs.getString("MatKhau"),
+                        rs.getString("MaNV"),
+                        rs.getBoolean("TinhTrang"),
+                        rs.getString("MaCV")
+                );
+                dstk.add(tk);
+            }
+            return dstk;
+        } catch (SQLException ex) {
+            Logger.getLogger(TaiKhoanDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mssql.Disconnect();
+        }
+        return null;
+    }
     public ArrayList<TaiKhoanDTO> getListTaiKhoan() {
         try {
             ArrayList<TaiKhoanDTO> dstk = new ArrayList<>();
