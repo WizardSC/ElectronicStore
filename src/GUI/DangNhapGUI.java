@@ -4,7 +4,9 @@
  */
 package GUI;
 
+import BUS.NhanVienBUS;
 import BUS.TaiKhoanBUS;
+import DTO.NhanVienDTO;
 import DTO.TaiKhoanDTO;
 
 import java.util.ArrayList;
@@ -17,13 +19,17 @@ import java.util.Arrays;
 public class DangNhapGUI extends javax.swing.JFrame {
 
     private TaiKhoanBUS tkBUS = new TaiKhoanBUS();
+    private NhanVienBUS nvBUS = new NhanVienBUS();
     String MaCN;
-    public DangNhapGUI(String temp) {
+
+    public DangNhapGUI() {
         setUndecorated(true);
         initComponents();
         setLocationRelativeTo(null);
-        this.MaCN = temp;
-        tkBUS.docMaCN(MaCN);
+
+        tkBUS.docMaCN("CN001"); //truyền vào mã CN ảo
+        nvBUS.docMaCN("CN001"); //truyền vào mã CN ảo
+//        nvBUS.docMaCN(MaCN);
     }
 
     /**
@@ -157,30 +163,34 @@ public class DangNhapGUI extends javax.swing.JFrame {
         char[] MatKhau = pwdPassword.getPassword();
         tkBUS.docDanhSach3CN();
         ArrayList<TaiKhoanDTO> dstk = tkBUS.getListTaiKhoan3CN();
-        for(TaiKhoanDTO tk : dstk){
-//         
-            if(tk.getTenDangNhap().equals(TenDangNhap)){
+        nvBUS.docDanhSachNV3chinhanh();
+        ArrayList<NhanVienDTO> dsnv = nvBUS.getListNV3ChiNhanh();
+
+        for (TaiKhoanDTO tk : dstk) {
+            if (tk.getTenDangNhap().equals(TenDangNhap)) {
                 char[] correctPass = tk.getMatKhau().toCharArray();
-                if(Arrays.equals(MatKhau, correctPass)){
-                    System.out.println("Dang nhap thanh cong");
+                if (Arrays.equals(MatKhau, correctPass)) {
+                    
+                    for (NhanVienDTO nv : dsnv) {
+                        if (nv.getMaNV().equals(tk.getMaNV())) {
+                            new GiaoDienGUI(nv.getMaCN()).setVisible(true);
+                        }
+                    }
                     return;
                 } else {
                     System.out.println("Sai mật khẩu!");
-                    return;
                 }
-            } else {
-                System.out.println("Sai tên đăng nhập");
                 return;
             }
-            
         }
+        System.out.println("Sai tên đăng nhập");
+
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
     private void lblCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCloseMouseClicked
         dispose();
     }//GEN-LAST:event_lblCloseMouseClicked
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDangNhap;
