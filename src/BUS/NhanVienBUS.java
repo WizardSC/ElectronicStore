@@ -12,6 +12,7 @@ import MyCustom.XuLyException;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
 
 /**
@@ -34,29 +35,33 @@ public class NhanVienBUS {
     public void docDanhSach() {
         this.listNhanVien = nvDAO.getListNhanVien();
     }
-    
-    public void docDanhSachNV3chinhanh(){
+
+    public void docDanhSachNV3chinhanh() {
         this.listNhanVien = nvDAO.getListNV3ChiNhanh();
     }
-    
-    public void docMaNV(){
+
+    public void docMaNV() {
         this.listNhanVien = nvDAO.getListMaNV();
     }
+
     public void docDanhSachNVMaTuTang() {
         this.listNhanVien = nvDAO.getListNVMaTuTang(MaCN);
     }
 
     public ArrayList<NhanVienDTO> getListNhanVien() {
-        
+
         return listNhanVien;
     }
-    public ArrayList<NhanVienDTO> getListMaNV(){
+
+    public ArrayList<NhanVienDTO> getListMaNV() {
         return listNhanVien;
     }
-    public ArrayList<NhanVienDTO> getListNV3ChiNhanh(){
+
+    public ArrayList<NhanVienDTO> getListNV3ChiNhanh() {
 //        this.listNhanVien = nvDAO.getListNV3ChiNhanh();
         return listNhanVien;
     }
+
     public ArrayList<NhanVienDTO> getListNVMaTuTang() {
         return listNhanVien;
     }
@@ -78,8 +83,9 @@ public class NhanVienBUS {
             }
         }
     }
-    public void updateChiNhanh(NhanVienDTO nv){
-        for(int i=0;i<listNhanVien.size();i++){
+
+    public void updateChiNhanh(NhanVienDTO nv) {
+        for (int i = 0; i < listNhanVien.size(); i++) {
             if (listNhanVien.get(i).getMaNV().equals(nv.getMaNV())) {
                 listNhanVien.set(i, nv);
 
@@ -88,7 +94,7 @@ public class NhanVienBUS {
             }
         }
     }
-    
+
     public void delete(String MaNV) throws XuLyException {
         docDanhSach(); //đọc danh sách nhân viên của chi nhánh hiện tại thôi
 
@@ -97,9 +103,9 @@ public class NhanVienBUS {
                 try {
                     listNhanVien.remove(nv);
                     nvDAO.deleteNhanVien(MaNV);
-                } catch (SQLServerException e){
-                    throw new XuLyException("Không thể xóa nhân viên vì đã có dữ liệu liên quan đến nhân viên này trong CSDL ");               
-                } catch (Exception e){
+                } catch (SQLServerException e) {
+                    throw new XuLyException("Không thể xóa nhân viên vì đã có dữ liệu liên quan đến nhân viên này trong CSDL ");
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
                 return;
@@ -108,26 +114,42 @@ public class NhanVienBUS {
         }
 
     }
-    
-    public ArrayList<NhanVienDTO> searchMaNV3CN(String tk){
+
+    public ArrayList<NhanVienDTO> searchMaNV(String tk, boolean search) {
         ArrayList<NhanVienDTO> dsnv = new ArrayList<>();
-        this.listNhanVien = nvDAO.getListNV3ChiNhanh();
+        if (search) {
+            this.listNhanVien = nvDAO.getListNhanVien();
+        } else {
+            this.listNhanVien = nvDAO.getListNV3ChiNhanh();
+
+        }
         tk = tk.toLowerCase();
-        for(NhanVienDTO nv : listNhanVien){
-            if(nv.getMaNV().toLowerCase().contains(tk)){
+        for (NhanVienDTO nv : listNhanVien) {
+            if (nv.getMaNV().toLowerCase().contains(tk)) {
                 dsnv.add(nv);
             }
         }
         return dsnv;
     }
-    public ArrayList<NhanVienDTO> searchMaNV(String tuKhoa){
+
+    public ArrayList<NhanVienDTO> searchTuoi(int TuoiBD, int TuoiKT, boolean search) {
         ArrayList<NhanVienDTO> dsnv = new ArrayList<>();
-        tuKhoa = tuKhoa.toLowerCase();
-        for(NhanVienDTO nv : listNhanVien){
-            if(nv.getMaNV().toLowerCase().contains(tuKhoa)){
+        if (search) {
+            this.listNhanVien = nvDAO.getListNhanVien();
+        } else {
+            this.listNhanVien = nvDAO.getListNV3ChiNhanh();
+        }
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        for (NhanVienDTO nv : listNhanVien) {
+
+            int TuoiCanTim = year - nv.getNamSinh();
+
+            if (TuoiBD <= TuoiCanTim && TuoiCanTim <= TuoiKT) {
                 dsnv.add(nv);
             }
         }
         return dsnv;
     }
-    }
+
+}

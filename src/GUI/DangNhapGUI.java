@@ -9,9 +9,14 @@ import BUS.TaiKhoanBUS;
 import DTO.NhanVienDTO;
 import DTO.TaiKhoanDTO;
 import MyCustom.EnterKeyListener;
+import java.awt.Image;
+import java.awt.Toolkit;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,6 +29,10 @@ public class DangNhapGUI extends javax.swing.JFrame {
     String MaCN;
 
     public DangNhapGUI() {
+        Image iconImage = Toolkit.getDefaultToolkit().getImage("./src/img/gadgets64x64.png");
+        setIconImage(iconImage);
+//        ImageIcon logo = new ImageIcon("./src/img/gadgets64x64.png");
+//        setIconImage(logo.getImage());
         setUndecorated(true);
         initComponents();
         setLocationRelativeTo(null);
@@ -171,22 +180,28 @@ public class DangNhapGUI extends javax.swing.JFrame {
 
         for (TaiKhoanDTO tk : dstk) {
             if (tk.getTenDangNhap().equals(TenDangNhap)) {
+                if (tk.isTinhTrang() == false) {
+                    JOptionPane.showMessageDialog(this, "Tài khoản đang bị khóa, vui lòng liên hệ NV Quản lý", "LỖI", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
                 char[] correctPass = tk.getMatKhau().toCharArray();
                 if (Arrays.equals(MatKhau, correctPass)) {
-
                     for (NhanVienDTO nv : dsnv) {
                         if (nv.getMaNV().equals(tk.getMaNV())) {
                             new GiaoDienGUI(nv.getMaCN()).setVisible(true);
+                            dispose();
                         }
                     }
                     return;
                 } else {
-                    System.out.println("Sai mật khẩu!");
+                    JOptionPane.showMessageDialog(this, "Sai mật khẩu!", "LỖI", JOptionPane.ERROR_MESSAGE);
+
+                    return;
                 }
-                return;
             }
         }
-        System.out.println("Sai tên đăng nhập");
+        JOptionPane.showMessageDialog(this, "Sai tên đăng nhập", "LỖI", JOptionPane.ERROR_MESSAGE);
+       
 
     }//GEN-LAST:event_btnDangNhapActionPerformed
 

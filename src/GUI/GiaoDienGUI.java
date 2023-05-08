@@ -16,6 +16,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import MyCustom.ImageAvatar;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import javax.swing.ScrollPaneConstants;
 
@@ -33,7 +34,8 @@ public class GiaoDienGUI extends javax.swing.JFrame {
         setUndecorated(true);
         this.MaCN = temp;
         String substring = MaCN.substring(2);
-
+        Image iconImage = Toolkit.getDefaultToolkit().getImage("./src/img/gadgets64x64.png");
+        setIconImage(iconImage);
         initComponents();
         setLocationRelativeTo(null);
         Icon icon = lblAccount.getIcon();
