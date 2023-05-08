@@ -484,27 +484,11 @@ public class KhachHangGUI extends javax.swing.JPanel {
     }//GEN-LAST:event_btnXoaMouseClicked
 
     private void btnTimKiemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTimKiemMouseClicked
-        Calendar cal = Calendar.getInstance();
-        int year = cal.get(Calendar.YEAR);
-        int TuoiBD = Integer.parseInt(txtTuoiBD.getText());
-        int TuoiKT = Integer.parseInt(txtTuoiKT.getText());
-        if(cbxChonChiNhanh.getSelectedItem().toString().equals("Hiện tại")){
-            search = true;
-            ArrayList<NhanVienDTO> dsnv = nvBUS.searchTuoi(TuoiBD, TuoiKT, search);
-            showAllDSNV(dsnv);
-
-        } else {
-            search = false;
-            ArrayList<NhanVienDTO> dsnv = nvBUS.searchTuoi(TuoiBD, TuoiKT, search);
-            showAllDSNV(dsnv);
-
-        }
-        txtTuoiBD.setText("");
-        txtTuoiKT.setText("");
+        
     }//GEN-LAST:event_btnTimKiemMouseClicked
 
     private void cbxTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTimKiemActionPerformed
-        tuKhoaTimKiem = cbxTimKiem.getSelectedItem().toString();
+        
     }//GEN-LAST:event_cbxTimKiemActionPerformed
 
 

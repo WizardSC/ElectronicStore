@@ -56,6 +56,10 @@ public class BanHangGUI extends javax.swing.JPanel {
     public void loadDataMaHD() {
         hdBUS.docDanhSachMaHD();
         ArrayList<HoaDonDTO> dshd = hdBUS.getListMaHDTuTang();
+        if(dshd.isEmpty()){
+            txtMaHD.setText("HD001");
+            return;
+        }
         HoaDonDTO lastHoaDon = dshd.get(dshd.size() - 1);
         String MaHD = lastHoaDon.getMaHD();
         int sum = Integer.parseInt(MaHD.substring(3)) + 1;
@@ -614,6 +618,8 @@ public class BanHangGUI extends javax.swing.JPanel {
             cthdBUS.add(cthd);
 
         }
+        dscthd.clear();
+        dtmGioHang.setRowCount(0);
         JOptionPane.showMessageDialog(null, "In hóa đơn thành công");
         loadData();
         loadDataMaHD();

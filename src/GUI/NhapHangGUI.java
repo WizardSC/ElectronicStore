@@ -122,11 +122,17 @@ public class NhapHangGUI extends javax.swing.JPanel {
     public void loadMaPN3CN() {
         pnBUS.docDanhSach3CN();
         ArrayList<PhieuNhapDTO> dspn = pnBUS.getListPhieuNhap3CN();
+        if(dspn.isEmpty()){
+            txtMaPN.setText("PN001");
+            return;
+        }
         PhieuNhapDTO lastPN = dspn.get(dspn.size() - 1);
         String MaPN = lastPN.getMaPN();
         int sum = Integer.parseInt(MaPN.substring(3)) + 1;
         if (sum < 10) {
             txtMaPN.setText("PN00" + String.valueOf(sum));
+        } else if (sum == 0){
+            txtMaPN.setText("PN001" + String.valueOf(sum));
         } else {
             txtMaPN.setText("PN0" + String.valueOf(sum));
         }
@@ -548,7 +554,6 @@ public class NhapHangGUI extends javax.swing.JPanel {
                 SoLuongTrongKho = sp.getSoLuong();
             }
         }
-        System.out.println(SoLuongTrongKho);
 
 //        int SoLuongConLai = Integer.parseInt(tblDSSP.getModel().getValueAt(k, 2).toString());
         SpinnerNumberModel modeSpinner = new SpinnerNumberModel(1, 0, 100, 1);
@@ -592,9 +597,7 @@ public class NhapHangGUI extends javax.swing.JPanel {
             txtTongTien.setText(String.valueOf(TongTien));
         }
         if (NhapHang == false) {
-            System.out.println("Lam false");
             spBUS.updateGiaBan(sp);
-            loadDataDSSP();
             return;
         }
         txtMaSP.setText("");
