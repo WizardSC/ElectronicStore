@@ -8,6 +8,7 @@ import BUS.KhachHangBUS;
 import DTO.KhachHangDTO;
 import MyCustom.XuLyException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -23,7 +24,7 @@ public class KhachHangGUI extends javax.swing.JPanel {
     private KhachHangBUS khBUS = new KhachHangBUS();
     DefaultTableModel dtmKhachHang;
     String TuKhoaTimKiem;
-
+    
     public KhachHangGUI(String temp) {
 
         initComponents();
@@ -513,7 +514,13 @@ public class KhachHangGUI extends javax.swing.JPanel {
     }//GEN-LAST:event_btnXoaMouseClicked
 
     private void btnTimKiemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTimKiemMouseClicked
-
+       
+        int TuoiBD = Integer.parseInt(txtTuoiBD.getText());
+        int TuoiKT = Integer.parseInt(txtTuoiKT.getText());
+        khBUS.docDanhSach();
+        ArrayList<KhachHangDTO> dskh = khBUS.searchTuoi(TuoiBD, TuoiKT);
+        showAllDSKH(dskh);
+        
     }//GEN-LAST:event_btnTimKiemMouseClicked
 
     private void cbxTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTimKiemActionPerformed
