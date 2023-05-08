@@ -50,7 +50,29 @@ public class CTHoaDonDAO {
         }
         return null;
     }
-    
+    public ArrayList<CTHoaDonDTO> getListCTHD3CN(){
+        try {
+            ArrayList<CTHoaDonDTO> dscthd = new ArrayList<>();
+            String sql = "exec sp_SelectAllCTHD";
+            ResultSet rs = mssql.executeQuery(sql);
+            while(rs.next()){
+                CTHoaDonDTO cthd = new CTHoaDonDTO(
+                rs.getString("MaHD"),
+                rs.getString("MaSP"),
+                rs.getString("TenSP"),
+                rs.getInt("SoLuong"),
+                rs.getInt("DonGia"),
+                rs.getInt("ThanhTien"));
+                dscthd.add(cthd);
+                        }
+            return dscthd;
+        } catch (SQLException ex) {
+            Logger.getLogger(CTHoaDonDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mssql.Disconnect();
+        }
+        return null;
+    }
     public void insertCTHD(CTHoaDonDTO cthd){
         try {
             Connection connection = mssql.getConnection();

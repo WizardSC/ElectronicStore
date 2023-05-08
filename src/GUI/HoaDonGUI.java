@@ -22,6 +22,7 @@ public class HoaDonGUI extends javax.swing.JPanel {
     private HoaDonBUS hdBUS = new HoaDonBUS();
     private CTHoaDonBUS cthdBUS = new CTHoaDonBUS();
     String MaCN;
+    String ChiNhanh;
     DefaultTableModel dtmHoaDon;
     DefaultTableModel dtmCTHD;
 
@@ -34,6 +35,7 @@ public class HoaDonGUI extends javax.swing.JPanel {
         hdBUS.docMaCN(MaCN);
         cthdBUS.docMaCN(MaCN);
         loadData();
+        ChiNhanh = cbxChonChiNhanh.getSelectedItem().toString();
 //        loadDataDSCTHD();
     }
 
@@ -84,7 +86,6 @@ public class HoaDonGUI extends javax.swing.JPanel {
 //        ArrayList<CTHoaDonDTO> dscthd = cthdBUS.getListCTHD();
 //        showAllDSCTHD(dscthd);
 //    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -345,33 +346,44 @@ public class HoaDonGUI extends javax.swing.JPanel {
 
     private void tblDSHDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDSHDMouseClicked
         int k = tblDSHD.getSelectedRow();
-        JTextFieldDateEditor editor= (JTextFieldDateEditor) txtNgayLap.getDateEditor();
+        JTextFieldDateEditor editor = (JTextFieldDateEditor) txtNgayLap.getDateEditor();
         editor.setEditable(false);
         editor.setEnabled(false);
         String MaHD = tblDSHD.getModel().getValueAt(k, 0).toString();
-        txtMaHD.setText(tblDSHD.getModel().getValueAt(k, 0).toString());
-//        txtMaSP.setText(tblDSSP.getModel().getValueAt(k,0).toString());
-//        txtTenSP.setText(tblDSSP.getModel().getValueAt(k,1).toString());
-//        txtDonGia.setText(tblDSSP.getModel().getValueAt(k,3).toString());
-//        int SoLuongConLai = Integer.parseInt(tblDSSP.getModel().getValueAt(k,2).toString());
-//        SpinnerNumberModel modeSpinner = new SpinnerNumberModel(1, 0, SoLuongConLai, 1);
-//        txtSoLuong.setModel(modeSpinner);
-//        JFormattedTextField txtSpinner = ((JSpinner.NumberEditor) txtSoLuong.getEditor()).getTextField();
-//        ((NumberFormatter) txtSpinner.getFormatter()).setAllowsInvalid(false);
-//        txtSpinner.setEditable(false);
-//        txtSpinner.setHorizontalAlignment(JTextField.LEFT);
+        txtMaHD.setText(MaHD);
 
-        cthdBUS.docDanhSach();
-        ArrayList<CTHoaDonDTO> dscthd = cthdBUS.getListCTHD(MaHD);
-        showAllDSCTHD(dscthd);
+        if (ChiNhanh.equals("Hiện tại")) {
+            cthdBUS.docDanhSach();
+            ArrayList<CTHoaDonDTO> dscthd = cthdBUS.getListCTHD(MaHD);
+            showAllDSCTHD(dscthd);
+        } else if (ChiNhanh.equals("Toàn cục")){
+            cthdBUS.docDanhSach3CN();
+            ArrayList<CTHoaDonDTO> dscthd = cthdBUS.getListCTHD3CN(MaHD);
+            showAllDSCTHD(dscthd);
+        }
+            //        txtMaSP.setText(tblDSSP.getModel().getValueAt(k,0).toString());
+        //        txtTenSP.setText(tblDSSP.getModel().getValueAt(k,1).toString());
+        //        txtDonGia.setText(tblDSSP.getModel().getValueAt(k,3).toString());
+        //        int SoLuongConLai = Integer.parseInt(tblDSSP.getModel().getValueAt(k,2).toString());
+        //        SpinnerNumberModel modeSpinner = new SpinnerNumberModel(1, 0, SoLuongConLai, 1);
+        //        txtSoLuong.setModel(modeSpinner);
+        //        JFormattedTextField txtSpinner = ((JSpinner.NumberEditor) txtSoLuong.getEditor()).getTextField();
+        //        ((NumberFormatter) txtSpinner.getFormatter()).setAllowsInvalid(false);
+        //        txtSpinner.setEditable(false);
+        //        txtSpinner.setHorizontalAlignment(JTextField.LEFT);
+       
     }//GEN-LAST:event_tblDSHDMouseClicked
 
     private void cbxChonChiNhanhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxChonChiNhanhActionPerformed
-        if (cbxChonChiNhanh.getSelectedItem().toString().equals("Hiện tại")) {
+        ChiNhanh = cbxChonChiNhanh.getSelectedItem().toString();
+        if (ChiNhanh.equals("Hiện tại")) {
+
             loadData();
-        } else if (cbxChonChiNhanh.getSelectedItem().toString().equals("Toàn cục")) {
+        } else if (ChiNhanh.equals("Toàn cục")) {
+
             loadData3CN();
         }
+        dtmCTHD.setRowCount(0);
 
     }//GEN-LAST:event_cbxChonChiNhanhActionPerformed
 

@@ -9,6 +9,8 @@ import DTO.KhachHangDTO;
 import MyCustom.XuLyException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,6 +22,7 @@ public class KhachHangGUI extends javax.swing.JPanel {
     String MaCN;
     private KhachHangBUS khBUS = new KhachHangBUS();
     DefaultTableModel dtmKhachHang;
+    String TuKhoaTimKiem;
 
     public KhachHangGUI(String temp) {
 
@@ -30,6 +33,32 @@ public class KhachHangGUI extends javax.swing.JPanel {
         loadData();
         loadDataMaKH();
         txtMaKH.setEnabled(false);
+        TuKhoaTimKiem = cbxTimKiem.getSelectedItem().toString();
+        txtTimKiem.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                search(TuKhoaTimKiem);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                search(TuKhoaTimKiem);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                search(TuKhoaTimKiem);
+            }
+        });
+    }
+
+    public void search(String tk) {
+        if (tk.equals("Mã KH")) {
+            khBUS.docDanhSach();
+            ArrayList<KhachHangDTO> dskh = khBUS.searchMaKH(txtTimKiem.getText());
+            showAllDSKH(dskh);
+
+        }
     }
 
     public void showAllDSKH(ArrayList<KhachHangDTO> dskh) {
@@ -310,7 +339,7 @@ public class KhachHangGUI extends javax.swing.JPanel {
             }
         });
 
-        cbxTimKiem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã NV", "Họ", "Tên", "Giới tính" }));
+        cbxTimKiem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã KH", "Họ", "Tên", "Giới tính" }));
         cbxTimKiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxTimKiemActionPerformed(evt);
@@ -457,13 +486,13 @@ public class KhachHangGUI extends javax.swing.JPanel {
     private void btnXoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXoaMouseClicked
         String MaKH = txtMaKH.getText();
         int result = JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa khách hàng không?");
-        if (result == JOptionPane.YES_OPTION){
-            try{
+        if (result == JOptionPane.YES_OPTION) {
+            try {
                 khBUS.delete(MaKH);
                 loadData();
-            } catch (XuLyException e){
+            } catch (XuLyException e) {
                 JOptionPane.showMessageDialog(this, e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
-            } catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
                 JOptionPane.showMessageDialog(this, "Đã xảy ra lỗi khi xóa khách hàng", "Lỗi", JOptionPane.ERROR_MESSAGE);
             }
@@ -484,11 +513,11 @@ public class KhachHangGUI extends javax.swing.JPanel {
     }//GEN-LAST:event_btnXoaMouseClicked
 
     private void btnTimKiemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTimKiemMouseClicked
-        
+
     }//GEN-LAST:event_btnTimKiemMouseClicked
 
     private void cbxTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTimKiemActionPerformed
-        
+        TuKhoaTimKiem = cbxTimKiem.getSelectedItem().toString();
     }//GEN-LAST:event_cbxTimKiemActionPerformed
 
 

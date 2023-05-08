@@ -24,6 +24,9 @@ public class CTHoaDonBUS {
     public void docDanhSach(){
         this.listCTHD = cthdDAO.getListCTHD();
     }
+    public void docDanhSach3CN(){
+        this.listCTHD = cthdDAO.getListCTHD3CN();
+    }
     
     public ArrayList<CTHoaDonDTO> getListCTHD(String MaHD){
         ArrayList<CTHoaDonDTO> dscthd = new ArrayList<>();
@@ -34,6 +37,17 @@ public class CTHoaDonBUS {
         }
         return dscthd;
     }
+    
+    public ArrayList<CTHoaDonDTO> getListCTHD3CN(String MaHD){
+        ArrayList<CTHoaDonDTO> dscthd = new ArrayList<>();
+        for(CTHoaDonDTO cthd : listCTHD){
+            if(cthd.getMaHD().equals(MaHD)){
+                dscthd.add(cthd);
+            }
+        }
+        return dscthd;
+    }
+    
     
     public void add(CTHoaDonDTO cthd){
         docDanhSach();

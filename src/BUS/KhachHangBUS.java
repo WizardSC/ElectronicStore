@@ -70,4 +70,16 @@ public class KhachHangBUS {
         }
     }
     
+    public ArrayList<KhachHangDTO> searchMaKH(String tk){
+        docDanhSach();
+        ArrayList<KhachHangDTO> dskh = new ArrayList<>();
+        tk = tk.toLowerCase();
+        for(KhachHangDTO kh : listKhachHang){
+            if(kh.getMaKH().toLowerCase().contains(tk)){
+                dskh.add(kh);
+            }
+        }
+        return dskh;
+    }
+    
 }
