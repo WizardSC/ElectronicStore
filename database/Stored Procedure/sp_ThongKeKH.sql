@@ -27,6 +27,8 @@ begin
     order by SoHoaDon desc
 end
 
+select * from LINK_TO_CN3.ElectronicStore.dbo.HoaDon
+
 go
 
 exec sp_ThongKeKH

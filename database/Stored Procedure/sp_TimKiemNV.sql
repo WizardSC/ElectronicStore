@@ -36,4 +36,4 @@ exec sp_TimKiemNV 'NV003'
 
 select * from nhanvien
 
-select (year(getdate()) - NamSinh) from nhanvien where manv = 'NV003'
+select (year(getdate()) - NamSinh) from nhanvien where manv = 'NV001'

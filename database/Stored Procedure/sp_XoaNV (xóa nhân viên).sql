@@ -1,5 +1,6 @@
-﻿--sp xóa nhân viên khi đứng ở 1 chi nhánh bất kỳ
-alter proc sp_XoaNV(@MaNV nvarchar(20))
+﻿--5. Stored procedure xóa nhân viên khi đứng ở 1 chi nhánh bất kỳ
+--Chỉ có thể xóa nhân viên đang làm việc ở chi nhánh hiện tại
+create proc sp_XoaNV(@MaNV nvarchar(20))
 as
 begin
 	if not exists(select MaNV from nhanvien where MaNV = @MaNV)
@@ -71,6 +72,8 @@ begin
 		end
 end
 
-exec sp_XoaNV 'NV0070'
+exec sp_XoaNV 'NV080'
+
+select * From nhanvien
 exec sp_SelectAllNV
 exec sp_SelectAllHD

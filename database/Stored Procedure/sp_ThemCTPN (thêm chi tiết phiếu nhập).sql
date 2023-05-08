@@ -1,6 +1,7 @@
 ﻿select * from CTPhieuNhap
---Thêm CTPN khi đứng tại 1 chi nhánh bất kỳ
-alter proc sp_ThemCTPN
+--Stored procedure Thêm CTPN khi đứng tại 1 chi nhánh bất kỳ
+--Phiếu nhập phải tồn tại ở chi nhánh hiện tại
+create proc sp_ThemCTPN
 	@MaPN nvarchar(20),
 	@MaSP nvarchar(20),
 	@TenSP nvarchar(50),
@@ -9,7 +10,7 @@ alter proc sp_ThemCTPN
 	@ThanhTien int
 as
 begin
-	if not exists(select MaPN from CTPHIEUNHAP where MaPN = @MaPN)
+	if not exists(select MaPN from PHIEUNHAP where MaPN = @MaPN)
 		begin
 			print N'Không tồn tại phiếu nhập ở chi nhánh này'
 			return
@@ -33,6 +34,6 @@ begin
 			
 end
 
-exec sp_ThemCTPN 'PN003', 'SP001', 'A', 20, 10000, 200000
+exec sp_ThemCTPN 'PN033', 'SP001', 'A', 20, 10000, 200000
 
 select * from CTPHIEUNHAP

@@ -1,4 +1,4 @@
-﻿--Sp thêm mới 1 nhân viên khi đứng ở 1 chi nhánh bất kỳ
+﻿--Stored procedure thêm mới 1 nhân viên khi đứng ở 1 chi nhánh bất kỳ
 CREATE PROC sp_ThemNV 
 	@MaNV nvarchar(20), 
 	@Ho nvarchar(20), 
@@ -32,5 +32,5 @@ BEGIN
 END
 GO
 
-exec sp_ThemNV 'NV070', 'Nguyen', 'Van A', 1990, 'Nam', '0987654321', 'Ha Noi', 'CV005', 'CN001', null
+exec sp_ThemNV 'NV080', 'Nguyen', 'Van A', 1990, 'Nam', '0987654321', 'Ha Noi', 'CV005', 'CN001', null
 select * from NHANVIEN

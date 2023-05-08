@@ -30,7 +30,7 @@ begin
 end
 select * from NHANVIEN
 exec sp_SelectAllNV3ChiNhanh
-exec sp_ChuyenChiNhanhNV N'NV006', N'CN003'
+exec sp_ChuyenChiNhanhNV N'NV019', N'CN003'
 select * from chinhanh
 update nhanvien set MaCN = N'CN002' where MaNV = N'NV014'
 

@@ -1,3 +1,4 @@
+﻿--Stored procedure thống kê 
 create proc sp_SanPhamBanChay
 as
 begin
@@ -15,5 +16,7 @@ begin
 	group by MaSP, TenSP, SoLuongBanRa
 	order by SoLuongBanRa desc
 end
+select * from CTHOADON
+exec sp_SanPhamBanChay
 
 exec sp_SanPhamBanChay

@@ -29,7 +29,7 @@ begin
 end
 
 
-exec sp_ThemPN 'PN065', '2023-05-01', 10000, 'NV003', 'NCC001'
+exec sp_ThemPN 'PN033', '2023-05-01', 10000, 'NV004', 'NCC001'
 
 select * from LINK_TO_CN1.ElectronicStore.dbo.PhieuNhap
 union
@@ -37,4 +37,5 @@ select * from LINK_TO_CN2.ElectronicStore.dbo.PhieuNhap
 union
 select * from LINK_TO_CN3.ElectronicStore.dbo.PhieuNhap
 
+select * from phieunhap
 select * from nhanvien
