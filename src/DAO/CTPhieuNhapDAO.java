@@ -51,22 +51,47 @@ public class CTPhieuNhapDAO {
         }
         return null;
     }
-    
-    public void insertCTPN(CTPhieuNhapDTO ctpn){
+
+    public ArrayList<CTPhieuNhapDTO> getListCTPN3CN() {
+        try {
+            ArrayList<CTPhieuNhapDTO> dsctpn = new ArrayList<>();
+            String sql = "exec sp_SelectAllCTPN";
+            ResultSet rs = mssql.executeQuery(sql);
+            while (rs.next()) {
+                CTPhieuNhapDTO ctpn = new CTPhieuNhapDTO(
+                        rs.getString("MaPN"),
+                        rs.getString("MaSP"),
+                        rs.getString("TenSP"),
+                        rs.getInt("SoLuong"),
+                        rs.getInt("DonGia"),
+                        rs.getInt("ThanhTien")
+                );
+            dsctpn.add(ctpn);
+            }
+            return dsctpn;
+        } catch (SQLException ex) {
+            Logger.getLogger(CTPhieuNhapDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mssql.Disconnect();
+        }
+        return null;
+    }
+
+    public void insertCTPN(CTPhieuNhapDTO ctpn) {
         try {
             Connection connection = mssql.getConnection();
             String sql = "INSERT INTO ctphieunhap (MaPN, MaSP, TenSP, SoLuong, DonGia, ThanhTien) values (?,?,?,?,?,?)";
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1,ctpn.getMaPN());
-            ps.setString(2,ctpn.getMaSP());
-            ps.setString(3,ctpn.getTenSP());
-            ps.setInt(4,ctpn.getSoLuong());
-            ps.setInt(5,ctpn.getDonGia());
-            ps.setInt(6,ctpn.getThanhTien());
+            ps.setString(1, ctpn.getMaPN());
+            ps.setString(2, ctpn.getMaSP());
+            ps.setString(3, ctpn.getTenSP());
+            ps.setInt(4, ctpn.getSoLuong());
+            ps.setInt(5, ctpn.getDonGia());
+            ps.setInt(6, ctpn.getThanhTien());
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(CTPhieuNhapDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 }

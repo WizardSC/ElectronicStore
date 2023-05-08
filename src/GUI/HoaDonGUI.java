@@ -8,6 +8,7 @@ import BUS.CTHoaDonBUS;
 import BUS.HoaDonBUS;
 import DTO.CTHoaDonDTO;
 import DTO.HoaDonDTO;
+import com.toedter.calendar.JTextFieldDateEditor;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -109,7 +110,7 @@ public class HoaDonGUI extends javax.swing.JPanel {
         jLabel15 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         txtMaNCC1 = new javax.swing.JTextField();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        txtNgayLap = new com.toedter.calendar.JDateChooser();
         jLabel10 = new javax.swing.JLabel();
         txtMaNV2 = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
@@ -230,7 +231,7 @@ public class HoaDonGUI extends javax.swing.JPanel {
                                             .addComponent(jLabel14))))
                                 .addGap(45, 45, 45)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtNgayLap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtMaNCC1, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
                                     .addComponent(jTextField11))
                                 .addGap(29, 29, 29)))))
@@ -258,7 +259,7 @@ public class HoaDonGUI extends javax.swing.JPanel {
                         .addComponent(jLabel9)
                         .addComponent(txtMaNV1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel15))
-                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNgayLap, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -344,6 +345,9 @@ public class HoaDonGUI extends javax.swing.JPanel {
 
     private void tblDSHDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDSHDMouseClicked
         int k = tblDSHD.getSelectedRow();
+        JTextFieldDateEditor editor= (JTextFieldDateEditor) txtNgayLap.getDateEditor();
+        editor.setEditable(false);
+        editor.setEnabled(false);
         String MaHD = tblDSHD.getModel().getValueAt(k, 0).toString();
         txtMaHD.setText(tblDSHD.getModel().getValueAt(k, 0).toString());
 //        txtMaSP.setText(tblDSSP.getModel().getValueAt(k,0).toString());
@@ -383,7 +387,6 @@ public class HoaDonGUI extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbxChonChiNhanh;
     private javax.swing.JComboBox<String> jComboBox1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel14;
@@ -403,5 +406,6 @@ public class HoaDonGUI extends javax.swing.JPanel {
     private javax.swing.JTextField txtMaNCC1;
     private javax.swing.JTextField txtMaNV1;
     private javax.swing.JTextField txtMaNV2;
+    private com.toedter.calendar.JDateChooser txtNgayLap;
     // End of variables declaration//GEN-END:variables
 }

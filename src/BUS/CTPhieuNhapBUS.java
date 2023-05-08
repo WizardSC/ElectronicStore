@@ -24,8 +24,21 @@ public class CTPhieuNhapBUS {
     public void docDanhSach(){
         this.listCTPN = ctpnDAO.getListCTPN();
     }
+    public void docDanhSach3CN(){
+        this.listCTPN = ctpnDAO.getListCTPN3CN();
+    }
    
     public ArrayList<CTPhieuNhapDTO> getListCTPNtheoMaPN(String MaPN){
+        ArrayList<CTPhieuNhapDTO> dsctpn = new ArrayList<>();
+        for(CTPhieuNhapDTO ctpn : listCTPN){
+            if(ctpn.getMaPN().equals(MaPN)){
+                dsctpn.add(ctpn);
+            }
+        }
+        return dsctpn;
+    }
+    
+    public ArrayList<CTPhieuNhapDTO> getListCTPNtheoMaPN3CN(String MaPN){
         ArrayList<CTPhieuNhapDTO> dsctpn = new ArrayList<>();
         for(CTPhieuNhapDTO ctpn : listCTPN){
             if(ctpn.getMaPN().equals(MaPN)){
