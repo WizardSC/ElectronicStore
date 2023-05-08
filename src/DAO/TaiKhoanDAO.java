@@ -101,4 +101,18 @@ public class TaiKhoanDAO {
             Logger.getLogger(TaiKhoanDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void khoaTaiKhoan(TaiKhoanDTO tk){
+        try {
+            Connection connection = mssql.getConnection();
+            String sql = "update taikhoan set TinhTrang = ? where TenDangNhap = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setBoolean(1, tk.isTinhTrang());
+            ps.setString(2,tk.getTenDangNhap());
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(TaiKhoanDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
 }

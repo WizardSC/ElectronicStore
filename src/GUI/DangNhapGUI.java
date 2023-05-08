@@ -8,6 +8,7 @@ import BUS.NhanVienBUS;
 import BUS.TaiKhoanBUS;
 import DTO.NhanVienDTO;
 import DTO.TaiKhoanDTO;
+import MyCustom.EnterKeyListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,7 +30,9 @@ public class DangNhapGUI extends javax.swing.JFrame {
 
         tkBUS.docMaCN("CN001"); //truyền vào mã CN ảo
         nvBUS.docMaCN("CN001"); //truyền vào mã CN ảo
-//        nvBUS.docMaCN(MaCN);
+        // Xử lý sự kiện nhấn phím Enter trên txtTenDangNhap
+        txtUsername.addKeyListener(new EnterKeyListener(pwdPassword));
+        pwdPassword.addKeyListener(new EnterKeyListener(btnDangNhap));
     }
 
     /**
@@ -170,7 +173,7 @@ public class DangNhapGUI extends javax.swing.JFrame {
             if (tk.getTenDangNhap().equals(TenDangNhap)) {
                 char[] correctPass = tk.getMatKhau().toCharArray();
                 if (Arrays.equals(MatKhau, correctPass)) {
-                    
+
                     for (NhanVienDTO nv : dsnv) {
                         if (nv.getMaNV().equals(tk.getMaNV())) {
                             new GiaoDienGUI(nv.getMaCN()).setVisible(true);

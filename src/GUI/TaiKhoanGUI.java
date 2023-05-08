@@ -23,7 +23,7 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
     private TaiKhoanBUS tkBUS = new TaiKhoanBUS();
     DefaultComboBoxModel dcbmMaNV;
     DefaultTableModel dtmTaiKhoan;
-
+    boolean TinhTrang;
     public TaiKhoanGUI(String temp) {
         initComponents();
         this.MaCN = temp;
@@ -92,6 +92,7 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         txtMaCV = new javax.swing.JTextField();
         cbxTinhTrang = new javax.swing.JComboBox<>();
+        btnKhoa = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblDSTK = new MyCustom.MyTable();
 
@@ -124,7 +125,7 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
         btnSua.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnSua.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/system-update.png"))); // NOI18N
-        btnSua.setText("SỬA");
+        btnSua.setText("SỬA MK");
         btnSua.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSua.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -167,6 +168,17 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
 
         cbxTinhTrang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "true", "false" }));
 
+        btnKhoa.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnKhoa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnKhoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/system-update.png"))); // NOI18N
+        btnKhoa.setText("KHÓA TK");
+        btnKhoa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnKhoa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnKhoaMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -181,25 +193,33 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
                     .addComponent(jLabel5))
                 .addGap(40, 40, 40)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtMatKhau)
-                            .addComponent(txtTenDangNhap)
-                            .addComponent(cbxMaNV, 0, 200, Short.MAX_VALUE))
-                        .addGap(80, 80, 80)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(cbxTinhTrang, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(txtMaCV, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cbxChonChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(80, 80, 80)
-                        .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(80, 80, 80)
+                                .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(56, 56, 56)
+                                .addComponent(btnKhoa, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtMatKhau)
+                            .addComponent(txtTenDangNhap)
+                            .addComponent(cbxMaNV, 0, 200, Short.MAX_VALUE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(80, 80, 80)
+                                .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(66, 66, 66)
+                                .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(530, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,32 +234,39 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
                             .addComponent(cbxMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnThem))))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtTenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel4))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnSua)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(txtTenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(17, 17, 17)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel4))
+                            .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnSua)
+                        .addGap(26, 26, 26)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addComponent(jLabel3)
-                        .addGap(60, 128, Short.MAX_VALUE))
+                        .addComponent(jLabel3))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(cbxTinhTrang, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addComponent(cbxTinhTrang, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addComponent(btnKhoa)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtMaCV, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)
                             .addComponent(cbxChonChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnXoa))
-                        .addContainerGap(73, Short.MAX_VALUE))))
+                            .addComponent(btnXoa))))
+                .addGap(60, 75, Short.MAX_VALUE))
         );
 
         tblDSTK.setModel(new javax.swing.table.DefaultTableModel(
@@ -309,7 +336,7 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnThemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemMouseClicked
-        
+
         String MaNV = cbxMaNV.getSelectedItem().toString().toUpperCase();
         System.out.println(MaNV);
         String MatKhau = txtMatKhau.getText();
@@ -348,20 +375,31 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
 
     private void tblDSTKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDSTKMouseClicked
         int k = tblDSTK.getSelectedRow();
-        String MaNV = tblDSTK.getModel().getValueAt(k,0).toString();
+        String MaNV = tblDSTK.getModel().getValueAt(k, 0).toString();
         cbxMaNV.addItem(MaNV);
         cbxMaNV.setSelectedItem(MaNV);
         cbxMaNV.setEnabled(false);
         txtTenDangNhap.setEnabled(false);
-        
+
         txtTenDangNhap.setText(tblDSTK.getModel().getValueAt(k, 1).toString());
         txtMatKhau.setText(tblDSTK.getModel().getValueAt(k, 2).toString());
-        if(txtMatKhau.getText().equals("111111")){
-            btnSua.setText(MaNV);
+        if (txtMatKhau.getText().equals("111111")) {
+            btnSua.setText("RESET MK");
+        } else {
+            btnSua.setText("SỬA MK");
         }
-        cbxTinhTrang.setSelectedItem(tblDSTK.getModel().getValueAt(k,3).toString());
+        String TT = tblDSTK.getModel().getValueAt(k, 3).toString();
+        cbxTinhTrang.setSelectedItem(TT);
+        cbxTinhTrang.setEnabled(false);
+        if(cbxTinhTrang.getSelectedItem().toString().equals("true")){
+            btnKhoa.setText("KHÓA TK");
+            TinhTrang = false;
+        }else{
+            btnKhoa.setText("MỞ KHÓA TK");
+            TinhTrang = true;
+        }
         txtMaCV.setText(tblDSTK.getModel().getValueAt(k, 4).toString());
-        
+
     }//GEN-LAST:event_tblDSTKMouseClicked
 
     private void cbxChonChucVuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxChonChucVuActionPerformed
@@ -370,8 +408,17 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
         txtMaCV.setText(scv.getMaCV());
     }//GEN-LAST:event_cbxChonChucVuActionPerformed
 
+    private void btnKhoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnKhoaMouseClicked
+        String TenDangNhap = txtTenDangNhap.getText();
+//        boolean TinhTrang = Boolean.parseBoolean(cbxTinhTrang.getSelectedItem().toString());
+        TaiKhoanDTO tk = new TaiKhoanDTO(TenDangNhap, TinhTrang);
+        tkBUS.lock(tk);
+        loadDataTK();
+    }//GEN-LAST:event_btnKhoaMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btnKhoa;
     private javax.swing.JLabel btnSua;
     private javax.swing.JLabel btnThem;
     private javax.swing.JLabel btnXoa;
