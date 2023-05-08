@@ -743,12 +743,15 @@ public class NhanVienGUI extends javax.swing.JPanel {
             ArrayList<NhanVienDTO> dsnv = nvBUS.searchTuoi(TuoiBD, TuoiKT, search);
             showAllDSNV(dsnv);
             
+            
         } else {
             search = false;
             ArrayList<NhanVienDTO> dsnv = nvBUS.searchTuoi(TuoiBD, TuoiKT, search);
             showAllDSNV(dsnv);
             
         }
+        txtTuoiBD.setText("");
+        txtTuoiKT.setText("");
     }//GEN-LAST:event_btnTimKiemMouseClicked
 
 

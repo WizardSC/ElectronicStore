@@ -100,6 +100,14 @@ public class KhachHangGUI extends javax.swing.JPanel {
         btnThem = new javax.swing.JLabel();
         btnSua = new javax.swing.JLabel();
         btnXoa = new javax.swing.JLabel();
+        btnTimKiem = new javax.swing.JLabel();
+        cbxTimKiem = new javax.swing.JComboBox<>();
+        txtTimKiem = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        txtTuoiBD = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        txtTuoiKT = new javax.swing.JTextField();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 240));
         jPanel1.setPreferredSize(new java.awt.Dimension(896, 744));
@@ -175,10 +183,9 @@ public class KhachHangGUI extends javax.swing.JPanel {
                     .addComponent(lblGioiTinh)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(11, 11, 11)
-                        .addComponent(jLabel5))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addComponent(jLabel6)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cbxGioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -296,6 +303,29 @@ public class KhachHangGUI extends javax.swing.JPanel {
             }
         });
 
+        btnTimKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search1.png"))); // NOI18N
+        btnTimKiem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnTimKiemMouseClicked(evt);
+            }
+        });
+
+        cbxTimKiem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã NV", "Họ", "Tên", "Giới tính" }));
+        cbxTimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxTimKiemActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel11.setText("Tuổi");
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel12.setText("Từ");
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel13.setText("Đến");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -313,7 +343,24 @@ public class KhachHangGUI extends javax.swing.JPanel {
                             .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(99, 99, 99))))
+                        .addGap(99, 99, 99))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnTimKiem)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbxTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtTuoiBD, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtTuoiKT, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -327,7 +374,20 @@ public class KhachHangGUI extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(btnXoa))
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(51, 51, 51)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbxTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel13)
+                        .addComponent(txtTuoiKT, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtTuoiBD, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(btnTimKiem)))
+                .addGap(10, 10, 10)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -423,13 +483,42 @@ public class KhachHangGUI extends javax.swing.JPanel {
 //        }
     }//GEN-LAST:event_btnXoaMouseClicked
 
+    private void btnTimKiemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTimKiemMouseClicked
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int TuoiBD = Integer.parseInt(txtTuoiBD.getText());
+        int TuoiKT = Integer.parseInt(txtTuoiKT.getText());
+        if(cbxChonChiNhanh.getSelectedItem().toString().equals("Hiện tại")){
+            search = true;
+            ArrayList<NhanVienDTO> dsnv = nvBUS.searchTuoi(TuoiBD, TuoiKT, search);
+            showAllDSNV(dsnv);
+
+        } else {
+            search = false;
+            ArrayList<NhanVienDTO> dsnv = nvBUS.searchTuoi(TuoiBD, TuoiKT, search);
+            showAllDSNV(dsnv);
+
+        }
+        txtTuoiBD.setText("");
+        txtTuoiKT.setText("");
+    }//GEN-LAST:event_btnTimKiemMouseClicked
+
+    private void cbxTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTimKiemActionPerformed
+        tuKhoaTimKiem = cbxTimKiem.getSelectedItem().toString();
+    }//GEN-LAST:event_cbxTimKiemActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnSua;
     private javax.swing.JLabel btnThem;
+    private javax.swing.JLabel btnTimKiem;
     private javax.swing.JLabel btnXoa;
     private javax.swing.JComboBox<String> cbxGioiTinh;
+    private javax.swing.JComboBox<String> cbxTimKiem;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -447,5 +536,8 @@ public class KhachHangGUI extends javax.swing.JPanel {
     private javax.swing.JTextField txtNamSinh;
     private javax.swing.JTextField txtSoDT;
     private javax.swing.JTextField txtTen;
+    private javax.swing.JTextField txtTimKiem;
+    private javax.swing.JTextField txtTuoiBD;
+    private javax.swing.JTextField txtTuoiKT;
     // End of variables declaration//GEN-END:variables
 }

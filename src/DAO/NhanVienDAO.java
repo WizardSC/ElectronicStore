@@ -41,7 +41,7 @@ public class NhanVienDAO {
         try {
             ArrayList<NhanVienDTO> dsnv = new ArrayList<>();
             String sqlGoc = "select * from nhanvien"; //đăng nhập toàn cục
-            String sql = "exec sp_SelectAllNV"; //đăng nhập chi nhánh
+            String sql = "exec sp_SelectAllMaNV"; //đăng nhập chi nhánh
             if (MaCN.equals("null")) {
                 ResultSet rs = mssql.executeQuery(sqlGoc);
                 while (rs.next()) {
@@ -185,7 +185,7 @@ public class NhanVienDAO {
     public ArrayList<NhanVienDTO> getListNV3ChiNhanh() {
         try {
             ArrayList<NhanVienDTO> dsnv = new ArrayList<>();
-            String sql = "EXEC sp_SelectAllNV3ChiNhanh";
+            String sql = "EXEC sp_SelectAllNV";
             ResultSet rs = mssql.executeQuery(sql);
             while (rs.next()) {
                 NhanVienDTO nv = new NhanVienDTO(
