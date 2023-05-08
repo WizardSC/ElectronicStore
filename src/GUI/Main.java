@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import java.awt.Color;
 import javax.swing.UIManager;
 
 /**
@@ -15,10 +16,11 @@ public class Main {
 
     public static void main(String[] args) {
 //        new ChiNhanhGUI("CN002").setVisible(true);
-//        new GiaoDienGUI("CN002").setVisible(true);
+//        new GiaoDienGUI("CN003").setVisible(true);
         new DangNhapGUI().setVisible(true);
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+//            UIManager.put("Button.foreground", Color.red);
         } catch (Exception e) {
 
         }

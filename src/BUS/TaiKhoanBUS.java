@@ -38,5 +38,15 @@ public class TaiKhoanBUS {
         tkDAO.insertTaiKhoan(tk);
     }
     
+    public void update(TaiKhoanDTO tk){
+        for(int i=0;i<listTaiKhoan.size();i++){
+            if(tk.getTenDangNhap().equals(listTaiKhoan.get(i).getTenDangNhap())){
+                listTaiKhoan.set(i,tk);
+                tkDAO.updateMatKhauTK(tk);
+                return;
+            }
+        }
+    }
+    
     
 }

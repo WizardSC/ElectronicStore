@@ -23,6 +23,17 @@ public class TaiKhoanDTO {
         this.MaCV = MaCV;
     }
 
+    public TaiKhoanDTO(String TenDangNhap, String MatKhau) {
+        this.TenDangNhap = TenDangNhap;
+        this.MatKhau = MatKhau;
+    }
+
+    public TaiKhoanDTO(String TenDangNhap, boolean TinhTrang) {
+        this.TenDangNhap = TenDangNhap;
+        this.TinhTrang = TinhTrang;
+    }
+
+    
     public String getTenDangNhap() {
         return TenDangNhap;
     }
