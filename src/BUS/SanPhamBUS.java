@@ -90,6 +90,16 @@ public class SanPhamBUS {
         return dssp;
     }
     
+    public ArrayList<SanPham_ChiNhanhDTO> searchDonGia(int GiaBD, int GiaKT){
+        ArrayList<SanPham_ChiNhanhDTO> dssp = new ArrayList<>();
+        for(SanPham_ChiNhanhDTO sp : listSanPham){
+            int DonGia = sp.getDonGia();
+            if(GiaBD <= DonGia && DonGia <= GiaKT){
+                dssp.add(sp);
+            }
+        }
+        return dssp;
+    }
     public void capNhatSLNhapHang(String MaSP, int SoLuongNhap, int SoLuongTrongKho){
         spDAO.capNhatSLNhapHang(MaSP, SoLuongNhap, SoLuongTrongKho);
     }

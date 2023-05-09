@@ -52,15 +52,17 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="txtTimKiem" min="-2" pref="246" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                           <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="txtMaNV4" min="-2" pref="134" max="-2" attributes="0"/>
+                          <Component id="txtGiaMin" min="-2" pref="134" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="txtMaNV3" min="-2" pref="134" max="-2" attributes="0"/>
+                          <Component id="txtGiaMax" min="-2" pref="134" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -79,12 +81,13 @@
                           <Component id="cbxTimKiem" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtMaNV3" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                          <Component id="txtMaNV4" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                          <Component id="txtGiaMax" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                          <Component id="txtGiaMin" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                           <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jScrollPane2" pref="374" max="32767" attributes="0"/>
@@ -652,14 +655,14 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtMaNV3">
+        <Component class="javax.swing.JTextField" name="txtGiaMax">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtMaNV4">
+        <Component class="javax.swing.JTextField" name="txtGiaMin">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="1"/>
@@ -689,6 +692,16 @@
             </Property>
             <Property name="text" type="java.lang.String" value="&#x110;&#x1a1;n gi&#xe1;"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel11">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/img/search1.png"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel11MouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

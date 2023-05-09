@@ -142,11 +142,12 @@ public class SanPhamGUI extends javax.swing.JPanel {
         cbxTimKiem = new javax.swing.JComboBox<>();
         txtTimKiem = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        txtMaNV3 = new javax.swing.JTextField();
-        txtMaNV4 = new javax.swing.JTextField();
+        txtGiaMax = new javax.swing.JTextField();
+        txtGiaMin = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 240));
         jPanel1.setPreferredSize(new java.awt.Dimension(896, 744));
@@ -467,9 +468,9 @@ public class SanPhamGUI extends javax.swing.JPanel {
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search1.png"))); // NOI18N
 
-        txtMaNV3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtGiaMax.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
-        txtMaNV4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtGiaMin.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel12.setText("Từ");
@@ -479,6 +480,13 @@ public class SanPhamGUI extends javax.swing.JPanel {
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel14.setText("Đơn giá");
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search1.png"))); // NOI18N
+        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel11MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -496,15 +504,17 @@ public class SanPhamGUI extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel14)
+                        .addComponent(jLabel11)
                         .addGap(18, 18, 18)
+                        .addComponent(jLabel14)
+                        .addGap(12, 12, 12)
                         .addComponent(jLabel12)
                         .addGap(18, 18, 18)
-                        .addComponent(txtMaNV4, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtGiaMin, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtMaNV3, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtGiaMax, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -518,11 +528,12 @@ public class SanPhamGUI extends javax.swing.JPanel {
                         .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(cbxTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtMaNV3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtMaNV4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtGiaMax, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtGiaMin, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel12)
                         .addComponent(jLabel13)
-                        .addComponent(jLabel14)))
+                        .addComponent(jLabel14))
+                    .addComponent(jLabel11))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
                 .addContainerGap())
@@ -673,6 +684,14 @@ public class SanPhamGUI extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnResetMouseClicked
 
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+        int GiaMin = Integer.parseInt(txtGiaMin.getText());
+        int GiaMax = Integer.parseInt(txtGiaMax.getText());
+        spBUS.docDanhSach();
+        ArrayList<SanPham_ChiNhanhDTO> dssp = spBUS.searchDonGia(GiaMin, GiaMax);
+        showAllDSSP(dssp);
+    }//GEN-LAST:event_jLabel11MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChonMaLoai;
@@ -688,6 +707,7 @@ public class SanPhamGUI extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cbxTimKiem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -704,11 +724,11 @@ public class SanPhamGUI extends javax.swing.JPanel {
     private javax.swing.JLabel lblGioiTinh;
     private MyCustom.MyTable tblDSSP;
     private javax.swing.JTextField txtDonGia;
+    private javax.swing.JTextField txtGiaMax;
+    private javax.swing.JTextField txtGiaMin;
     private javax.swing.JTextField txtMaLoai;
     private javax.swing.JTextField txtMaNCC;
     private javax.swing.JTextField txtMaNSX;
-    private javax.swing.JTextField txtMaNV3;
-    private javax.swing.JTextField txtMaNV4;
     private javax.swing.JTextField txtMaSP;
     private javax.swing.JTextField txtSoLuong;
     private javax.swing.JTextField txtTenSP;
