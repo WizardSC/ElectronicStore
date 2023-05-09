@@ -102,6 +102,18 @@ public class TaiKhoanDAO {
         }
     }
     
+//    public void resetMatKhauTK(TaiKhoanDTO tk){
+//        try {
+//            Connection connection = mssql.getConnection();
+//            String sql = "update taikhoan set matkhau = '111111' where TenDangNhap = ?";
+//            PreparedStatement ps = connection.prepareStatement(sql);
+//            ps.setString(1,tk.getTenDangNhap());
+//            ps.executeUpdate();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(TaiKhoanDAO.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
+    
     public void khoaTaiKhoan(TaiKhoanDTO tk){
         try {
             Connection connection = mssql.getConnection();

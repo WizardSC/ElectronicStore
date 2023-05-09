@@ -213,7 +213,6 @@ public class NhanVienDAO {
     public void updateChiNhanh(NhanVienDTO nv) {
         try {
             Connection connection = mssql.getConnection();
-            System.out.println("Thuc thi update Chi Nhanh");
             String sql = "exec sp_ChuyenChiNhanhNV N'" + nv.getMaNV() +"'" + ", " + "N'" + nv.getMaCN() +"'";
             PreparedStatement ps = connection.prepareStatement(sql);
 //            ps.setString(1, nv.getMaCN());
@@ -226,17 +225,5 @@ public class NhanVienDAO {
         }
 
     }
-//    public void deleteNhanVien(String MaNV) throws SQLException, SQLIntegrityConstraintViolationException{
-//        try {
-//            Connection connection = mssql.getConnection();
-//            String sql = "DELETE from nhanvien where MaNV = ?";
-//            PreparedStatement ps = connection.prepareStatement(sql);
-//            ps.setString(1,MaNV);
-//            ps.executeUpdate();
-//            
-//        } catch (SQLException ex) {
-//            Logger.getLogger(NhanVienDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        
-//    }
+    
 }

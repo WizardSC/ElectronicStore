@@ -10,6 +10,7 @@ import DTO.NhanVienDTO;
 import DTO.TaiKhoanDTO;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -24,6 +25,8 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
     DefaultComboBoxModel dcbmMaNV;
     DefaultTableModel dtmTaiKhoan;
     boolean TinhTrang;
+    boolean btn;
+
     public TaiKhoanGUI(String temp) {
         initComponents();
         this.MaCN = temp;
@@ -333,11 +336,17 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
     }//GEN-LAST:event_btnThemMouseClicked
 
     private void btnSuaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSuaMouseClicked
-        String TenDangNhap = txtTenDangNhap.getText();
-        String MatKhau = txtMatKhau.getText();
-        TaiKhoanDTO tk = new TaiKhoanDTO(TenDangNhap, MatKhau);
-        tkBUS.update(tk);
-        loadDataTK();
+
+        int result = JOptionPane.showConfirmDialog(this, "Bạn có muốn thay đổi mật khẩu không?", "THÔNG BÁO", JOptionPane.YES_OPTION);
+        if (result == JOptionPane.YES_OPTION) {
+            String TenDangNhap = txtTenDangNhap.getText();
+            String MatKhau = txtMatKhau.getText();
+            TaiKhoanDTO tk = new TaiKhoanDTO(TenDangNhap, MatKhau);
+            tkBUS.update(tk, btn);
+            loadDataTK();
+        }
+
+
     }//GEN-LAST:event_btnSuaMouseClicked
 
     private void tblDSTKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDSTKMouseClicked
@@ -351,17 +360,20 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
         txtTenDangNhap.setText(tblDSTK.getModel().getValueAt(k, 1).toString());
         txtMatKhau.setText(tblDSTK.getModel().getValueAt(k, 2).toString());
         if (txtMatKhau.getText().equals("111111")) {
-            btnSua.setText("RESET MK");
-        } else {
+
             btnSua.setText("SỬA MK");
+            btn = true;
+        } else {
+            btnSua.setText("RESET MK");
+            btn = false;
         }
         String TT = tblDSTK.getModel().getValueAt(k, 3).toString();
         cbxTinhTrang.setSelectedItem(TT);
-        cbxTinhTrang.setEnabled(false);
-        if(cbxTinhTrang.getSelectedItem().toString().equals("true")){
+
+        if (cbxTinhTrang.getSelectedItem().toString().equals("true")) {
             btnKhoa.setText("KHÓA TK");
             TinhTrang = false;
-        }else{
+        } else {
             btnKhoa.setText("MỞ KHÓA TK");
             TinhTrang = true;
         }
@@ -377,7 +389,6 @@ public class TaiKhoanGUI extends javax.swing.JPanel {
 
     private void btnKhoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnKhoaMouseClicked
         String TenDangNhap = txtTenDangNhap.getText();
-//        boolean TinhTrang = Boolean.parseBoolean(cbxTinhTrang.getSelectedItem().toString());
         TaiKhoanDTO tk = new TaiKhoanDTO(TenDangNhap, TinhTrang);
         tkBUS.lock(tk);
         loadDataTK();

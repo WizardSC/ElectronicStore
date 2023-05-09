@@ -272,11 +272,11 @@
                           <Component id="pnChucVu" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="pnTaiKhoan" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="52" max="32767" attributes="0"/>
+                          <EmptySpace type="separate" max="32767" attributes="0"/>
+                          <Component id="pnNhanVien" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="pnHoaDon4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="pnNhanVien" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                           <Component id="pnHoaDon6" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -298,9 +298,9 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                              <Component id="imageAvatar1" min="-2" pref="40" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
+                              <Component id="imageAvatar1" min="-2" pref="40" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="lblBanHang" min="-2" pref="165" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -324,7 +324,7 @@
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value=" B&#xc1;N H&#xc0;NG"/>
+                        <Property name="text" type="java.lang.String" value="B&#xc1;N H&#xc0;NG"/>
                       </Properties>
                     </Component>
                     <Container class="MyCustom.ImageAvatar" name="imageAvatar1">
@@ -445,7 +445,7 @@
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="  KHUY&#x1ebe;N M&#xc3;I"/>
+                        <Property name="text" type="java.lang.String" value=" KHUY&#x1ebe;N M&#xc3;I"/>
                       </Properties>
                     </Component>
                     <Container class="MyCustom.ImageAvatar" name="imageAvatar6">
@@ -746,7 +746,7 @@
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="  PH&#xc2;N QUY&#x1ec0;N"/>
+                        <Property name="text" type="java.lang.String" value=" PH&#xc2;N QUY&#x1ec0;N"/>
                       </Properties>
                     </Component>
                     <Container class="MyCustom.ImageAvatar" name="imageAvatar11">
@@ -806,7 +806,7 @@
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="  T&#xc0;I KHO&#x1ea2;N"/>
+                        <Property name="text" type="java.lang.String" value=" T&#xc0;I KHO&#x1ea2;N"/>
                       </Properties>
                     </Component>
                     <Container class="MyCustom.ImageAvatar" name="imageAvatar12">

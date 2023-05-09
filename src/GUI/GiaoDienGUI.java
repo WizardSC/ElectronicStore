@@ -233,7 +233,7 @@ public class GiaoDienGUI extends javax.swing.JFrame {
         lblBanHang.setBackground(new java.awt.Color(255, 255, 255));
         lblBanHang.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
         lblBanHang.setForeground(new java.awt.Color(255, 255, 255));
-        lblBanHang.setText(" BÁN HÀNG");
+        lblBanHang.setText("BÁN HÀNG");
 
         imageAvatar1.setForeground(new java.awt.Color(255, 255, 240));
         imageAvatar1.setBorderSize(2);
@@ -244,9 +244,9 @@ public class GiaoDienGUI extends javax.swing.JFrame {
         pnBanHangLayout.setHorizontalGroup(
             pnBanHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnBanHangLayout.createSequentialGroup()
-                .addGap(8, 8, 8)
+                .addContainerGap()
                 .addComponent(imageAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblBanHang, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pnBanHangLayout.setVerticalGroup(
@@ -289,7 +289,7 @@ public class GiaoDienGUI extends javax.swing.JFrame {
         lblKhuyenMai.setBackground(new java.awt.Color(255, 255, 255));
         lblKhuyenMai.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
         lblKhuyenMai.setForeground(new java.awt.Color(255, 255, 255));
-        lblKhuyenMai.setText("  KHUYẾN MÃI");
+        lblKhuyenMai.setText(" KHUYẾN MÃI");
 
         imageAvatar6.setForeground(new java.awt.Color(255, 255, 240));
         imageAvatar6.setBorderSize(2);
@@ -431,7 +431,7 @@ public class GiaoDienGUI extends javax.swing.JFrame {
         lblHoaDon6.setBackground(new java.awt.Color(255, 255, 255));
         lblHoaDon6.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
         lblHoaDon6.setForeground(new java.awt.Color(255, 255, 255));
-        lblHoaDon6.setText("  PHÂN QUYỀN");
+        lblHoaDon6.setText(" PHÂN QUYỀN");
 
         imageAvatar11.setForeground(new java.awt.Color(255, 255, 240));
         imageAvatar11.setBorderSize(2);
@@ -459,7 +459,7 @@ public class GiaoDienGUI extends javax.swing.JFrame {
         lblTaiKhoan.setBackground(new java.awt.Color(255, 255, 255));
         lblTaiKhoan.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
         lblTaiKhoan.setForeground(new java.awt.Color(255, 255, 255));
-        lblTaiKhoan.setText("  TÀI KHOẢN");
+        lblTaiKhoan.setText(" TÀI KHOẢN");
 
         imageAvatar12.setForeground(new java.awt.Color(255, 255, 240));
         imageAvatar12.setBorderSize(2);
@@ -606,11 +606,11 @@ public class GiaoDienGUI extends javax.swing.JFrame {
                 .addComponent(pnChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(pnTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addComponent(pnNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(pnHoaDon4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(pnNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22)
                 .addComponent(pnHoaDon6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
