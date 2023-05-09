@@ -1,13 +1,11 @@
-﻿select * from CTPhieuNhap
---Stored procedure Thêm CTPN khi đứng tại 1 chi nhánh bất kỳ
---Phiếu nhập phải tồn tại ở chi nhánh hiện tại
-create proc sp_ThemCTPN
+﻿-- Stored procedure thêm CTPN khi đứng ở 1 chi nhánh bất kỳ
+-- Chỉ có thể thêm CTPN cho PN ở chi nhánh hiện tại
+-- Chỉ cần nhập thông tin MaPN và MaSP cùng với SoLuong, các thông tin còn lại sẽ tự động được nhập để tránh sai lệch dữ liệu
+-- Cập nhật giá trị hóa đơn với mỗi CTPN được nhập vào
+alter proc sp_ThemCTPN
 	@MaPN nvarchar(20),
-	@MaSP nvarchar(20),
-	@TenSP nvarchar(50),
-	@SoLuong int,
-	@DonGia int,
-	@ThanhTien int
+	@MaSP nvarchar(20),	
+	@SoLuong int
 as
 begin
 	if not exists(select MaPN from PHIEUNHAP where MaPN = @MaPN)
@@ -29,11 +27,17 @@ begin
 		end
 	else
 		begin
-			insert into CTPHIEUNHAP (MaPN, MaSP, TenSP, SoLuong, DonGia,ThanhTien) values (@MaPN, @MaSP, @TenSP, @SoLuong, @DonGia, @ThanhTien)
+			declare @TenSP  nvarchar(140) = (select TenSP from SANPHAM where MaSP = @MaSP)
+			declare @DonGiaNhap int = (select DonGia = DonGia/1.05 from sanpham where MaSP = @MaSP)
+			declare @ThanhTien int = @SoLuong * @DonGiaNhap
+			insert into CTPHIEUNHAP (MaPN, MaSP, TenSP, SoLuong, DonGia,ThanhTien) values (@MaPN, @MaSP, @TenSP, @SoLuong, @DonGiaNhap, @ThanhTien)
+			print N'Thêm chi tiết phiếu nhập thành công'
+			update PHIEUNHAP set TongTien = TongTien + @ThanhTien where MaPN = @MaPN
 		end
 			
 end
 
-exec sp_ThemCTPN 'PN033', 'SP001', 'A', 20, 10000, 200000
+exec sp_ThemCTPN 'PN060', 'SP007', 1
+delete CTPHIEUNHAP where MaPN = 'PN060'
 
 select * from CTPHIEUNHAP

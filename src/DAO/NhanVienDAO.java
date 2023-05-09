@@ -225,5 +225,32 @@ public class NhanVienDAO {
         }
 
     }
-    
+    public ArrayList<NhanVienDTO> getListNVTheoMaCV(String MaCV){
+        try {
+            ArrayList<NhanVienDTO> dsnv = new ArrayList<>();
+            String sql = "exec sp_SelectAllNVtheoMaCV " + MaCV;
+            ResultSet rs = mssql.executeQuery(sql);
+            while(rs.next()){
+                NhanVienDTO nv = new NhanVienDTO(
+                        rs.getString("MaNV"),
+                        rs.getString("Ho"),
+                        rs.getString("Ten"),
+                        rs.getInt("NamSinh"),
+                        rs.getString("GioiTinh"),
+                        rs.getString("SoDT"),
+                        rs.getString("DiaChi"),
+                        rs.getString("MaCV"),
+                        rs.getString("MaCN"),
+                        rs.getString("IMG")
+                );
+                dsnv.add(nv);
+            }
+            return dsnv;
+        } catch (SQLException ex) {
+            Logger.getLogger(NhanVienDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            mssql.Disconnect();
+        }
+        return null;
+    }
 }

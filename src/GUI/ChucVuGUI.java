@@ -5,7 +5,9 @@
 package GUI;
 
 import BUS.ChucVuBUS;
+import BUS.NhanVienBUS;
 import DTO.ChucVuDTO;
+import DTO.NhanVienDTO;
 import MyCustom.XuLyException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -18,13 +20,17 @@ import javax.swing.table.DefaultTableModel;
 public class ChucVuGUI extends javax.swing.JPanel {
 
     DefaultTableModel dtmChucVu;
+    DefaultTableModel dtmNhanVien;
     private ChucVuBUS cvBUS = new ChucVuBUS();
+    private NhanVienBUS nvBUS = new NhanVienBUS();
     String MaCN;
     public ChucVuGUI(String temp) {
         initComponents();
         dtmChucVu = (DefaultTableModel) tblDSCV.getModel();
+        dtmNhanVien = (DefaultTableModel) tblDSNV.getModel();
         this.MaCN = temp;
         cvBUS.docMaCN(MaCN);
+        nvBUS.docMaCN(MaCN);
         loadDataDSCV();
         loadMaCVMoiNhat();
     }
@@ -39,6 +45,23 @@ public class ChucVuGUI extends javax.swing.JPanel {
         }
     }
     
+    public void showAllDSNV(ArrayList<NhanVienDTO> dsnv){
+        dtmNhanVien.setRowCount(0);
+        for(int i=0;i<dsnv.size();i++){
+            dtmNhanVien.addRow(new String[]{
+                dsnv.get(i).getMaNV(),
+                dsnv.get(i).getHo(),
+                dsnv.get(i).getTen(),
+                String.valueOf(dsnv.get(i).getNamSinh()),
+                dsnv.get(i).getGioiTinh(),
+                dsnv.get(i).getSoDT(),
+                dsnv.get(i).getDiaChi(),
+                dsnv.get(i).getMaCV(),
+                dsnv.get(i).getMaCN(),
+                dsnv.get(i).getIMG()
+            });
+        }
+    }
     public void loadDataDSCV(){
         cvBUS.docDanhSach();
         ArrayList<ChucVuDTO> dscv = cvBUS.getListChucVu();
@@ -310,8 +333,14 @@ public class ChucVuGUI extends javax.swing.JPanel {
 
     private void tblDSCVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDSCVMouseClicked
         int k = tblDSCV.getSelectedRow();
-        txtMaCV.setText(tblDSCV.getModel().getValueAt(k,0).toString());
+        String MaCV = tblDSCV.getModel().getValueAt(k,0).toString();
+        txtMaCV.setText(MaCV);
+        System.out.println(MaCV);
+        nvBUS.docDanhSachNVtheoMaCV(MaCV);
+        ArrayList<NhanVienDTO> dsnv = nvBUS.getListNVtheoMaCV();
+        showAllDSNV(dsnv);
         txtTenCV.setText(tblDSCV.getModel().getValueAt(k, 1).toString());
+        
     }//GEN-LAST:event_tblDSCVMouseClicked
 
 
