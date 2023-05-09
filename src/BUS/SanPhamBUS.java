@@ -79,6 +79,17 @@ public class SanPhamBUS {
         }
     }
     
+    public ArrayList<SanPham_ChiNhanhDTO> searchMaSP(String tk){
+        ArrayList<SanPham_ChiNhanhDTO> dssp = new ArrayList<>();
+        tk = tk.toLowerCase();
+        for(SanPham_ChiNhanhDTO sp : listSanPham){
+            if(sp.getMaSP().toLowerCase().contains(tk)){
+                dssp.add(sp);
+            }
+        }
+        return dssp;
+    }
+    
     public void capNhatSLNhapHang(String MaSP, int SoLuongNhap, int SoLuongTrongKho){
         spDAO.capNhatSLNhapHang(MaSP, SoLuongNhap, SoLuongTrongKho);
     }

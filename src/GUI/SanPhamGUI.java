@@ -11,6 +11,8 @@ import DTO.SanPham_ChiNhanhDTO;
 import MyCustom.XuLyException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,11 +20,13 @@ import javax.swing.table.DefaultTableModel;
  * @author Phuc Toan
  */
 public class SanPhamGUI extends javax.swing.JPanel {
+
     private SanPhamBUS spBUS = new SanPhamBUS();
     private MSSQLConnect mssql = new MSSQLConnect();
     String MaCN;
+    String TuKhoaTimKiem;
     DefaultTableModel dtmSanPham;
-    
+
     public SanPhamGUI(String temp) {
         initComponents();
         this.MaCN = temp;
@@ -33,11 +37,28 @@ public class SanPhamGUI extends javax.swing.JPanel {
         txtSoLuong.setEnabled(false);
         txtDonGia.setEnabled(false);
         txtMaSP.setEnabled(false);
+        TuKhoaTimKiem = cbxTimKiem.getSelectedItem().toString();
+        txtTimKiem.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                search(TuKhoaTimKiem);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                search(TuKhoaTimKiem);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                search(TuKhoaTimKiem);
+            }
+        });
     }
-    
-    public void showAllDSSP(ArrayList<SanPham_ChiNhanhDTO> dssp){
+
+    public void showAllDSSP(ArrayList<SanPham_ChiNhanhDTO> dssp) {
         dtmSanPham.setRowCount(0);
-        for(int i=0;i<dssp.size();i++){
+        for (int i = 0; i < dssp.size(); i++) {
             dtmSanPham.addRow(new String[]{
                 dssp.get(i).getMaSP(),
                 dssp.get(i).getTenSP(),
@@ -48,28 +69,37 @@ public class SanPhamGUI extends javax.swing.JPanel {
                 dssp.get(i).getMaNSX(),
                 dssp.get(i).getMaNCC(),
                 dssp.get(i).getIMG()
-                
+
             });
         }
     }
-    
-    public void loadData(){
+
+    public void loadData() {
         spBUS.docDanhSach();
         ArrayList<SanPham_ChiNhanhDTO> dssp = spBUS.getListSanPham();
         showAllDSSP(dssp);
     }
-    
-    public void loadMaSP(){
+
+    public void loadMaSP() {
         spBUS.docDanhSachMaSP();
         ArrayList<SanPhamDTO> dssp = spBUS.getListMaSP();
-        SanPhamDTO lastMaSP = dssp.get(dssp.size()  - 1);
+        SanPhamDTO lastMaSP = dssp.get(dssp.size() - 1);
         int sum = Integer.parseInt(lastMaSP.getMaSP().substring(3)) + 1;
-        if(sum >= 10){
+        if (sum >= 10) {
             txtMaSP.setText("SP0" + sum);
         } else {
             txtMaSP.setText("SP00" + sum);
         }
     }
+
+    public void search(String tk) {
+        if (tk.equals("Mã SP")) {
+            spBUS.docDanhSach();
+            ArrayList<SanPham_ChiNhanhDTO> dssp = spBUS.searchMaSP(txtTimKiem.getText());
+            showAllDSSP(dssp);
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -108,15 +138,14 @@ public class SanPhamGUI extends javax.swing.JPanel {
         btnChonNCC = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblDSSP = new MyCustom.MyTable();
-        cbxDonViTinh1 = new javax.swing.JComboBox<>();
-        txtMaNV2 = new javax.swing.JTextField();
+        cbxTimKiem = new javax.swing.JComboBox<>();
+        txtTimKiem = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         txtMaNV3 = new javax.swing.JTextField();
         txtMaNV4 = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        cbxDonViTinh2 = new javax.swing.JComboBox<>();
+        jLabel14 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 240));
         jPanel1.setPreferredSize(new java.awt.Dimension(896, 744));
@@ -410,18 +439,16 @@ public class SanPhamGUI extends javax.swing.JPanel {
             tblDSSP.getColumnModel().getColumn(8).setPreferredWidth(15);
         }
 
-        cbxDonViTinh1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ" }));
-        cbxDonViTinh1.addActionListener(new java.awt.event.ActionListener() {
+        cbxTimKiem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã SP", "Tên SP" }));
+        cbxTimKiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxDonViTinh1ActionPerformed(evt);
+                cbxTimKiemActionPerformed(evt);
             }
         });
 
-        txtMaNV2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtTimKiem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search1.png"))); // NOI18N
-
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search1.png"))); // NOI18N
 
         txtMaNV3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
@@ -433,12 +460,8 @@ public class SanPhamGUI extends javax.swing.JPanel {
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel13.setText("Đến");
 
-        cbxDonViTinh2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ" }));
-        cbxDonViTinh2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxDonViTinh2ActionPerformed(evt);
-            }
-        });
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel14.setText("Đơn giá");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -452,13 +475,11 @@ public class SanPhamGUI extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbxDonViTinh1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbxTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtMaNV2, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel11)
-                        .addGap(18, 18, 18)
-                        .addComponent(cbxDonViTinh2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel14)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel12)
                         .addGap(18, 18, 18)
@@ -477,15 +498,14 @@ public class SanPhamGUI extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtMaNV2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(cbxDonViTinh1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel11)
+                        .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbxTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtMaNV3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtMaNV4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel12)
                         .addComponent(jLabel13)
-                        .addComponent(cbxDonViTinh2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel14)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
                 .addContainerGap())
@@ -506,9 +526,9 @@ public class SanPhamGUI extends javax.swing.JPanel {
     private void btnChonMaNSXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonMaNSXActionPerformed
         SNhaSanXuatGUI snsx = new SNhaSanXuatGUI(MaCN);
         snsx.setVisible(true);
-        
+
         txtMaNSX.setText(snsx.getMaNSX());
-        
+
     }//GEN-LAST:event_btnChonMaNSXActionPerformed
 
     private void btnSuaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSuaMouseClicked
@@ -558,13 +578,13 @@ public class SanPhamGUI extends javax.swing.JPanel {
     private void btnXoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXoaMouseClicked
         String MaSP = txtMaSP.getText();
         int result = JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa sản phẩm không?");
-        if (result == JOptionPane.YES_OPTION){
+        if (result == JOptionPane.YES_OPTION) {
             try {
                 spBUS.delete(MaSP);
                 loadData();
-            } catch (XuLyException e){
+            } catch (XuLyException e) {
                 JOptionPane.showMessageDialog(this, e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
-            } catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
                 JOptionPane.showMessageDialog(this, "Đã xảy ra lỗi khi xóa nhân viên.", "Lỗi", JOptionPane.ERROR_MESSAGE);
             }
@@ -587,15 +607,15 @@ public class SanPhamGUI extends javax.swing.JPanel {
     private void tblDSSPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDSSPMouseClicked
         int k = tblDSSP.getSelectedRow();
         txtMaSP.setText(tblDSSP.getModel().getValueAt(k, 0).toString());
-        txtTenSP.setText(tblDSSP.getModel().getValueAt(k,1).toString());
-        cbxDonViTinh.setSelectedItem(tblDSSP.getModel().getValueAt(k,2).toString());
+        txtTenSP.setText(tblDSSP.getModel().getValueAt(k, 1).toString());
+        cbxDonViTinh.setSelectedItem(tblDSSP.getModel().getValueAt(k, 2).toString());
         txtSoLuong.setText(tblDSSP.getModel().getValueAt(k, 3).toString());
         txtDonGia.setText(tblDSSP.getModel().getValueAt(k, 4).toString());
         txtMaLoai.setText(tblDSSP.getModel().getValueAt(k, 5).toString());
 
         txtMaNSX.setText(tblDSSP.getModel().getValueAt(k, 6).toString());
         txtMaNCC.setText(tblDSSP.getModel().getValueAt(k, 7).toString());
-        
+
 
     }//GEN-LAST:event_tblDSSPMouseClicked
 
@@ -603,22 +623,19 @@ public class SanPhamGUI extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxDonViTinhActionPerformed
 
-    private void cbxDonViTinh1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxDonViTinh1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbxDonViTinh1ActionPerformed
+    private void cbxTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTimKiemActionPerformed
+        TuKhoaTimKiem = cbxTimKiem.getSelectedItem().toString();
 
-    private void cbxDonViTinh2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxDonViTinh2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbxDonViTinh2ActionPerformed
+    }//GEN-LAST:event_cbxTimKiemActionPerformed
 
     private void btnChonMaLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonMaLoaiActionPerformed
         SMaLoaiGUI sml = new SMaLoaiGUI(MaCN);
         mssql.docMaCN(MaCN);
-        
+
         sml.setVisible(true);
-        
+
         txtMaLoai.setText(sml.getMaLoai());
-        
+
     }//GEN-LAST:event_btnChonMaLoaiActionPerformed
 
     private void btnChonNCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonNCCActionPerformed
@@ -638,13 +655,12 @@ public class SanPhamGUI extends javax.swing.JPanel {
     private javax.swing.JLabel btnXoa;
     private javax.swing.JLabel btnXuatExcel;
     private javax.swing.JComboBox<String> cbxDonViTinh;
-    private javax.swing.JComboBox<String> cbxDonViTinh1;
-    private javax.swing.JComboBox<String> cbxDonViTinh2;
+    private javax.swing.JComboBox<String> cbxTimKiem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -661,11 +677,11 @@ public class SanPhamGUI extends javax.swing.JPanel {
     private javax.swing.JTextField txtMaLoai;
     private javax.swing.JTextField txtMaNCC;
     private javax.swing.JTextField txtMaNSX;
-    private javax.swing.JTextField txtMaNV2;
     private javax.swing.JTextField txtMaNV3;
     private javax.swing.JTextField txtMaNV4;
     private javax.swing.JTextField txtMaSP;
     private javax.swing.JTextField txtSoLuong;
     private javax.swing.JTextField txtTenSP;
+    private javax.swing.JTextField txtTimKiem;
     // End of variables declaration//GEN-END:variables
 }
