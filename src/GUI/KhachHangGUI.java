@@ -60,6 +60,17 @@ public class KhachHangGUI extends javax.swing.JPanel {
             showAllDSKH(dskh);
 
         }
+        if(tk.equals("Họ")){
+            khBUS.docDanhSach();
+            ArrayList<KhachHangDTO> dskh = khBUS.searchHo(txtTimKiem.getText());
+            showAllDSKH(dskh);
+        }
+        if(tk.equals("Tên")){
+            khBUS.docDanhSach();
+            ArrayList<KhachHangDTO> dskh = khBUS.searchTen(txtTimKiem.getText());
+            showAllDSKH(dskh);
+            
+        }
     }
 
     public void showAllDSKH(ArrayList<KhachHangDTO> dskh) {

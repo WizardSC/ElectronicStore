@@ -131,7 +131,40 @@ public class NhanVienBUS {
         }
         return dsnv;
     }
-
+    
+    public ArrayList<NhanVienDTO> searchHo(String tk, boolean search){
+        ArrayList<NhanVienDTO> dsnv = new ArrayList<>();
+        if(search){
+            this.listNhanVien = nvDAO.getListNhanVien();
+        } else {
+            this.listNhanVien = nvDAO.getListNV3ChiNhanh();
+        }
+        tk = tk.toLowerCase();
+        for(NhanVienDTO nv : listNhanVien){
+            if(nv.getHo().toLowerCase().contains(tk)){
+                dsnv.add(nv);
+            }
+        }
+        return dsnv;
+    }
+    
+    
+    public ArrayList<NhanVienDTO> searchTen(String tk, boolean search){
+        ArrayList<NhanVienDTO> dsnv = new ArrayList<>();
+        if(search){
+            this.listNhanVien = nvDAO.getListNhanVien();
+        } else {
+            this.listNhanVien = nvDAO.getListNV3ChiNhanh();
+            
+        }
+        tk = tk.toLowerCase();
+        for(NhanVienDTO nv : listNhanVien){
+            if(nv.getTen().toLowerCase().contains(tk)){
+                dsnv.add(nv);
+            }
+        }
+        return dsnv;
+    }
     public ArrayList<NhanVienDTO> searchTuoi(int TuoiBD, int TuoiKT, boolean search) {
         ArrayList<NhanVienDTO> dsnv = new ArrayList<>();
         if (search) {

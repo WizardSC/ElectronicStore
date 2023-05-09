@@ -89,6 +89,28 @@ public class KhachHangBUS {
         }
         return dskh;
     }
+    
+    public ArrayList<KhachHangDTO> searchHo(String tk){
+        ArrayList<KhachHangDTO> dskh = new ArrayList<>();
+        tk = tk.toLowerCase();
+        for(KhachHangDTO kh : listKhachHang){
+            if(kh.getHo().toLowerCase().contains(tk)){
+                dskh.add(kh);
+            }
+        }
+        return dskh;
+    }
+    public ArrayList<KhachHangDTO> searchTen(String tk){
+        ArrayList<KhachHangDTO> dskh = new ArrayList<>();
+        tk = tk.toLowerCase();
+        for(KhachHangDTO kh : listKhachHang){
+            if(kh.getTen().toLowerCase().contains(tk)){
+                dskh.add(kh);
+            }
+        }
+        return dskh;
+    }
+    
 
     public ArrayList<KhachHangDTO> searchTuoi(int TuoiBD, int TuoiKT) {
         ArrayList<KhachHangDTO> dskh = new ArrayList<>();

@@ -71,6 +71,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
         
 
     }
+    
     public void search(String tk, String cn){
         if(tk.equals("Mã NV") && cn.equals("Hiện tại")){
             search = true;
@@ -82,6 +83,27 @@ public class NhanVienGUI extends javax.swing.JPanel {
             ArrayList<NhanVienDTO> dsnv = nvBUS.searchMaNV(txtTimKiem.getText(), search);
             showAllDSNV(dsnv);
         }
+        if(tk.equals("Họ") && cn.equals("Hiện tại")){
+            search = true;
+            ArrayList<NhanVienDTO> dsnv = nvBUS.searchHo(txtTimKiem.getText(), search);
+            showAllDSNV(dsnv);
+        }
+        if(tk.equals("Họ") && cn.equals("Toàn cục")){
+            search = false;
+            ArrayList<NhanVienDTO> dsnv = nvBUS.searchHo(txtTimKiem.getText(),search);
+            showAllDSNV(dsnv);
+        }
+        if(tk.equals("Tên") && cn.equals("Hiện tại")){
+            search = true;
+            ArrayList<NhanVienDTO> dsnv = nvBUS.searchTen(txtTimKiem.getText(), search);
+            showAllDSNV(dsnv);
+        }
+        if (tk.equals("Tên") && cn.equals("Toàn cục")){
+            search = false;
+            ArrayList<NhanVienDTO> dsnv = nvBUS.searchTen(txtTimKiem.getText(), search);
+            showAllDSNV(dsnv);
+        }
+        
     }
     public void showAllDSNV(ArrayList<NhanVienDTO> dsnv) {
         dtmNhanVien.setRowCount(0);
