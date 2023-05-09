@@ -750,6 +750,9 @@ public class NhanVienGUI extends javax.swing.JPanel {
         txtDiaChi.setText("");
         txtMaCV.setText("");
         txtMaCN.setText("");
+        txtTimKiem.setText("");
+        txtTuoiBD.setText("");
+        txtTuoiKT.setText("");
         loadData();
         
         
