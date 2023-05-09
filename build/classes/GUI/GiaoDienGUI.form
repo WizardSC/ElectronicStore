@@ -237,18 +237,18 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="pnSanPham" alignment="1" pref="230" max="32767" attributes="0"/>
-                      <Component id="pnKhachHang" alignment="1" pref="230" max="32767" attributes="0"/>
-                      <Component id="pnNhanVien" alignment="0" pref="230" max="32767" attributes="0"/>
-                      <Component id="pnBanHang" alignment="0" pref="230" max="32767" attributes="0"/>
-                      <Component id="pnKhuyenMai" alignment="0" pref="230" max="32767" attributes="0"/>
-                      <Component id="pnChucVu" alignment="1" pref="230" max="32767" attributes="0"/>
-                      <Component id="pnHoaDon6" alignment="0" pref="230" max="32767" attributes="0"/>
-                      <Component id="pnHoaDon4" alignment="0" pref="230" max="32767" attributes="0"/>
-                      <Component id="pnTaiKhoan" alignment="1" pref="230" max="32767" attributes="0"/>
-                      <Component id="pnHoaDon" alignment="1" pref="230" max="32767" attributes="0"/>
-                      <Component id="pnPhieuNhap" alignment="0" pref="230" max="32767" attributes="0"/>
-                      <Component id="pnNhapHang" alignment="0" pref="230" max="32767" attributes="0"/>
+                      <Component id="pnSanPham" alignment="1" pref="234" max="32767" attributes="0"/>
+                      <Component id="pnKhachHang" alignment="1" pref="234" max="32767" attributes="0"/>
+                      <Component id="pnNhanVien" alignment="0" pref="234" max="32767" attributes="0"/>
+                      <Component id="pnBanHang" alignment="0" pref="234" max="32767" attributes="0"/>
+                      <Component id="pnKhuyenMai" alignment="0" pref="234" max="32767" attributes="0"/>
+                      <Component id="pnChucVu" alignment="1" pref="234" max="32767" attributes="0"/>
+                      <Component id="pnHoaDon6" alignment="0" pref="234" max="32767" attributes="0"/>
+                      <Component id="pnHoaDon4" alignment="0" pref="234" max="32767" attributes="0"/>
+                      <Component id="pnTaiKhoan" alignment="1" pref="234" max="32767" attributes="0"/>
+                      <Component id="pnHoaDon" alignment="1" pref="234" max="32767" attributes="0"/>
+                      <Component id="pnPhieuNhap" alignment="0" pref="234" max="32767" attributes="0"/>
+                      <Component id="pnNhapHang" alignment="0" pref="234" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -479,9 +479,9 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                              <Component id="imageAvatar3" min="-2" pref="40" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
+                              <Component id="imageAvatar3" min="-2" pref="40" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="lblSanPham" min="-2" pref="165" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -505,7 +505,7 @@
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="  S&#x1ea2;N PH&#x1ea8;M"/>
+                        <Property name="text" type="java.lang.String" value="S&#x1ea2;N PH&#x1ea8;M"/>
                       </Properties>
                     </Component>
                     <Container class="MyCustom.ImageAvatar" name="imageAvatar3">
@@ -539,9 +539,9 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                              <Component id="imageAvatar7" min="-2" pref="40" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
+                              <Component id="imageAvatar7" min="-2" pref="40" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="lblKhachHang" min="-2" pref="177" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -876,7 +876,7 @@
                         </Property>
                         <Property name="borderSize" type="int" value="2"/>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/img/invoice.png"/>
+                          <Image iconType="3" name="/img/payment.png"/>
                         </Property>
                         <Property name="inheritsPopupMenu" type="boolean" value="true"/>
                       </Properties>
@@ -937,7 +937,7 @@
                         </Property>
                         <Property name="borderSize" type="int" value="2"/>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/img/invoice.png"/>
+                          <Image iconType="3" name="/img/taxation.png"/>
                         </Property>
                         <Property name="inheritsPopupMenu" type="boolean" value="true"/>
                       </Properties>
@@ -998,7 +998,7 @@
                         </Property>
                         <Property name="borderSize" type="int" value="2"/>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/img/lblNhapHang.png"/>
+                          <Image iconType="3" name="/img/import.png"/>
                         </Property>
                         <Property name="inheritsPopupMenu" type="boolean" value="true"/>
                       </Properties>
