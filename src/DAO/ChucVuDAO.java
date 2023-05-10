@@ -83,13 +83,16 @@ public class ChucVuDAO {
     public void deleteChucVu(String MaCV) throws SQLException, SQLServerException {
         try {
             Connection connection = mssql.getConnection();
-            String sql = "delete from chucvu where MaCV = ?";
+            String sql = "exec sp_deleteChucVu ?";
             PreparedStatement ps = connection.prepareStatement(sql);
 
             ps.setString(1, MaCV);
             ps.executeUpdate();
         } catch (SQLServerException ex) {
             if (ex.getErrorCode() == 547) {
+                throw ex;
+            }
+            if(ex.getErrorCode() == 50000){
                 throw ex;
             }
         } finally {

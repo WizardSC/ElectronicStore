@@ -54,7 +54,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="pnHeader" max="32767" attributes="0"/>
+                      <Component id="pnHeader" pref="1382" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jScrollPane1" min="-2" pref="236" max="-2" attributes="0"/>
@@ -109,7 +109,7 @@
                       <Component id="lblChiNhanh" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="lblAccount" min="-2" pref="41" max="-2" attributes="0"/>
-                      <EmptySpace pref="1000" max="32767" attributes="0"/>
+                      <EmptySpace pref="990" max="32767" attributes="0"/>
                       <Component id="lblMinimize" min="-2" pref="51" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblClose" min="-2" pref="51" max="-2" attributes="0"/>
@@ -243,7 +243,7 @@
                       <Component id="pnBanHang" alignment="0" pref="234" max="32767" attributes="0"/>
                       <Component id="pnKhuyenMai" alignment="0" pref="234" max="32767" attributes="0"/>
                       <Component id="pnChucVu" alignment="1" pref="234" max="32767" attributes="0"/>
-                      <Component id="pnHoaDon6" alignment="0" pref="234" max="32767" attributes="0"/>
+                      <Component id="pnPhanQuyen" alignment="0" pref="234" max="32767" attributes="0"/>
                       <Component id="pnHoaDon4" alignment="0" pref="234" max="32767" attributes="0"/>
                       <Component id="pnTaiKhoan" alignment="1" pref="234" max="32767" attributes="0"/>
                       <Component id="pnHoaDon" alignment="1" pref="234" max="32767" attributes="0"/>
@@ -277,7 +277,7 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="pnHoaDon4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="pnHoaDon6" min="-2" max="-2" attributes="0"/>
+                          <Component id="pnPhanQuyen" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -706,7 +706,7 @@
                     </Container>
                   </SubComponents>
                 </Container>
-                <Container class="javax.swing.JPanel" name="pnHoaDon6">
+                <Container class="javax.swing.JPanel" name="pnPhanQuyen">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="80" green="80" red="80" type="rgb"/>
@@ -723,19 +723,19 @@
                               <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                               <Component id="imageAvatar11" min="-2" pref="40" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="lblHoaDon6" min="-2" pref="165" max="-2" attributes="0"/>
+                              <Component id="lblPhanQuyen" min="-2" pref="165" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblHoaDon6" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblPhanQuyen" alignment="0" max="32767" attributes="0"/>
                           <Component id="imageAvatar11" alignment="1" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JLabel" name="lblHoaDon6">
+                    <Component class="javax.swing.JLabel" name="lblPhanQuyen">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>

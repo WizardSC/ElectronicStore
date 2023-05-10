@@ -14,6 +14,7 @@ import GUI.KhachHangGUI;
 import GUI.KhuyenMaiGUI;
 import GUI.NhanVienGUI;
 import GUI.NhapHangGUI;
+import GUI.PhanQuyenGUI;
 import GUI.PhieuNhapGUI;
 import GUI.SanPhamGUI;
 import GUI.TaiKhoanGUI;
@@ -126,6 +127,9 @@ public class ChangeScreen {
                     break;
                 case "TaiKhoan":
                     node = new TaiKhoanGUI(MaCN);
+                    break;
+                case "PhanQuyen":
+                    node = new PhanQuyenGUI();
                     break;
                 default:
                     break;

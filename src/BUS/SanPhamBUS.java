@@ -90,6 +90,17 @@ public class SanPhamBUS {
         return dssp;
     }
     
+    public ArrayList<SanPham_ChiNhanhDTO> searchTenSP(String tk){
+        ArrayList<SanPham_ChiNhanhDTO> dssp = new ArrayList<>();
+        tk = tk.toLowerCase();
+        for(SanPham_ChiNhanhDTO sp : listSanPham){
+            if(sp.getTenSP().toLowerCase().contains(tk)){
+                dssp.add(sp);
+            }
+        }
+        return dssp;
+    }
+    
     public ArrayList<SanPham_ChiNhanhDTO> searchDonGia(int GiaBD, int GiaKT){
         ArrayList<SanPham_ChiNhanhDTO> dssp = new ArrayList<>();
         for(SanPham_ChiNhanhDTO sp : listSanPham){

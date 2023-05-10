@@ -69,6 +69,7 @@ public class GiaoDienGUI extends javax.swing.JFrame {
         list.add(new DanhMuc("PhieuNhap",pnPhieuNhap,lblPhieuNhap));
         list.add(new DanhMuc("ChucVu",pnChucVu,lblChucVu));
         list.add(new DanhMuc("TaiKhoan",pnTaiKhoan,lblTaiKhoan));
+        list.add(new DanhMuc("PhanQuyen",pnPhanQuyen,lblPhanQuyen));
         controller.setEvent(list);
 
         controller.getMaCN(MaCN);
@@ -122,8 +123,8 @@ public class GiaoDienGUI extends javax.swing.JFrame {
         pnChucVu = new javax.swing.JPanel();
         lblChucVu = new javax.swing.JLabel();
         imageAvatar10 = new MyCustom.ImageAvatar();
-        pnHoaDon6 = new javax.swing.JPanel();
-        lblHoaDon6 = new javax.swing.JLabel();
+        pnPhanQuyen = new javax.swing.JPanel();
+        lblPhanQuyen = new javax.swing.JLabel();
         imageAvatar11 = new MyCustom.ImageAvatar();
         pnTaiKhoan = new javax.swing.JPanel();
         lblTaiKhoan = new javax.swing.JLabel();
@@ -186,7 +187,7 @@ public class GiaoDienGUI extends javax.swing.JFrame {
                 .addComponent(lblChiNhanh)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1000, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 990, Short.MAX_VALUE)
                 .addComponent(lblMinimize, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblClose, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -425,31 +426,31 @@ public class GiaoDienGUI extends javax.swing.JFrame {
             .addComponent(imageAvatar10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        pnHoaDon6.setBackground(new java.awt.Color(128, 128, 128));
-        pnHoaDon6.setPreferredSize(new java.awt.Dimension(226, 40));
+        pnPhanQuyen.setBackground(new java.awt.Color(128, 128, 128));
+        pnPhanQuyen.setPreferredSize(new java.awt.Dimension(226, 40));
 
-        lblHoaDon6.setBackground(new java.awt.Color(255, 255, 255));
-        lblHoaDon6.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
-        lblHoaDon6.setForeground(new java.awt.Color(255, 255, 255));
-        lblHoaDon6.setText(" PHÂN QUYỀN");
+        lblPhanQuyen.setBackground(new java.awt.Color(255, 255, 255));
+        lblPhanQuyen.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
+        lblPhanQuyen.setForeground(new java.awt.Color(255, 255, 255));
+        lblPhanQuyen.setText(" PHÂN QUYỀN");
 
         imageAvatar11.setForeground(new java.awt.Color(255, 255, 240));
         imageAvatar11.setBorderSize(2);
         imageAvatar11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user.png"))); // NOI18N
 
-        javax.swing.GroupLayout pnHoaDon6Layout = new javax.swing.GroupLayout(pnHoaDon6);
-        pnHoaDon6.setLayout(pnHoaDon6Layout);
-        pnHoaDon6Layout.setHorizontalGroup(
-            pnHoaDon6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnHoaDon6Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnPhanQuyenLayout = new javax.swing.GroupLayout(pnPhanQuyen);
+        pnPhanQuyen.setLayout(pnPhanQuyenLayout);
+        pnPhanQuyenLayout.setHorizontalGroup(
+            pnPhanQuyenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnPhanQuyenLayout.createSequentialGroup()
                 .addGap(8, 8, 8)
                 .addComponent(imageAvatar11, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblHoaDon6, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lblPhanQuyen, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        pnHoaDon6Layout.setVerticalGroup(
-            pnHoaDon6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblHoaDon6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        pnPhanQuyenLayout.setVerticalGroup(
+            pnPhanQuyenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblPhanQuyen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(imageAvatar11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
@@ -578,7 +579,7 @@ public class GiaoDienGUI extends javax.swing.JFrame {
             .addComponent(pnBanHang, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
             .addComponent(pnKhuyenMai, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
             .addComponent(pnChucVu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
-            .addComponent(pnHoaDon6, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+            .addComponent(pnPhanQuyen, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
             .addComponent(pnHoaDon4, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
             .addComponent(pnTaiKhoan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
             .addComponent(pnHoaDon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
@@ -611,7 +612,7 @@ public class GiaoDienGUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(pnHoaDon4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(pnHoaDon6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnPhanQuyen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -644,7 +645,7 @@ public class GiaoDienGUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnRootLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addGroup(pnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnHeader, javax.swing.GroupLayout.DEFAULT_SIZE, 1382, Short.MAX_VALUE)
                     .addGroup(pnRootLayout.createSequentialGroup()
                         .addGroup(pnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -711,12 +712,12 @@ public class GiaoDienGUI extends javax.swing.JFrame {
     private javax.swing.JLabel lblClose;
     private javax.swing.JLabel lblHoaDon;
     private javax.swing.JLabel lblHoaDon4;
-    private javax.swing.JLabel lblHoaDon6;
     private javax.swing.JLabel lblKhachHang;
     private javax.swing.JLabel lblKhuyenMai;
     private javax.swing.JLabel lblMinimize;
     private javax.swing.JLabel lblNhanVien;
     private javax.swing.JLabel lblNhapHang;
+    private javax.swing.JLabel lblPhanQuyen;
     private javax.swing.JLabel lblPhieuNhap;
     private javax.swing.JLabel lblSanPham;
     private javax.swing.JLabel lblTaiKhoan;
@@ -725,12 +726,12 @@ public class GiaoDienGUI extends javax.swing.JFrame {
     private javax.swing.JPanel pnHeader;
     private javax.swing.JPanel pnHoaDon;
     private javax.swing.JPanel pnHoaDon4;
-    private javax.swing.JPanel pnHoaDon6;
     private javax.swing.JPanel pnKhachHang;
     private javax.swing.JPanel pnKhuyenMai;
     private javax.swing.JPanel pnMenu;
     private javax.swing.JPanel pnNhanVien;
     private javax.swing.JPanel pnNhapHang;
+    private javax.swing.JPanel pnPhanQuyen;
     private javax.swing.JPanel pnPhieuNhap;
     private javax.swing.JPanel pnRoot;
     private javax.swing.JPanel pnSanPham;

@@ -21,6 +21,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.NumberFormatter;
 
@@ -37,6 +39,7 @@ public class BanHangGUI extends javax.swing.JPanel {
     DefaultTableModel dtmSanPham;
     DefaultTableModel dtmGioHang;
     String MaCN;
+    String TuKhoaTimKiem;
     int SoLuongTrongKho;
 
     public BanHangGUI(String temp) {
@@ -47,16 +50,34 @@ public class BanHangGUI extends javax.swing.JPanel {
         cthdBUS.docMaCN(temp);
         dtmSanPham = (DefaultTableModel) tblDSSP.getModel();
         dtmGioHang = (DefaultTableModel) tblGioHang.getModel();
+        TuKhoaTimKiem = cbxTimKiem.getSelectedItem().toString();
         loadData();
         loadDataMaHD();
         txtMaHD.setEnabled(false);
+
+        txtTimKiem.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                search(TuKhoaTimKiem);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                search(TuKhoaTimKiem);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                search(TuKhoaTimKiem);
+            }
+        });
 
     }
 
     public void loadDataMaHD() {
         hdBUS.docDanhSachMaHD();
         ArrayList<HoaDonDTO> dshd = hdBUS.getListMaHDTuTang();
-        if(dshd.isEmpty()){
+        if (dshd.isEmpty()) {
             txtMaHD.setText("HD001");
             return;
         }
@@ -102,6 +123,19 @@ public class BanHangGUI extends javax.swing.JPanel {
         showAllDSSP(dssp);
     }
 
+    public void search(String tk) {
+        if (tk.equals("Mã SP")) {
+            spBUS.docDanhSach();
+            ArrayList<SanPham_ChiNhanhDTO> dssp = spBUS.searchMaSP(txtTimKiem.getText());
+            showAllDSSP(dssp);
+        }
+        if (tk.equals("Tên SP")) {
+            spBUS.docDanhSach();
+            ArrayList<SanPham_ChiNhanhDTO> dssp = spBUS.searchTenSP(txtTimKiem.getText());
+            showAllDSSP(dssp);
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -124,8 +158,8 @@ public class BanHangGUI extends javax.swing.JPanel {
         txtTenSP = new javax.swing.JTextField();
         txtDonGia = new javax.swing.JTextField();
         btnThem = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField10 = new javax.swing.JTextField();
+        cbxTimKiem = new javax.swing.JComboBox<>();
+        txtTimKiem = new javax.swing.JTextField();
         txtSoLuong = new javax.swing.JSpinner();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -217,9 +251,12 @@ public class BanHangGUI extends javax.swing.JPanel {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jTextField10.setText("jTextField10");
+        cbxTimKiem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã SP", "Tên SP" }));
+        cbxTimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxTimKiemActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -229,9 +266,9 @@ public class BanHangGUI extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbxTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField10))
+                        .addComponent(txtTimKiem))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -266,8 +303,8 @@ public class BanHangGUI extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                    .addComponent(jComboBox1))
+                    .addComponent(txtTimKiem, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(cbxTimKiem))
                 .addGap(5, 5, 5)
                 .addComponent(jScrollPane1)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -708,15 +745,20 @@ public class BanHangGUI extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnChonKHActionPerformed
 
+    private void cbxTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTimKiemActionPerformed
+        TuKhoaTimKiem = cbxTimKiem.getSelectedItem().toString();
+
+    }//GEN-LAST:event_cbxTimKiemActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChonKH;
     private javax.swing.JLabel btnTaoHoaDon;
     private javax.swing.JLabel btnThem;
     private javax.swing.JLabel btnXoaSP;
+    private javax.swing.JComboBox<String> cbxTimKiem;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -734,7 +776,6 @@ public class BanHangGUI extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField10;
     private MyCustom.MyTable tblDSSP;
     private MyCustom.MyTable tblGioHang;
     private javax.swing.JTextField txtDonGia;
@@ -746,6 +787,7 @@ public class BanHangGUI extends javax.swing.JPanel {
     private com.toedter.calendar.JDateChooser txtNgayLap;
     private javax.swing.JSpinner txtSoLuong;
     private javax.swing.JTextField txtTenSP;
+    private javax.swing.JTextField txtTimKiem;
     private javax.swing.JTextField txtTongTien;
     // End of variables declaration//GEN-END:variables
 }
