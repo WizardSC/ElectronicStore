@@ -95,12 +95,17 @@ public class KhuyenMaiDAO {
     public void deleteKhuyenmai(String MaKM) throws SQLException, SQLServerException {
         try {
             Connection connection = mssql.getConnection();
-            String sql = "Delete from khuyenmai where MaKM = ?";
+            String sql = "exec sp_deleteKhuyenMai ?";
+            
+//            String sql = "Delete from khuyenmai where MaKM = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, MaKM);
             ps.executeUpdate();
         } catch (SQLServerException ex) {
             if (ex.getErrorCode() == 547) {
+                throw ex;
+            }
+            if(ex.getErrorCode() == 50000){
                 throw ex;
             }
         } finally {

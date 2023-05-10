@@ -55,7 +55,7 @@ public class KhuyenMaiBUS {
                     listKhuyenMai.remove(km);
                     kmDAO.deleteKhuyenmai(MaKM);
                 } catch (SQLServerException e)  {
-                    throw new XuLyException("Không thể xóakhuyến mãi vì đã có dữ liệu liên quan đến khuyến mãi này trong CSDL ");
+                    throw new XuLyException("Không thể xóa khuyến mãi vì đã có dữ liệu liên quan đến khuyến mãi này trong CSDL ");
                 } catch (Exception e){
                     e.printStackTrace();
                 }
