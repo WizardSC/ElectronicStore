@@ -116,12 +116,16 @@ public class KhachHangDAO {
     public void deleteKhachHang(String MaKH) throws SQLException, SQLServerException{
         try {
             Connection connection = mssql.getConnection();
-            String sql = "delete from khachhang where MaKH = ?";
+            String sql = "exec sp_deleteKhachHang ?";
+//            String sql = "delete from khachhang where MaKH = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1,MaKH);
             ps.executeUpdate();
         } catch (SQLServerException ex) {
             if (ex.getErrorCode() == 547) {
+                throw ex;
+            }
+            if(ex.getErrorCode()==50000){
                 throw ex;
             }
         } finally {

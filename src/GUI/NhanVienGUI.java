@@ -495,7 +495,7 @@ public class NhanVienGUI extends javax.swing.JPanel {
         btnXuatExcel.setText("XUẤT EXCEL");
 
         btnNhapExcel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnNhapExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/import.png"))); // NOI18N
+        btnNhapExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/xls.png"))); // NOI18N
         btnNhapExcel.setText("NHẬP EXCEL");
 
         cbxChonChiNhanh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hiện tại", "Toàn cục" }));

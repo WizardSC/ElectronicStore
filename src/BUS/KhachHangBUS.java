@@ -69,7 +69,7 @@ public class KhachHangBUS {
                     throw new XuLyException("Không thể xóa khách hàng vì đã có dữ liệu liên quan đến khách hàng này trong CSDL ");
 
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    throw new XuLyException("Không thể xóa khách hàng vì đã có dữ liệu liên quan đến khách hàng này trong CSDL ");
                 }
                 return;
             }
