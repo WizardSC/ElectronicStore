@@ -120,14 +120,19 @@ public class SanPhamDAO {
     
     public void deleteSanPham(String MaSP) throws SQLException, SQLServerException{
         try {
+            
+            
             Connection connection = mssql.getConnection();
             ArrayList<SanPham_ChiNhanhDTO> dssp = new ArrayList<>();
-            String sql = "exec sp_deleteSan7Pham ?"; 
+            String sql = "exec sp_deleteSanPham ?"; 
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1,MaSP);
             ps.executeUpdate();
         } catch (SQLServerException ex) {
             if (ex.getErrorCode() == 547) {
+                throw ex;
+            }
+            if(ex.getErrorCode() == 50000){
                 throw ex;
             }
         } finally {

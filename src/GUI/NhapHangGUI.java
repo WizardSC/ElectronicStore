@@ -25,6 +25,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.NumberFormatter;
 
@@ -64,6 +66,36 @@ public class NhapHangGUI extends javax.swing.JPanel {
         loadMaPN3CN();
         txtMaNCC.setEnabled(false);
         txtMaPN.setEnabled(false);
+
+        txtTimKiem.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                search(TuKhoaTimKiem);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                search(TuKhoaTimKiem);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                search(TuKhoaTimKiem);
+            }
+        });
+    }
+
+    public void search(String tk) {
+        if (tk.equals("Mã SP")) {
+            spBUS.docDanhSach();
+            ArrayList<SanPham_ChiNhanhDTO> dssp = spBUS.searchMaSP(txtTimKiem.getText());
+            showAllDSSP(dssp);
+        }
+        if (tk.equals("Tên SP")) {
+            spBUS.docDanhSach();
+            ArrayList<SanPham_ChiNhanhDTO> dssp = spBUS.searchTenSP(txtTimKiem.getText());
+            showAllDSSP(dssp);
+        }
     }
 
     public void loadMaNCClenCBX() {
@@ -124,7 +156,7 @@ public class NhapHangGUI extends javax.swing.JPanel {
     public void loadMaPN3CN() {
         pnBUS.docDanhSach3CN();
         ArrayList<PhieuNhapDTO> dspn = pnBUS.getListPhieuNhap3CN();
-        if(dspn.isEmpty()){
+        if (dspn.isEmpty()) {
             txtMaPN.setText("PN001");
             return;
         }
@@ -133,14 +165,12 @@ public class NhapHangGUI extends javax.swing.JPanel {
         int sum = Integer.parseInt(MaPN.substring(3)) + 1;
         if (sum < 10) {
             txtMaPN.setText("PN00" + String.valueOf(sum));
-        } else if (sum == 0){
+        } else if (sum == 0) {
             txtMaPN.setText("PN001" + String.valueOf(sum));
         } else {
             txtMaPN.setText("PN0" + String.valueOf(sum));
         }
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -729,6 +759,8 @@ public class NhapHangGUI extends javax.swing.JPanel {
             }
 
         }
+        
+        txtTimKiem.setText("");
 //
 
 //            }

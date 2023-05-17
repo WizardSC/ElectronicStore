@@ -166,6 +166,7 @@ public class NhanVienDAO {
 
     }
 
+    
     public void deleteNhanVien(String MaNV) throws SQLException, SQLServerException {
         try {
             Connection connection = mssql.getConnection();
@@ -181,6 +182,10 @@ public class NhanVienDAO {
             mssql.Disconnect();
         }
     }
+    
+    
+    
+    
 
     public ArrayList<NhanVienDTO> getListNV3ChiNhanh() {
         try {
